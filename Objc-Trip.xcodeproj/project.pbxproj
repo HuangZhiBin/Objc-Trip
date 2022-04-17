@@ -60,6 +60,8 @@
 		85646D18280BE73F00A4F484 /* GCDSuspendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85646D16280BE73F00A4F484 /* GCDSuspendViewController.m */; };
 		85646D1B280BF69300A4F484 /* GCDSemaphoreViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85646D19280BF69300A4F484 /* GCDSemaphoreViewController.h */; };
 		85646D1C280BF69300A4F484 /* GCDSemaphoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85646D1A280BF69300A4F484 /* GCDSemaphoreViewController.m */; };
+		85646D1F280C215200A4F484 /* GCDSourceViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85646D1D280C215200A4F484 /* GCDSourceViewController.h */; };
+		85646D20280C215200A4F484 /* GCDSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85646D1E280C215200A4F484 /* GCDSourceViewController.m */; };
 		85A52B1128081D8400FA3170 /* VarViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85A52B0F28081D8400FA3170 /* VarViewController.h */; };
 		85A52B1228081D8400FA3170 /* VarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A52B1028081D8400FA3170 /* VarViewController.m */; };
 		85A52B1528084B9100FA3170 /* BlockViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85A52B1328084B9100FA3170 /* BlockViewController.h */; };
@@ -171,6 +173,8 @@
 		85646D16280BE73F00A4F484 /* GCDSuspendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDSuspendViewController.m; sourceTree = "<group>"; };
 		85646D19280BF69300A4F484 /* GCDSemaphoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDSemaphoreViewController.h; sourceTree = "<group>"; };
 		85646D1A280BF69300A4F484 /* GCDSemaphoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDSemaphoreViewController.m; sourceTree = "<group>"; };
+		85646D1D280C215200A4F484 /* GCDSourceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDSourceViewController.h; sourceTree = "<group>"; };
+		85646D1E280C215200A4F484 /* GCDSourceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDSourceViewController.m; sourceTree = "<group>"; };
 		85679405D78596B843519FD8 /* Pods-Objc-Trip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Objc-Trip.debug.xcconfig"; path = "Target Support Files/Pods-Objc-Trip/Pods-Objc-Trip.debug.xcconfig"; sourceTree = "<group>"; };
 		85A52B0F28081D8400FA3170 /* VarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VarViewController.h; sourceTree = "<group>"; };
 		85A52B1028081D8400FA3170 /* VarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VarViewController.m; sourceTree = "<group>"; };
@@ -320,6 +324,8 @@
 				85646D16280BE73F00A4F484 /* GCDSuspendViewController.m */,
 				85646D19280BF69300A4F484 /* GCDSemaphoreViewController.h */,
 				85646D1A280BF69300A4F484 /* GCDSemaphoreViewController.m */,
+				85646D1D280C215200A4F484 /* GCDSourceViewController.h */,
+				85646D1E280C215200A4F484 /* GCDSourceViewController.m */,
 			);
 			path = GCD;
 			sourceTree = "<group>";
@@ -448,6 +454,7 @@
 			files = (
 				855696C628099643008A1947 /* BlockLeakViewController.h in Headers */,
 				855696CB28099665008A1947 /* BlockLeakTestViewController.h in Headers */,
+				85646D1F280C215200A4F484 /* GCDSourceViewController.h in Headers */,
 				855696BE28097311008A1947 /* Father.h in Headers */,
 				855696CF28099ED3008A1947 /* TimerViewController.h in Headers */,
 				8531A1022806FCAB006E1AF3 /* WeakStrTestViewController.h in Headers */,
@@ -692,6 +699,7 @@
 				855DEAF62803205B005D2874 /* ViewController.m in Sources */,
 				8553B2922803E49700A692C2 /* NSArray+GCD.m in Sources */,
 				852B830B28032638005479E0 /* AutoreleaseViewController.m in Sources */,
+				85646D20280C215200A4F484 /* GCDSourceViewController.m in Sources */,
 				8531A1032806FCAB006E1AF3 /* WeakStrTestViewController.m in Sources */,
 				855696AD28096F97008A1947 /* OthersViewController.m in Sources */,
 				85FE0C41280AFF61001E76F0 /* GCDAfterViewController.m in Sources */,

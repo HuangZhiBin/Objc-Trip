@@ -21,18 +21,20 @@
     logger = [[GCDLogger alloc] init];
 }
 
-- (wait)testSemaphore {
+- (wait)test_semaphore_create_with_1 {
     [logger reset];
     
     dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
-    // INFO: 注意这个create里面的值，当前值为1时，
+    // INFO: 注意这个create里面的值
     dispatch_semaphore_t sem = dispatch_semaphore_create(1);
     NSMutableArray *array = [NSMutableArray array];
     for(int idx = 0; idx < 10; idx++){
         dispatch_async(queue, ^{
+            // INFO: 信号值大于等于1继续执行，信号值-1
             dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
             [array addObject:@(idx+1)];
             [self->logger addStep:idx+1];
+            //  INFO: 信号值+1
             dispatch_semaphore_signal(sem);
         });
     }
@@ -46,7 +48,7 @@
     returnWait;
 }
 
-- (wait)test_semaphore_create0 {
+- (wait)test_semaphore_create_with_0 {
     [logger reset];
     
     dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
@@ -54,50 +56,20 @@
     
     //任务1
     dispatch_async(queue, ^{
-        [self->logger addStep:1];
         dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER); // 等待
-        [self->logger addStep:2];
+        [self->logger addStep:1];
     });
     
     //任务2
     dispatch_async(queue, ^{
-        [self->logger addStep:3];
-        sleep(2);
-        [self->logger addStep:4];
-        dispatch_semaphore_signal(sem); // 发信号
-    });
-    
-    [self->logger check:^(NSArray * _Nonnull steps) {
-        NSAssert([steps isOrderedBySteps:@"1=3=4=2"], @"顺序执行");
-        waitSuccess;
-    } delay:3];
-    
-    returnWait;
-}
-
-- (wait)test_semaphore_create1 {
-    [logger reset];
-    
-    dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
-    dispatch_semaphore_t sem = dispatch_semaphore_create(1);
-    
-    //任务1
-    dispatch_async(queue, ^{
-        [self->logger addStep:1];
-        dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER); // 等待
         [self->logger addStep:2];
-    });
-    
-    //任务2
-    dispatch_async(queue, ^{
-        [self->logger addStep:3];
         sleep(2);
-        [self->logger addStep:4];
+        [self->logger addStep:3];
         dispatch_semaphore_signal(sem); // 发信号
     });
     
     [self->logger check:^(NSArray * _Nonnull steps) {
-        NSAssert([steps isOrderedBySteps:@"1=2=3=4"], @"顺序执行");
+        NSAssert([steps isOrderedBySteps:@"2=3=1"], @"顺序执行");
         waitSuccess;
     } delay:3];
     

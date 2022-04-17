@@ -56,9 +56,7 @@
     
     if(!isWait){
         [_stateLabel setHidden:YES];
-        [_prevBtn setEnabled:YES];
-        [_closeBtn setEnabled:YES];
-        [_nextBtn setEnabled:YES];
+        [self setButtonState:YES];
         
         [SVProgressHUD setMinimumDismissTimeInterval:1];
         [SVProgressHUD setMaximumDismissTimeInterval:1];
@@ -67,9 +65,7 @@
     else{
         [_stateLabel setHidden:NO];
         
-        [_prevBtn setEnabled:NO];
-        [_closeBtn setEnabled:NO];
-        [_nextBtn setEnabled:NO];
+        [self setButtonState:NO];
         
         _stateLabel.text = @"  执行中……";
         _stateLabel.backgroundColor = UIColor.grayColor;
@@ -77,19 +73,34 @@
 }
 
 -(void)didFinishExec{
-    [_prevBtn setEnabled:YES];
-    [_closeBtn setEnabled:YES];
-    [_nextBtn setEnabled:YES];
+    [self setButtonState:YES];
     _stateLabel.text = @"  执行成功";
     _stateLabel.backgroundColor = [UIColor colorWithRed:60/255.0f green:146/255.0f blue:77/255.0f alpha:1];
 }
 
 -(void)didFailExec{
-    [_prevBtn setEnabled:YES];
-    [_closeBtn setEnabled:YES];
-    [_nextBtn setEnabled:YES];
+    [self setButtonState:YES];
     _stateLabel.text = @"  执行失败";
     _stateLabel.backgroundColor = UIColor.systemPinkColor;
+}
+
+-(void)setButtonState:(BOOL)enable{
+    if(enable){
+        [_prevBtn setEnabled:YES];
+        [_closeBtn setEnabled:YES];
+        [_nextBtn setEnabled:YES];
+        [_prevBtn setAlpha:1];
+        [_closeBtn setAlpha:1];
+        [_nextBtn setAlpha:1];
+    }
+    else{
+        [_prevBtn setEnabled:NO];
+        [_closeBtn setEnabled:NO];
+        [_nextBtn setEnabled:NO];
+        [_prevBtn setAlpha:0.6];
+        [_closeBtn setAlpha:0.6];
+        [_nextBtn setAlpha:0.6];
+    }
 }
 
 -(instancetype)initWithPrev:(DebuggerViewBlock)prevBlock next:(DebuggerViewBlock)nextBlock{

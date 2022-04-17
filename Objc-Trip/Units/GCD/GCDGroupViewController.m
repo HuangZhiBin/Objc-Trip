@@ -85,14 +85,42 @@
     returnWait;
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+-(wait)test_enter_leave{
+    [logger reset];
+    
+    //创建调度组
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t globalQuene = dispatch_get_global_queue(0, 0);
+    
+    // INFO: dispatch_group_async(group, globalQuene, block) 等于 dispatch_group_enter(group) + dispatch_async(queue) + dispatch_group_leave(group)
+    dispatch_group_enter(group);
+    dispatch_async(globalQuene, ^{
+        [self->logger addStep:1];
+        dispatch_group_leave(group);
+    });
+    
+    //任务2
+    dispatch_group_enter(group);
+    dispatch_async(globalQuene, ^{
+        [self->logger addStep:2];
+        dispatch_group_leave(group);
+    });
+    
+    //任务3
+    dispatch_group_enter(group);
+    dispatch_async(globalQuene, ^{
+        [self->logger addStep:3];
+        dispatch_group_leave(group);
+    });
+    
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+    
+    [logger check:^(NSArray * _Nonnull steps) {
+        NSAssert([steps isRandomBySteps:@"1=2=3"], @"随机执行");
+        waitSuccess;
+    } delay:0];
+    
+    returnWait;
+}
 
 @end
