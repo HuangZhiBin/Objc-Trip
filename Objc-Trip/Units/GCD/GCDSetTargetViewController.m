@@ -22,8 +22,8 @@
     logger = [[GCDLogger alloc] init];
 }
 
--(void)testMultiSerial{
-    if(![logger shouldEnter])return;
+-(wait)testMultiSerial{
+    [logger reset];
     
     dispatch_queue_t q1 = dispatch_queue_create("q1", DISPATCH_QUEUE_SERIAL);
     dispatch_queue_t q2 = dispatch_queue_create("q2", DISPATCH_QUEUE_SERIAL);
@@ -43,11 +43,14 @@
     
     [logger check:^(NSArray * _Nonnull steps) {
         NSAssert([steps isRandomBySteps:@"1=2=3"], @"步骤123随机执行") ;
+        waitSuccess;
     } delay:1];
+    
+    returnWait;
 }
 
--(void)testMultiConcurrent{
-    if(![logger shouldEnter])return;
+-(wait)testMultiConcurrent{
+    [logger reset];
     
     dispatch_queue_t q1 = dispatch_queue_create("q1", DISPATCH_QUEUE_CONCURRENT);
     dispatch_queue_t q2 = dispatch_queue_create("q2", DISPATCH_QUEUE_CONCURRENT);
@@ -67,11 +70,14 @@
     
     [logger check:^(NSArray * _Nonnull steps) {
         NSAssert([steps isRandomBySteps:@"1=2=3"], @"步骤123随机执行") ;
+        waitSuccess;
     } delay:1];
+    
+    returnWait;
 }
 
--(void)testSetTarget{
-    if(![logger shouldEnter])return;
+-(wait)testSetTarget{
+    [logger reset];
     
     dispatch_queue_t q1 = dispatch_queue_create("q1", DISPATCH_QUEUE_SERIAL);
     dispatch_queue_t q2 = dispatch_queue_create("q2", DISPATCH_QUEUE_SERIAL);
@@ -94,11 +100,14 @@
     
     [logger check:^(NSArray * _Nonnull steps) {
         NSAssert([[steps lastObject] intValue] == 1, @"步骤1最后执行");
+        waitSuccess;
     } delay:1];
+    
+    returnWait;
 }
 
--(void)testSetTarget2{
-    if(![logger shouldEnter])return;
+-(wait)testSetTarget2{
+    [logger reset];
     
     dispatch_queue_t q1 = dispatch_queue_create("q1", DISPATCH_QUEUE_SERIAL);
     dispatch_queue_t q2 = dispatch_queue_create("q2", DISPATCH_QUEUE_SERIAL);
@@ -137,7 +146,10 @@
     
     [logger check:^(NSArray * _Nonnull steps) {
         NSAssert([steps isOrderedBySteps:@"1=2=3=4=5"], @"步骤12345顺序执行");
+        waitSuccess;
     } delay:1];
+    
+    returnWait;
 }
 
 @end

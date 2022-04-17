@@ -12,7 +12,7 @@ typedef void(^GCDCallback) (NSArray *steps);
 extern void stepLog(NSMutableArray *arr, NSInteger val);
 @interface GCDLogger : NSObject
 
--(BOOL)shouldEnter;
+-(void)reset;
 
 -(void)addStep:(NSInteger)step;
 

@@ -46,6 +46,11 @@
             [[MenuItem alloc] initWithTitle:@"dispatch_set_target_queue" vcName:@"GCDSetTargetViewController"],
             [[MenuItem alloc] initWithTitle:@"dispatch_after" vcName:@"GCDAfterViewController"],
             [[MenuItem alloc] initWithTitle:@"dispatch_group" vcName:@"GCDGroupViewController"],
+            [[MenuItem alloc] initWithTitle:@"dispatch_barrier" vcName:@"GCDBarrierViewController"],
+            [[MenuItem alloc] initWithTitle:@"dispatch_apply" vcName:@"GCDApplyViewController"],
+            [[MenuItem alloc] initWithTitle:@"dispatch_suspend" vcName:@"GCDSuspendViewController"],
+            [[MenuItem alloc] initWithTitle:@"dispatch_semaphore" vcName:@"GCDSemaphoreViewController"],
+            
         ]],
         [[MenuSection alloc] initWithSectionName:@"Block" items:@[
             [[MenuItem alloc] initWithTitle:@"ValueCapture" vcName:@"VarViewController"],

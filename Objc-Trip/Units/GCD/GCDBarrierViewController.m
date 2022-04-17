@@ -6,42 +6,119 @@
 //
 
 #import "GCDBarrierViewController.h"
-
+#import "GCDLogger.h"
 @interface GCDBarrierViewController ()
 
 @end
 
-@implementation GCDBarrierViewController
+@implementation GCDBarrierViewController{
+    GCDLogger *logger;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    logger = [[GCDLogger alloc] init];
 }
 
--(void)testBarrier{
-    //1 创建并发队列
-    dispatch_queue_t concurrentQueue = dispatch_queue_create("concurrentQueue", DISPATCH_QUEUE_CONCURRENT);
+-(wait)test_barrier_async{
+    [logger reset];
     
-    //2 向队列中添加任务
+    dispatch_queue_t concurrentQueue = dispatch_queue_create("xkQueue", DISPATCH_QUEUE_CONCURRENT);
+    
     dispatch_async(concurrentQueue, ^{
-        NSLog(@"任务1,%@",[NSThread currentThread]);
+        sleep(2);
+        [self->logger addStep:1];
     });
+    
     dispatch_async(concurrentQueue, ^{
-        NSLog(@"任务2,%@",[NSThread currentThread]);
+        sleep(1);
+        [self->logger addStep:2];
     });
-    dispatch_async(concurrentQueue, ^{
-        NSLog(@"任务3,%@",[NSThread currentThread]);
-    });
+    
     dispatch_barrier_async(concurrentQueue, ^{
-        NSLog(@"我是barrier");
+        [self->logger addStep:3];
     });
     
     dispatch_async(concurrentQueue, ^{
-        NSLog(@"任务4,%@",[NSThread currentThread]);
+        [self->logger addStep:4];
     });
+    
+    [logger addStep:5];
+    
+    [self->logger check:^(NSArray * _Nonnull steps) {
+        NSAssert([steps isOrderedBySteps:@"2=1=3=4"], @"步骤3在步骤1、2完成后执行，步骤4最后执行");
+        NSAssert([steps isRandomBySteps:@"3=5"], @"步骤3、5随机执行");
+        waitSuccess;
+    } delay:3];
+    
+    returnWait;
+}
+
+-(wait)test_barrier_sync{
+    [logger reset];
+    
+    dispatch_queue_t concurrentQueue = dispatch_queue_create("xkQueue", DISPATCH_QUEUE_CONCURRENT);
+    
     dispatch_async(concurrentQueue, ^{
-        NSLog(@"任务5,%@",[NSThread currentThread]);
+        sleep(2);
+        [self->logger addStep:1];
     });
+    
+    dispatch_async(concurrentQueue, ^{
+        sleep(1);
+        [self->logger addStep:2];
+    });
+    
+    dispatch_barrier_sync(concurrentQueue, ^{
+        [self->logger addStep:3];
+    });
+    
+    dispatch_async(concurrentQueue, ^{
+        [self->logger addStep:4];
+    });
+    
+    [logger addStep:5];
+    
+    [self->logger check:^(NSArray * _Nonnull steps) {
+        NSAssert([steps isOrderedBySteps:@"2=1=3=4"], @"步骤3在步骤1、2完成后执行，步骤4最后执行");
+        NSAssert([steps isOrderedBySteps:@"3=5"], @"步骤3、5顺序执行");
+        waitSuccess;
+    } delay:3];
+    
+    returnWait;
+}
+
+-(wait)test_barrier_global{
+    [logger reset];
+    
+    // INFO: dispatch_barrier 在全局并行队列无效
+    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(0, 0);
+    
+    dispatch_async(concurrentQueue, ^{
+        sleep(2);
+        [self->logger addStep:1];
+    });
+    
+    dispatch_async(concurrentQueue, ^{
+        sleep(1);
+        [self->logger addStep:2];
+    });
+    
+    dispatch_barrier_sync(concurrentQueue, ^{
+        [self->logger addStep:3];
+    });
+    
+    dispatch_async(concurrentQueue, ^{
+        [self->logger addStep:4];
+    });
+    
+    [self->logger check:^(NSArray * _Nonnull steps) {
+        NSAssert([steps isOrderedBySteps:@"3=4=2=1"], @"顺序执行");
+        waitSuccess;
+    } delay:3];
+    
+    returnWait;
 }
 
 /*

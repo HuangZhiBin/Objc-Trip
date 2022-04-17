@@ -13,8 +13,11 @@ typedef void(^DebuggerViewBlock) (void);
 
 @interface DebuggerView : UIView
 
--(void)updateWithCodes:(NSArray<NSString *> *)codes method:(NSString*)method index:(NSInteger)index count:(NSInteger)count;
++(void)sendExecResult:(BOOL)isSuccess;
+
+-(void)updateWithCodes:(NSArray<NSString *> *)codes method:(NSString*)method index:(NSInteger)index count:(NSInteger)count isWait:(BOOL)isWait;
 -(instancetype)initWithPrev:(DebuggerViewBlock)prevBlock next:(DebuggerViewBlock)nextBlock;
+-(void)didFinishExec;
 
 @end
 

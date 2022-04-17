@@ -14,14 +14,10 @@ void stepLog(NSMutableArray *arr, NSInteger val) {
 
 @implementation GCDLogger{
     NSMutableArray *steps;
-    BOOL isProcessing;
 }
 
--(BOOL)shouldEnter{
-    if(!isProcessing){
-        steps = [NSMutableArray array];
-    }
-    return !isProcessing;
+-(void)reset{
+    steps = [NSMutableArray array];
 }
 
 -(void)addStep:(NSInteger)step{
@@ -32,7 +28,6 @@ void stepLog(NSMutableArray *arr, NSInteger val) {
     __weak NSArray *weakArr = steps;
     [NSTimer scheduledTimerWithTimeInterval:interval repeats:NO block:^(NSTimer * _Nonnull timer) {
         callback(weakArr);
-        self->isProcessing = NO;
         [timer invalidate];
     }];
 }

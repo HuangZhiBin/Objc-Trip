@@ -23,8 +23,8 @@
     logger = [[GCDLogger alloc] init];
 }
 
--(void)testGroupNotify{
-    if(![logger shouldEnter])return;
+-(wait)testGroupNotify{
+    [logger reset];
     
     dispatch_queue_t globalQueue = dispatch_get_global_queue(0, 0);
     // 创建一个group
@@ -46,12 +46,15 @@
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         [self->logger check:^(NSArray * _Nonnull steps) {
             NSAssert([steps isRandomBySteps:@"1=2=3"], @"步骤123随机顺序完成");
+            waitSuccess;
         } delay:0];
     });
+    
+    returnWait;
 }
 
--(void)testGroupWait{
-    if(![logger shouldEnter])return;
+-(wait)testGroupWait{
+    [logger reset];
     
     dispatch_queue_t globalQueue = dispatch_get_global_queue(0, 0);
     // 创建一个group
@@ -76,7 +79,10 @@
     [logger check:^(NSArray * _Nonnull steps) {
         NSAssert([steps isRandomBySteps:@"1=2=3"], @"步骤123随机顺序完成");
         NSAssert([[steps lastObject] isEqual:@4], @"步骤4最后执行");
+        waitSuccess;
     } delay:0];
+    
+    returnWait;
 }
 
 /*

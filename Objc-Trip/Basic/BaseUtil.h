@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "DebuggerView.h"
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^CheckDellocCallback)(BOOL);
@@ -24,6 +24,10 @@ extern NSString* getAddr(id obj);
 #define PrintAutoReleasePool() _objc_autoreleasePoolPrint();
 
 #define SafeExit() return;
+#define wait int
+#define returnWait return 0;
+#define waitSuccess [DebuggerView sendExecResult:YES];
+#define waitFail [DebuggerView sendExecResult:NO];
 
 @interface BaseUtil : NSObject
 

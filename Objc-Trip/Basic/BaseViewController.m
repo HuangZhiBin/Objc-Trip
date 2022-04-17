@@ -8,12 +8,13 @@
 #import "BaseViewController.h"
 #import <objc/runtime.h>
 #import "DebuggerView.h"
-#import "SVProgressHUD.h"
+
 
 @interface BaseViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, assign) NSInteger selectedRow;
 @property (nonatomic, strong) NSArray<NSString *> *menus;
+@property (nonatomic, strong) NSArray<NSString *> *waitMethods;
 @end
 
 @implementation BaseViewController{
@@ -130,8 +131,9 @@
         else if([line hasPrefix:@"-"] && [line containsString:@"(void)redirect"]){
             isStart = NO;
         }
-        else if([line hasPrefix:@"-"] && [line containsString:@"(void)test"]){
-            if([line containsString:[NSString stringWithFormat:@"(void)%@{",method]]){
+        else if([line hasPrefix:@"-"] && [line containsString:@")test"]){
+            if([line containsString:[NSString stringWithFormat:@")%@{",method]] ||
+               [line containsString:[NSString stringWithFormat:@")%@ {",method]]){
                 isStart = YES;
             }
             else{
@@ -143,7 +145,15 @@
         }
         
         if(isStart && isFileStart){
-            [validLines addObject:line];
+            if([line containsString:@"returnWait"] || [line containsString:@"waitSuccess"] || [line containsString:@"waitFail"]){
+                continue;
+            }
+            
+            NSString *lineCtn = line;
+            if([line containsString:@"(wait)"]){
+                lineCtn = [line stringByReplacingOccurrencesOfString:@"(wait)" withString:@"(void)"];
+            }
+            [validLines addObject:lineCtn];
         }
     }
     
@@ -199,7 +209,7 @@
     if([item hasPrefix:@"group"]){
         cell.textLabel.text = [item substringFromIndex:5];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
-        cell.textLabel.textColor = UIColor.magentaColor;
+        cell.textLabel.textColor = [UIColor colorWithRed:32/255.0f green:146/255.0f blue:234/255.0f alpha:1];
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
@@ -249,26 +259,14 @@
         codeLines = [self loadCodesForClassName:className method:func];
     }
     
+    [debuggerView setHidden:NO];
+    [debuggerView updateWithCodes:codeLines method:method index:[[self validMenus] indexOfObject:method] count:[self validMenus].count isWait:[self.waitMethods containsObject:method]];
+    
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [self performSelector:NSSelectorFromString(method)];
 #pragma clang diagnostic pop
-    
-    [SVProgressHUD setMinimumDismissTimeInterval:1];
-    [SVProgressHUD setMaximumDismissTimeInterval:1];
-    [SVProgressHUD showSuccessWithStatus:@"Exec success"];
-    
-    [debuggerView setHidden:NO];
-    [debuggerView updateWithCodes:codeLines method:method index:[[self validMenus] indexOfObject:method] count:[self validMenus].count];
-    
-//    DebuggerView *debuggerView = [[DebuggerView alloc] initWithCodes:codeLines method:method];
-//    debuggerView.delegate = self;
-//    [self.view addSubview:debuggerView];
-    
-//    [self executeMethod];
 }
-
-
 
 /* 获取对象的所有方法 */
 -(NSArray<NSString *> *)getAllMethods
@@ -276,21 +274,28 @@
     unsigned int methodCount =0;
     Method* methodList = class_copyMethodList([self class],&methodCount);
     NSMutableArray<NSString *> *methodsArray = [NSMutableArray arrayWithCapacity:methodCount];
-    
+    NSMutableArray<NSString *> *waitMethodsArray = [NSMutableArray arrayWithCapacity:methodCount];
     for(int i=0;i<methodCount;i++)
     {
         Method temp = methodList[i];
-        const char* name_s =sel_getName(method_getName(temp));
+        const char* name_s = sel_getName(method_getName(temp));
         //        int arguments = method_getNumberOfArguments(temp);
-        //        const char* encoding =method_getTypeEncoding(temp);
+//                const char* encoding =method_getTypeEncoding(temp);
+        const char* name_d = method_copyReturnType(temp);
+        NSString *returnType = [NSString stringWithUTF8String:name_d];
+        NSString *methodName = [NSString stringWithUTF8String:name_s];
         //        NSLog(@"方法名：%@,参数个数：%d,编码方式：%@",[NSString stringWithUTF8String:name_s],
         //              arguments,
         //              [NSString stringWithUTF8String:encoding]);
-        if([[NSString stringWithUTF8String:name_s] hasPrefix:@"test"]||[[NSString stringWithUTF8String:name_s] hasPrefix:@"group"]){
-            [methodsArray addObject:[NSString stringWithUTF8String:name_s]];
+        if([methodName hasPrefix:@"test"] || [methodName hasPrefix:@"group"]){
+            [methodsArray addObject:methodName];
+            if([methodName hasPrefix:@"test"] && [returnType isEqualToString:@"i"]){
+                [waitMethodsArray addObject:methodName];
+            }
         }
     }
     free(methodList);
+    _waitMethods = [waitMethodsArray copy];
     return [methodsArray copy];
 }
 

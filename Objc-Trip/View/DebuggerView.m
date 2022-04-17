@@ -6,7 +6,7 @@
 //
 
 #import "DebuggerView.h"
-
+#import "SVProgressHUD.h"
 
 
 #define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
@@ -14,14 +14,16 @@
 #define LINE_WIDTH SCREEN_WIDTH-60
 
 @interface DebuggerView() <UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic, strong) UIButton *cancelBtn;
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) NSArray<NSString *> *codes;
 @property (nonatomic, copy) NSString* method;
 @property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) UIButton *closeBtn;
+@property (nonatomic, strong) UIButton *prevBtn;
+@property (nonatomic, strong) UIButton *nextBtn;
 @property (nonatomic, copy) DebuggerViewBlock onPrev;
 @property (nonatomic, copy) DebuggerViewBlock onNext;
+@property (nonatomic, strong) UILabel *stateLabel;
 @end
 
 @implementation DebuggerView
@@ -34,11 +36,60 @@
  }
  */
 
--(void)updateWithCodes:(NSArray<NSString *> *)codes method:(NSString*)method index:(NSInteger)index count:(NSInteger)count{
++(void)sendExecResult:(BOOL)isSuccess{
+    if(isSuccess){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"DebuggerViewNotificationSuccess" object:nil];
+    }
+    else{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"DebuggerViewNotificationFail" object:nil];
+    }
+}
+
+-(void)updateWithCodes:(NSArray<NSString *> *)codes method:(NSString*)method index:(NSInteger)index count:(NSInteger)count isWait:(BOOL)isWait{
     _codes = codes;
     _method = method;
-    [_tableView reloadData];
+    
     _label.text = [NSString stringWithFormat:@"(%ld/%ld) %@", index + 1, count, method];
+    [_tableView reloadData];
+    [_tableView layoutIfNeeded];
+    [_tableView setContentOffset:CGPointMake(0,0) animated:NO];
+    
+    if(!isWait){
+        [_stateLabel setHidden:YES];
+        [_prevBtn setEnabled:YES];
+        [_closeBtn setEnabled:YES];
+        [_nextBtn setEnabled:YES];
+        
+        [SVProgressHUD setMinimumDismissTimeInterval:1];
+        [SVProgressHUD setMaximumDismissTimeInterval:1];
+        [SVProgressHUD showSuccessWithStatus:@"Exec success"];
+    }
+    else{
+        [_stateLabel setHidden:NO];
+        
+        [_prevBtn setEnabled:NO];
+        [_closeBtn setEnabled:NO];
+        [_nextBtn setEnabled:NO];
+        
+        _stateLabel.text = @"  执行中……";
+        _stateLabel.backgroundColor = UIColor.grayColor;
+    }
+}
+
+-(void)didFinishExec{
+    [_prevBtn setEnabled:YES];
+    [_closeBtn setEnabled:YES];
+    [_nextBtn setEnabled:YES];
+    _stateLabel.text = @"  执行成功";
+    _stateLabel.backgroundColor = [UIColor colorWithRed:60/255.0f green:146/255.0f blue:77/255.0f alpha:1];
+}
+
+-(void)didFailExec{
+    [_prevBtn setEnabled:YES];
+    [_closeBtn setEnabled:YES];
+    [_nextBtn setEnabled:YES];
+    _stateLabel.text = @"  执行失败";
+    _stateLabel.backgroundColor = UIColor.systemPinkColor;
 }
 
 -(instancetype)initWithPrev:(DebuggerViewBlock)prevBlock next:(DebuggerViewBlock)nextBlock{
@@ -67,7 +118,6 @@
         _label = [[UILabel alloc] initWithFrame:CGRectMake(10, viewY, [[UIScreen mainScreen] bounds].size.width - 10 * 2, 22)];
         _label.textColor = UIColor.blackColor;
         _label.font = [UIFont boldSystemFontOfSize:20];
-        
         [self addSubview:_label];
         
         //初始化，当然还有其他初始方法，不赘述了
@@ -86,6 +136,12 @@
         //背景颜色
         _tableView.backgroundColor = [UIColor blackColor];
         
+        _stateLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, viewY + 40, _tableView.frame.size.width, 24)];
+        _stateLabel.backgroundColor = UIColor.grayColor;
+        _stateLabel.textColor = UIColor.whiteColor;
+        _stateLabel.font = [UIFont systemFontOfSize:12];
+        [self addSubview:_stateLabel];
+        
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitle:@"Close" forState:UIControlStateNormal];
         btn.frame = CGRectMake(0, 0, SCREEN_WIDTH/2 - 20, 50.0f);
@@ -103,6 +159,7 @@
             btn.backgroundColor = [UIColor orangeColor];
             [btn addTarget:self action:@selector(prev) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:btn];
+            self.prevBtn = btn;
         }
         
         {
@@ -112,9 +169,25 @@
             btn.backgroundColor = [UIColor orangeColor];
             [btn addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:btn];
+            self.nextBtn = btn;
         }
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveExecSuccess:) name:@"DebuggerViewNotificationSuccess" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveExecFail:) name:@"DebuggerViewNotificationFail" object:nil];
+     
     return self;
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void)receiveExecSuccess:(NSNotification*)noti{
+    [self didFinishExec];
+}
+
+-(void)receiveExecFail:(NSNotification*)noti{
+    [self didFailExec];
 }
 
 -(void)prev{
