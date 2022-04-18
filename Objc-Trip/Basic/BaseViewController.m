@@ -262,10 +262,13 @@
     [debuggerView setHidden:NO];
     [debuggerView updateWithCodes:codeLines method:method index:[[self validMenus] indexOfObject:method] count:[self validMenus].count isWait:[self.waitMethods containsObject:method]];
     
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    [self performSelector:NSSelectorFromString(method)];
-#pragma clang diagnostic pop
+    __weak BaseViewController *weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [weakSelf performSelector:NSSelectorFromString(method)];
+        #pragma clang diagnostic pop
+    });
 }
 
 /* 获取对象的所有方法 */

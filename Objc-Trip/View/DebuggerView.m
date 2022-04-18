@@ -154,7 +154,8 @@
         [self addSubview:_stateLabel];
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitle:@"Close" forState:UIControlStateNormal];
+        [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:28]];
+        [btn setTitle:@"×" forState:UIControlStateNormal];
         btn.frame = CGRectMake(0, 0, SCREEN_WIDTH/2 - 20, 50.0f);
         btn.backgroundColor = [UIColor systemPinkColor];
         self.closeBtn = btn;
@@ -165,7 +166,8 @@
         
         {
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [btn setTitle:@" < " forState:UIControlStateNormal];
+            [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:22]];
+            [btn setTitle:@"←" forState:UIControlStateNormal];
             btn.frame = CGRectMake(10, self.closeBtn.frame.origin.y, 70, 50.0f);
             btn.backgroundColor = [UIColor orangeColor];
             [btn addTarget:self action:@selector(prev) forControlEvents:UIControlEventTouchUpInside];
@@ -175,7 +177,8 @@
         
         {
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [btn setTitle:@" > " forState:UIControlStateNormal];
+            [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:22]];
+            [btn setTitle:@"→" forState:UIControlStateNormal];
             btn.frame = CGRectMake(self.closeBtn.frame.origin.x+self.closeBtn.frame.size.width, self.closeBtn.frame.origin.y, 70, 50.0f);
             btn.backgroundColor = [UIColor orangeColor];
             [btn addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchUpInside];

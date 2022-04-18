@@ -14,14 +14,18 @@ void stepLog(NSMutableArray *arr, NSInteger val) {
 
 @implementation GCDLogger{
     NSMutableArray *steps;
+    dispatch_semaphore_t sem;
 }
 
 -(void)reset{
     steps = [NSMutableArray array];
+    sem = dispatch_semaphore_create(1);
 }
 
 -(void)addStep:(NSInteger)step{
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
     stepLog(steps, step);
+    dispatch_semaphore_signal(sem);
 }
 
 -(void)check:(GCDCallback)callback delay:(NSTimeInterval)interval{

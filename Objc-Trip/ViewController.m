@@ -46,9 +46,10 @@
             [[MenuItem alloc] initWithTitle:@"dispatch_group" vcName:@"GCDGroupViewController"],
             [[MenuItem alloc] initWithTitle:@"dispatch_barrier" vcName:@"GCDBarrierViewController"],
             [[MenuItem alloc] initWithTitle:@"dispatch_apply" vcName:@"GCDApplyViewController"],
-            [[MenuItem alloc] initWithTitle:@"dispatch_suspend" vcName:@"GCDSuspendViewController"],
+            [[MenuItem alloc] initWithTitle:@"dispatch_suspend_cancel" vcName:@"GCDSuspendViewController"],
             [[MenuItem alloc] initWithTitle:@"dispatch_semaphore" vcName:@"GCDSemaphoreViewController"],
             [[MenuItem alloc] initWithTitle:@"dispatch_source" vcName:@"GCDSourceViewController"],
+            [[MenuItem alloc] initWithTitle:@"NSOperation" vcName:@"OperationViewController"],
             
         ]],
         [[MenuSection alloc] initWithSectionName:@"Block" items:@[

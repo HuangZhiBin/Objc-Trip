@@ -62,6 +62,10 @@
 		85646D1C280BF69300A4F484 /* GCDSemaphoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85646D1A280BF69300A4F484 /* GCDSemaphoreViewController.m */; };
 		85646D1F280C215200A4F484 /* GCDSourceViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85646D1D280C215200A4F484 /* GCDSourceViewController.h */; };
 		85646D20280C215200A4F484 /* GCDSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85646D1E280C215200A4F484 /* GCDSourceViewController.m */; };
+		85646D23280C3D3C00A4F484 /* OperationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85646D21280C3D3C00A4F484 /* OperationViewController.h */; };
+		85646D24280C3D3C00A4F484 /* OperationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85646D22280C3D3C00A4F484 /* OperationViewController.m */; };
+		85646D28280C4B2100A4F484 /* MyOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 85646D26280C4B2100A4F484 /* MyOperation.h */; };
+		85646D29280C4B2100A4F484 /* MyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85646D27280C4B2100A4F484 /* MyOperation.m */; };
 		85A52B1128081D8400FA3170 /* VarViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85A52B0F28081D8400FA3170 /* VarViewController.h */; };
 		85A52B1228081D8400FA3170 /* VarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A52B1028081D8400FA3170 /* VarViewController.m */; };
 		85A52B1528084B9100FA3170 /* BlockViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85A52B1328084B9100FA3170 /* BlockViewController.h */; };
@@ -175,6 +179,10 @@
 		85646D1A280BF69300A4F484 /* GCDSemaphoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDSemaphoreViewController.m; sourceTree = "<group>"; };
 		85646D1D280C215200A4F484 /* GCDSourceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDSourceViewController.h; sourceTree = "<group>"; };
 		85646D1E280C215200A4F484 /* GCDSourceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDSourceViewController.m; sourceTree = "<group>"; };
+		85646D21280C3D3C00A4F484 /* OperationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OperationViewController.h; sourceTree = "<group>"; };
+		85646D22280C3D3C00A4F484 /* OperationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OperationViewController.m; sourceTree = "<group>"; };
+		85646D26280C4B2100A4F484 /* MyOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyOperation.h; sourceTree = "<group>"; };
+		85646D27280C4B2100A4F484 /* MyOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyOperation.m; sourceTree = "<group>"; };
 		85679405D78596B843519FD8 /* Pods-Objc-Trip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Objc-Trip.debug.xcconfig"; path = "Target Support Files/Pods-Objc-Trip/Pods-Objc-Trip.debug.xcconfig"; sourceTree = "<group>"; };
 		85A52B0F28081D8400FA3170 /* VarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VarViewController.h; sourceTree = "<group>"; };
 		85A52B1028081D8400FA3170 /* VarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VarViewController.m; sourceTree = "<group>"; };
@@ -258,8 +266,8 @@
 		852B82E728032638005479E0 /* Units */ = {
 			isa = PBXGroup;
 			children = (
-				85A52B0E28081D6D00FA3170 /* Block */,
 				852B82E828032638005479E0 /* ARC */,
+				85A52B0E28081D6D00FA3170 /* Block */,
 				852B82FA28032638005479E0 /* GCD */,
 				855696A928096F6F008A1947 /* Others */,
 			);
@@ -304,12 +312,9 @@
 		852B82FA28032638005479E0 /* GCD */ = {
 			isa = PBXGroup;
 			children = (
-				852B830028032638005479E0 /* AtomicViewController.h */,
-				852B82FD28032638005479E0 /* AtomicViewController.m */,
+				85646D25280C4AFB00A4F484 /* Sub */,
 				852B82FF28032638005479E0 /* GCDViewController.h */,
 				852B82FC28032638005479E0 /* GCDViewController.m */,
-				852B82FB28032638005479E0 /* LockViewController.h */,
-				852B82FE28032638005479E0 /* LockViewController.m */,
 				85FE0C36280AEAB5001E76F0 /* GCDSetTargetViewController.h */,
 				85FE0C37280AEAB5001E76F0 /* GCDSetTargetViewController.m */,
 				85FE0C3E280AFF61001E76F0 /* GCDAfterViewController.h */,
@@ -326,6 +331,8 @@
 				85646D1A280BF69300A4F484 /* GCDSemaphoreViewController.m */,
 				85646D1D280C215200A4F484 /* GCDSourceViewController.h */,
 				85646D1E280C215200A4F484 /* GCDSourceViewController.m */,
+				85646D21280C3D3C00A4F484 /* OperationViewController.h */,
+				85646D22280C3D3C00A4F484 /* OperationViewController.m */,
 			);
 			path = GCD;
 			sourceTree = "<group>";
@@ -345,6 +352,10 @@
 				855696B7280972E8008A1947 /* Sub */,
 				855696AA28096F97008A1947 /* OthersViewController.h */,
 				855696AB28096F97008A1947 /* OthersViewController.m */,
+				852B830028032638005479E0 /* AtomicViewController.h */,
+				852B82FD28032638005479E0 /* AtomicViewController.m */,
+				852B82FB28032638005479E0 /* LockViewController.h */,
+				852B82FE28032638005479E0 /* LockViewController.m */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -431,6 +442,15 @@
 			path = "Objc-TripUITests";
 			sourceTree = "<group>";
 		};
+		85646D25280C4AFB00A4F484 /* Sub */ = {
+			isa = PBXGroup;
+			children = (
+				85646D26280C4B2100A4F484 /* MyOperation.h */,
+				85646D27280C4B2100A4F484 /* MyOperation.m */,
+			);
+			path = Sub;
+			sourceTree = "<group>";
+		};
 		85A52B0E28081D6D00FA3170 /* Block */ = {
 			isa = PBXGroup;
 			children = (
@@ -455,6 +475,7 @@
 				855696C628099643008A1947 /* BlockLeakViewController.h in Headers */,
 				855696CB28099665008A1947 /* BlockLeakTestViewController.h in Headers */,
 				85646D1F280C215200A4F484 /* GCDSourceViewController.h in Headers */,
+				85646D23280C3D3C00A4F484 /* OperationViewController.h in Headers */,
 				855696BE28097311008A1947 /* Father.h in Headers */,
 				855696CF28099ED3008A1947 /* TimerViewController.h in Headers */,
 				8531A1022806FCAB006E1AF3 /* WeakStrTestViewController.h in Headers */,
@@ -464,6 +485,7 @@
 				85A52B1128081D8400FA3170 /* VarViewController.h in Headers */,
 				85646D17280BE73F00A4F484 /* GCDSuspendViewController.h in Headers */,
 				85FE0C44280B071D001E76F0 /* GCDGroupViewController.h in Headers */,
+				85646D28280C4B2100A4F484 /* MyOperation.h in Headers */,
 				855696C22809927E008A1947 /* DeallocController.h in Headers */,
 				855696AC28096F97008A1947 /* OthersViewController.h in Headers */,
 				85646D13280BD2BA00A4F484 /* GCDApplyViewController.h in Headers */,
@@ -715,6 +737,7 @@
 				855696BF28097311008A1947 /* Father.m in Sources */,
 				855696BB28097306008A1947 /* Son.m in Sources */,
 				85A52B1228081D8400FA3170 /* VarViewController.m in Sources */,
+				85646D24280C3D3C00A4F484 /* OperationViewController.m in Sources */,
 				852B830228032638005479E0 /* MenuItem.m in Sources */,
 				85FE0C3D280AF17F001E76F0 /* GCDLogger.m in Sources */,
 				855DEB012803205C005D2874 /* main.m in Sources */,
@@ -727,6 +750,7 @@
 				8553B2B828045BF500A692C2 /* DebuggerView.m in Sources */,
 				855DEAF32803205B005D2874 /* SceneDelegate.m in Sources */,
 				85646D10280BB49D00A4F484 /* GCDBarrierViewController.m in Sources */,
+				85646D29280C4B2100A4F484 /* MyOperation.m in Sources */,
 				852B830A28032638005479E0 /* DeallocViewController.m in Sources */,
 				852B830E28032638005479E0 /* AtomicViewController.m in Sources */,
 			);
