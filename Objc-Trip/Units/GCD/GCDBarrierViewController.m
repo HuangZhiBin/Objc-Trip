@@ -21,7 +21,7 @@
     logger = [[GCDLogger alloc] init];
 }
 
--(wait)test_barrier_async{
+-(waiter)test_barrier_async{
     [logger reset];
     
     dispatch_queue_t concurrentQueue = dispatch_queue_create("xkQueue", DISPATCH_QUEUE_CONCURRENT);
@@ -55,7 +55,7 @@
     returnWait;
 }
 
--(wait)test_barrier_sync{
+-(waiter)test_barrier_sync{
     [logger reset];
     
     dispatch_queue_t concurrentQueue = dispatch_queue_create("xkQueue", DISPATCH_QUEUE_CONCURRENT);
@@ -89,7 +89,7 @@
     returnWait;
 }
 
--(wait)test_barrier_global{
+-(waiter)test_barrier_global{
     [logger reset];
     
     // INFO: dispatch_barrier 在全局并行队列无效

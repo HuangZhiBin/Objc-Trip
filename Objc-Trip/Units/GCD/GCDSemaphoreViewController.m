@@ -21,7 +21,7 @@
     logger = [[GCDLogger alloc] init];
 }
 
-- (wait)test_semaphore_create_with_1 {
+- (waiter)test_semaphore_create_with_1 {
     [logger reset];
     
     dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
@@ -48,7 +48,7 @@
     returnWait;
 }
 
-- (wait)test_semaphore_create_with_0 {
+- (waiter)test_semaphore_create_with_0 {
     [logger reset];
     
     dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
@@ -72,6 +72,43 @@
         NSAssert([steps isOrderedBySteps:@"2=3=1"], @"顺序执行");
         waitSuccess;
     } delay:3];
+    
+    returnWait;
+}
+
+- (waiter)test_semaphore_waittime {
+    [logger reset];
+    
+    dispatch_semaphore_t signal = dispatch_semaphore_create(0);
+    dispatch_time_t overTime = dispatch_time(DISPATCH_TIME_NOW, 3.0f * NSEC_PER_SEC);
+    
+    //线程1
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self->logger addStep:101];
+        // INFO: 超过等待时间后，将不再等待，继续执行下面的代码
+        dispatch_semaphore_wait(signal, overTime); //signal 值 -1
+        [self->logger addStep:102];
+        dispatch_semaphore_signal(signal); //signal 值 +1
+        [self->logger addStep:103];
+    });
+
+    //线程2
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self->logger addStep:201];
+        dispatch_semaphore_wait(signal, overTime); //signal 值 -1
+        [self->logger addStep:202];
+        dispatch_semaphore_signal(signal); //signal 值 +1
+        [self->logger addStep:203];
+    });
+    
+    [self->logger check:^(NSArray * _Nonnull steps) {
+        NSAssert(
+                 ([steps[2] intValue] == 102 && [steps[3] intValue] == 202)
+                 ||
+                 ([steps[2] intValue] == 202 && [steps[3] intValue] == 102)
+                 , @"102和202随机先后执行");
+        waitSuccess;
+    } delay:5];
     
     returnWait;
 }

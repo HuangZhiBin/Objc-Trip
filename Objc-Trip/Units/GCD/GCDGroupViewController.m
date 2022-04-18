@@ -23,7 +23,7 @@
     logger = [[GCDLogger alloc] init];
 }
 
--(wait)testGroupNotify{
+-(waiter)testGroupNotify{
     [logger reset];
     
     dispatch_queue_t globalQueue = dispatch_get_global_queue(0, 0);
@@ -53,7 +53,7 @@
     returnWait;
 }
 
--(wait)testGroupWait{
+-(waiter)testGroupWait{
     [logger reset];
     
     dispatch_queue_t globalQueue = dispatch_get_global_queue(0, 0);
@@ -85,7 +85,7 @@
     returnWait;
 }
 
--(wait)test_enter_leave{
+-(waiter)test_enter_leave{
     [logger reset];
     
     //创建调度组

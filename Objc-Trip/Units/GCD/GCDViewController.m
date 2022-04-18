@@ -25,7 +25,7 @@
 
 -(void)groupBasic{}
 
--(wait)test_main_sync🔥{
+-(waiter)test_main_sync🔥{
     [logger reset];
     
     [logger addStep:1];
@@ -38,7 +38,7 @@
     });
 }
 
--(wait)test_main_async{
+-(waiter)test_main_async{
     [logger reset];
     
     [logger addStep:1];
@@ -58,7 +58,7 @@
     returnWait;
 }
 
--(wait)test_serial_sync{
+-(waiter)test_serial_sync{
     [logger reset];
     
     dispatch_queue_t serialQueue = dispatch_queue_create("test", DISPATCH_QUEUE_SERIAL);
@@ -77,7 +77,7 @@
     returnWait;
 }
 
--(wait)test_serial_async{
+-(waiter)test_serial_async{
     [logger reset];
     
     dispatch_queue_t serialQueue = dispatch_queue_create("test", DISPATCH_QUEUE_SERIAL);
@@ -96,7 +96,7 @@
     returnWait;
 }
 
--(wait)test_concurrent_sync{
+-(waiter)test_concurrent_sync{
     [logger reset];
     
     dispatch_queue_t concurrentQueue = dispatch_queue_create("test", DISPATCH_QUEUE_CONCURRENT);
@@ -115,7 +115,7 @@
     returnWait;
 }
 
--(wait)test_concurrent_async{
+-(waiter)test_concurrent_async{
     [logger reset];
     
     dispatch_queue_t concurrentQueue = dispatch_queue_create("test", DISPATCH_QUEUE_CONCURRENT);
@@ -138,7 +138,7 @@
 
 -(void)groupMultiple{}
 
--(wait)test_serial_sync_async{
+-(waiter)test_serial_sync_async{
     [logger reset];
     
     dispatch_queue_t serialQueue = dispatch_queue_create("test", DISPATCH_QUEUE_SERIAL);
@@ -160,7 +160,7 @@
     returnWait;
 }
 
--(wait)test_serial_multi_async{
+-(waiter)test_serial_multi_async{
     [logger reset];
     
     dispatch_queue_t queue = dispatch_queue_create(NULL, DISPATCH_QUEUE_SERIAL);
@@ -186,7 +186,7 @@
     returnWait;
 }
 
--(wait)test_concurrent_multi_sync{
+-(waiter)test_concurrent_multi_sync{
     [logger reset];
     
     dispatch_queue_t queue = dispatch_queue_create(NULL, DISPATCH_QUEUE_CONCURRENT);
@@ -210,7 +210,7 @@
 
 -(void)groupEmbed{}
 
--(wait)test_serial_embed_lock🔥{
+-(waiter)test_serial_embed_lock🔥{
     [logger reset];
     
     dispatch_queue_t queue = dispatch_queue_create(NULL, DISPATCH_QUEUE_SERIAL);
@@ -233,7 +233,7 @@
     returnWait;
 }
 
--(wait)test_concurrent_embed_sync{
+-(waiter)test_concurrent_embed_sync{
     [logger reset];
     
     dispatch_sync(dispatch_get_global_queue(0, 0), ^{
@@ -253,7 +253,7 @@
     returnWait;
 }
 
--(wait)test_concurrent_embed_async{
+-(waiter)test_concurrent_embed_async{
     [logger reset];
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -273,7 +273,7 @@
     returnWait;
 }
 
--(wait)test_main_embed_async{
+-(waiter)test_main_embed_async{
     [logger reset];
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -295,7 +295,7 @@
 
 -(void)groupPerformSelector{}
 
--(wait)testPerformSelector_async{
+-(waiter)testPerformSelector_async{
     [logger reset];
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -312,7 +312,7 @@
     returnWait;
 }
 
--(wait)testPerformSelector_sync{
+-(waiter)testPerformSelector_sync{
     [logger reset];
     
     dispatch_sync(dispatch_get_global_queue(0, 0), ^{
@@ -328,7 +328,7 @@
     returnWait;
 }
 
--(wait)testPerformSelector_after{
+-(waiter)testPerformSelector_after{
     [logger reset];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

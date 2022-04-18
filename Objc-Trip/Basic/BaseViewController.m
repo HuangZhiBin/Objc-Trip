@@ -122,6 +122,9 @@
         else if([line containsString:@"#pragma mark - Navigation"]){
             isStart = NO;
         }
+        else if([line containsString:@")redirect{"]){
+            isStart = NO;
+        }
         else if([line containsString:@"(void)prepareForSegue"]){
             isStart = NO;
         }

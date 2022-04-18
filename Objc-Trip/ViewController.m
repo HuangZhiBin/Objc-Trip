@@ -62,6 +62,7 @@
             [[MenuItem alloc] initWithTitle:@"Others" vcName:@"OthersViewController"],
             [[MenuItem alloc] initWithTitle:@"Atomic" vcName:@"AtomicViewController"],
             [[MenuItem alloc] initWithTitle:@"Lock" vcName:@"LockViewController"],
+            [[MenuItem alloc] initWithTitle:@"NSTimer" vcName:@"NSTimerViewController"],
         ]],
     ];
     

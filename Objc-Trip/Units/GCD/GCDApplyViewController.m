@@ -22,7 +22,7 @@
     logger = [[GCDLogger alloc] init];
 }
 
--(wait)testApplyConcurrent{
+-(waiter)testApplyConcurrent{
     [logger reset];
     
     dispatch_queue_t queue = dispatch_queue_create("queue", DISPATCH_QUEUE_CONCURRENT);
@@ -41,7 +41,7 @@
     returnWait;
 }
 
--(wait)testApplySerial{
+-(waiter)testApplySerial{
     [logger reset];
     
     dispatch_queue_t queue = dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL);
@@ -58,7 +58,7 @@
     returnWait;
 }
 
--(wait)testApplyScene{
+-(waiter)testApplyScene{
     [logger reset];
     
     dispatch_queue_t queue = dispatch_queue_create("queue", DISPATCH_QUEUE_CONCURRENT);

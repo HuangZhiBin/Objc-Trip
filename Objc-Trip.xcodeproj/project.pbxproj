@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		851D0D9D280D553C00F14056 /* NSTimerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 851D0D9B280D553C00F14056 /* NSTimerViewController.h */; };
+		851D0D9E280D553C00F14056 /* NSTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 851D0D9C280D553C00F14056 /* NSTimerViewController.m */; };
 		852B830128032638005479E0 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82E028032638005479E0 /* BaseViewController.m */; };
 		852B830228032638005479E0 /* MenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82E128032638005479E0 /* MenuItem.m */; };
 		852B830328032638005479E0 /* MenuSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82E328032638005479E0 /* MenuSection.m */; };
@@ -100,6 +102,8 @@
 
 /* Begin PBXFileReference section */
 		4DEDA284F69CF732C11A7F09 /* Pods-Objc-Trip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Objc-Trip.release.xcconfig"; path = "Target Support Files/Pods-Objc-Trip/Pods-Objc-Trip.release.xcconfig"; sourceTree = "<group>"; };
+		851D0D9B280D553C00F14056 /* NSTimerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTimerViewController.h; sourceTree = "<group>"; };
+		851D0D9C280D553C00F14056 /* NSTimerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSTimerViewController.m; sourceTree = "<group>"; };
 		852B82DF28032638005479E0 /* MenuSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuSection.h; sourceTree = "<group>"; };
 		852B82E028032638005479E0 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		852B82E128032638005479E0 /* MenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItem.m; sourceTree = "<group>"; };
@@ -356,6 +360,8 @@
 				852B82FD28032638005479E0 /* AtomicViewController.m */,
 				852B82FB28032638005479E0 /* LockViewController.h */,
 				852B82FE28032638005479E0 /* LockViewController.m */,
+				851D0D9B280D553C00F14056 /* NSTimerViewController.h */,
+				851D0D9C280D553C00F14056 /* NSTimerViewController.m */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -478,6 +484,7 @@
 				85646D23280C3D3C00A4F484 /* OperationViewController.h in Headers */,
 				855696BE28097311008A1947 /* Father.h in Headers */,
 				855696CF28099ED3008A1947 /* TimerViewController.h in Headers */,
+				851D0D9D280D553C00F14056 /* NSTimerViewController.h in Headers */,
 				8531A1022806FCAB006E1AF3 /* WeakStrTestViewController.h in Headers */,
 				85FE0C40280AFF61001E76F0 /* GCDAfterViewController.h in Headers */,
 				85FE0C3C280AF17F001E76F0 /* GCDLogger.h in Headers */,
@@ -731,6 +738,7 @@
 				855696C32809927E008A1947 /* DeallocController.m in Sources */,
 				852B830528032638005479E0 /* WeakViewController.m in Sources */,
 				852B830D28032638005479E0 /* GCDViewController.m in Sources */,
+				851D0D9E280D553C00F14056 /* NSTimerViewController.m in Sources */,
 				855DEAF02803205B005D2874 /* AppDelegate.m in Sources */,
 				855696CC28099665008A1947 /* BlockLeakTestViewController.m in Sources */,
 				85646D18280BE73F00A4F484 /* GCDSuspendViewController.m in Sources */,

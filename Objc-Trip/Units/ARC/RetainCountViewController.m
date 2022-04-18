@@ -107,6 +107,16 @@
     );
 }
 
+-(void)groupArray{}
+
+-(void)testNSArray{
+    
+}
+
+-(void)testMutableArray{
+    
+}
+
 -(void)groupDifferentType{}
 
 -(void)test__weak{

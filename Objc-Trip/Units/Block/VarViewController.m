@@ -38,7 +38,7 @@
     blk();
 }
 
--(void)testVarCapture3{
+-(void)test__block1{
     __block int val = 1;
     void (^blk)(void) = ^{
         NSAssert(val == 2, @"捕获的值为最新值");
@@ -47,7 +47,7 @@
     blk();
 }
 
--(void)testVarCapture4{
+-(void)test__block2{
     __block int val = 1;
     void (^blk)(void) = ^{
         val = 2;
@@ -80,7 +80,7 @@
 
 -(void)groupStrongWeak{}
 
--(void)testCapture1{
+-(void)test__strong{
     typedef int (^blk_t)(id);
     
     blk_t blk;
@@ -98,7 +98,7 @@
     NSAssert(blk([NSObject new]) == 3, @"array元素加1");
 }
 
--(void)testCapture2{
+-(void)test__weak{
     typedef int (^blk_t)(id);
     
     blk_t blk;

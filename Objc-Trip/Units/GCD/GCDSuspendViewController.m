@@ -22,7 +22,7 @@
     logger = [[GCDLogger alloc] init];
 }
 
--(wait)testSuspendResume{
+-(waiter)testSuspendResume{
     [logger reset];
     
     dispatch_queue_t queue = dispatch_queue_create("com.test.gcd", DISPATCH_QUEUE_SERIAL);
@@ -56,7 +56,7 @@
     returnWait;
 }
 
--(wait)test_block_cancel{
+-(waiter)test_block_cancel{
     [logger reset];
     
     dispatch_queue_t queue = dispatch_queue_create("concurrent", DISPATCH_QUEUE_CONCURRENT);
@@ -89,7 +89,7 @@
     returnWait;
 }
 
--(wait)test_block_cancel2{
+-(waiter)test_block_cancel2{
     [logger reset];
     
     dispatch_queue_t queue = dispatch_queue_create("concurrent", DISPATCH_QUEUE_CONCURRENT);
@@ -121,7 +121,7 @@
     returnWait;
 }
 
--(wait)test_cancel_excecuting{
+-(waiter)test_cancel_excecuting{
     [logger reset];
     
     dispatch_queue_t queue = dispatch_queue_create("concurrent", DISPATCH_QUEUE_CONCURRENT);

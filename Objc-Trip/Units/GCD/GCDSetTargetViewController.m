@@ -22,7 +22,7 @@
     logger = [[GCDLogger alloc] init];
 }
 
--(wait)testMultiSerial{
+-(waiter)testMultiSerial{
     [logger reset];
     
     dispatch_queue_t q1 = dispatch_queue_create("q1", DISPATCH_QUEUE_SERIAL);
@@ -49,7 +49,7 @@
     returnWait;
 }
 
--(wait)testMultiConcurrent{
+-(waiter)testMultiConcurrent{
     [logger reset];
     
     dispatch_queue_t q1 = dispatch_queue_create("q1", DISPATCH_QUEUE_CONCURRENT);
@@ -76,7 +76,7 @@
     returnWait;
 }
 
--(wait)testSetTarget{
+-(waiter)testSetTarget{
     [logger reset];
     
     dispatch_queue_t q1 = dispatch_queue_create("q1", DISPATCH_QUEUE_SERIAL);
@@ -106,7 +106,7 @@
     returnWait;
 }
 
--(wait)testSetTarget2{
+-(waiter)testSetTarget2{
     [logger reset];
     
     dispatch_queue_t q1 = dispatch_queue_create("q1", DISPATCH_QUEUE_SERIAL);

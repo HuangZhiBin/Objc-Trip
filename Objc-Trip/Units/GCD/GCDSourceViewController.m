@@ -21,7 +21,7 @@
     logger = [[GCDLogger alloc] init];
 }
 
--(wait)testSourceTime{
+-(waiter)testSourceTime{
     [logger reset];
     
     dispatch_queue_t queue = dispatch_queue_create("timeQueue", DISPATCH_QUEUE_CONCURRENT);

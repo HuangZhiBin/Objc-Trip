@@ -24,7 +24,7 @@ extern NSString* getAddr(id obj);
 #define PrintAutoReleasePool() _objc_autoreleasePoolPrint();
 
 #define SafeExit() return;
-#define wait int
+#define waiter int
 #define returnWait return 0;
 #define waitSuccess [DebuggerView sendExecResult:YES];
 #define waitFail [DebuggerView sendExecResult:NO];

@@ -24,7 +24,7 @@
 
 -(void)groupOperationType{}
 
--(wait)testInvocationOperation{
+-(waiter)testInvocationOperation{
     [logger reset];
     
     // INFO: 使用NSInvocationOperation可避免为应用程序中的每个任务定义大量自定义操作对象
@@ -41,7 +41,7 @@
     returnWait;
 }
 
--(wait)testBlockOperation{
+-(waiter)testBlockOperation{
     [logger reset];
     
     NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
@@ -60,7 +60,7 @@
     returnWait;
 }
 
--(wait)testBlockOperation2{
+-(waiter)testBlockOperation2{
     [logger reset];
     
     // INFO: 调用了addExecutionBlock方法添加了组个多的任务后，开启新的线程，任务是并发执行的
@@ -88,7 +88,7 @@
     returnWait;
 }
 
--(wait)testCustomOperation{
+-(waiter)testCustomOperation{
     [logger reset];
     
     MyOperation *operation = [[MyOperation alloc] initWith:^{
@@ -117,7 +117,7 @@
 
 -(void)groupOperationQueue{}
 
--(wait)testMainQueue{
+-(waiter)testMainQueue{
     [logger reset];
     
     NSOperationQueue *queue = [NSOperationQueue mainQueue];
@@ -147,7 +147,7 @@
     returnWait;
 }
 
--(wait)testCustomQueue{
+-(waiter)testCustomQueue{
     [logger reset];
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -179,7 +179,7 @@
 
 -(void)groupMaxOperationNum{}
 
--(wait)testMaxConcurrentOperationCount1{
+-(waiter)testMaxConcurrentOperationCount1{
     [logger reset];
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -206,7 +206,7 @@
     returnWait;
 }
 
--(wait)testMaxConcurrentOperationCount2{
+-(waiter)testMaxConcurrentOperationCount2{
     [logger reset];
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -235,7 +235,7 @@
 
 -(void)groupOperationCommunication{}
 
--(wait)testOperationSwitch{
+-(waiter)testOperationSwitch{
     [logger reset];
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -268,7 +268,7 @@
 
 -(void)groupOperationOrder{}
 
--(wait)testOperationDependency{
+-(waiter)testOperationDependency{
     [logger reset];
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -299,7 +299,7 @@
     returnWait;
 }
 
--(wait)testOperationPriority{
+-(waiter)testOperationPriority{
     [logger reset];
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -327,7 +327,7 @@
     returnWait;
 }
 
--(wait)testDependencyPriority{
+-(waiter)testDependencyPriority{
     [logger reset];
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -359,7 +359,7 @@
 
 -(void)groupCancel{}
 
--(wait)testCancel1{
+-(waiter)testCancel1{
     [logger reset];
     
     NSBlockOperation *operation1 = [NSBlockOperation blockOperationWithBlock:^{
@@ -389,7 +389,7 @@
     returnWait;
 }
 
--(wait)testCancel2{
+-(waiter)testCancel2{
     [logger reset];
     
     NSBlockOperation *operation1 = [NSBlockOperation blockOperationWithBlock:^{
@@ -421,7 +421,7 @@
 
 -(void)groupCompletion{}
 
--(wait)testQueueFinished{
+-(waiter)testQueueFinished{
     [logger reset];
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -449,7 +449,7 @@
     returnWait;
 }
 
--(wait)testOperationFinished{
+-(waiter)testOperationFinished{
     [logger reset];
     
     NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
