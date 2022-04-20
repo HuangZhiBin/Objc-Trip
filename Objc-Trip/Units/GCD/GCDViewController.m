@@ -25,17 +25,19 @@
 
 -(void)groupBasic{}
 
--(waiter)test_main_sync🔥{
+-(waiter)test_main_sync_0{
     [logger reset];
     
     [logger addStep:1];
     // INFO:sync阻塞当前线程
     waitFail;
-    returnWait;
+    SafeExit(0);
     dispatch_sync(dispatch_get_main_queue(), ^{
         // INFO:永远执行不到这里
         [self->logger addStep:2];
     });
+    
+    returnWait;
 }
 
 -(waiter)test_main_async{
@@ -210,7 +212,7 @@
 
 -(void)groupEmbed{}
 
--(waiter)test_serial_embed_lock🔥{
+-(waiter)test_serial_embed_lock_0{
     [logger reset];
     
     dispatch_queue_t queue = dispatch_queue_create(NULL, DISPATCH_QUEUE_SERIAL);

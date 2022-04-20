@@ -25,7 +25,7 @@
 
 -(void)groupNSString{}
 
--(void)testCopyFromNSString{
+-(void)test_copy_string{
     NSString *str = [NSString stringWithFormat:@"%@",@"1234567890"];
     // INFO: copy生成的对象都是不可变的
     id obj = [str copy];
@@ -33,20 +33,20 @@
     NSAssert([getAddr(str) isEqualToString:getAddr(obj)], @"--浅拷贝--");
 }
 
--(void)testMutableCopyFromNSString{
+-(void)test_mutablecopy_string{
     NSString *str = [NSString string];
     // INFO: mutableCopy生成的对象都是可变的
     id obj = [str mutableCopy];
     NSAssert(![getAddr(str) isEqualToString:getAddr(obj)], @"++深拷贝++");
 }
 
--(void)testCopyFromNSMutableString{
+-(void)test_copy_mutablestring{
     NSMutableString *str = [NSMutableString string];
     id obj = [str copy];
     NSAssert(![getAddr(str) isEqualToString:getAddr(obj)], @"++深拷贝++");
 }
 
--(void)testMutableCopyFromNSMutableString{
+-(void)test_mutablecopy_mutablestring{
     NSMutableString *str = [NSMutableString string];
     id obj = [str mutableCopy];
     NSAssert(![getAddr(str) isEqualToString:getAddr(obj)], @"++深拷贝++");
@@ -58,7 +58,7 @@
     self.cTxt = @"Old";
     NSMutableString *newUserName = [[NSMutableString alloc] initWithString:@"New"];
     self.cTxt = newUserName;
-    [newUserName appendString:@"New2"];
+    [newUserName appendString:@"-More"];
     NSAssert([self.cTxt isEqualToString:@"New"], @"得到不可变对象");
 }
 
@@ -70,7 +70,7 @@
     NSAssert([self.sTxt isEqualToString:@"New-More"], @"得到可变对象");
 }
 
--(void)test_mutable_copy_property{
+-(void)test_mutable_copy_property_0{
     self.cMTxt = [NSMutableString stringWithString:@"Old"];
     NSMutableString *newUserName = [[NSMutableString alloc] initWithString:@"New"];
     self.cMTxt = newUserName;
@@ -78,7 +78,7 @@
     NSAssert([self.cMTxt isEqualToString:@"New"], @"得到不可变对象");
     SafeExit();
     // INFO:此时对cMtxt执行appendString:会crash
-    [self.cMTxt appendString:@""];
+    [self.cMTxt appendString:@"-Extra"];
 }
 
 -(void)test_mutable_strong_property{
@@ -91,28 +91,28 @@
 
 -(void)groupArray{}
 
--(void)testCopyFromNSArray{
+-(void)test_copy_array{
     NSArray *str = [NSArray array];
     id obj = [str copy];
     NSAssert(![obj isKindOfClass:[NSMutableArray class]], @"NSArray copy得到的是不可变对象");
     NSAssert([getAddr(str) isEqualToString:getAddr(obj)], @"--浅拷贝--");
 }
 
--(void)testMutableCopyFromNSArray{
+-(void)test_mutablecopy_array{
     NSArray *str = [NSArray array];
     id obj = [str mutableCopy];
     NSAssert([obj isKindOfClass:[NSMutableArray class]], @"NSArray mutableCopy得到的是可变对象");
     NSAssert(![getAddr(str) isEqualToString:getAddr(obj)], @"++深拷贝++");
 }
 
--(void)testCopyFromNSMutableArray{
+-(void)test_copy_mutablearray{
     NSMutableArray *str = [NSMutableArray array];
     id obj = [str copy];
     NSAssert(![obj isKindOfClass:[NSMutableArray class]], @"NSMutableArray copy得到的是不可变对象");
     NSAssert(![getAddr(str) isEqualToString:getAddr(obj)], @"++深拷贝++");
 }
 
--(void)testMutableCopyFromNSMutableArray{
+-(void)test_mutablecopy_mutablearray{
     NSMutableArray *str = [NSMutableArray array];
     id obj = [str mutableCopy];
     NSAssert([obj isKindOfClass:[NSMutableArray class]], @"NSMutableArray mutableCopy得到的是可变对象");

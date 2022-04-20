@@ -18,7 +18,7 @@
     // Do any additional setup after loading the view.
 }
 
--(void)testVarCapture{
+-(void)testCaptureInt{
     int val = 1;
     void (^blk)(void) = ^{
         NSAssert(val == 1, @"捕获的值为瞬间值");
@@ -27,7 +27,25 @@
     blk();
 }
 
--(void)testVarCapture2{
+-(void)testCaptureString{
+    NSString *str = @"hello";
+    void (^blk)(void) = ^{
+        NSAssert([str isEqualToString:@"hello"], @"捕获的值为瞬间值");
+    };
+    str = @"it's me";
+    blk();
+}
+
+-(void)testCaptureString2{
+    NSString *str = [NSString stringWithFormat:@"%@", @"hello"];
+    void (^blk)(void) = ^{
+        NSAssert([str isEqualToString:@"hello"], @"捕获的值为瞬间值");
+    };
+    str = @"it's me";
+    blk();
+}
+
+-(void)testResetVal{
     int val = 1;
     void (^blk)(void) = ^{
         SafeExit();
@@ -55,6 +73,8 @@
     blk();
     NSAssert(val == 2, @"捕获的值为最新值");
 }
+
+
 
 -(void)testMutableArray{
     NSMutableArray *arr = [NSMutableArray array];

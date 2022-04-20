@@ -9,7 +9,7 @@
 #import "GCDLogger.h"
 #import "TimerViewController.h"
 #import "InfiniteScrollViewController.h"
-#import "SVProgressHUD.h"
+
 @interface NSTimerViewController ()
 
 @end
@@ -69,7 +69,6 @@
 -(void)groupMode{}
 
 -(void)testRunMode{
-    [SVProgressHUD showInfoWithStatus:@"两秒内拖住视图"];
     InfiniteScrollViewController *vc = [[InfiniteScrollViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }

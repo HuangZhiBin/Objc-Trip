@@ -6,6 +6,7 @@
 //
 
 #import "InfiniteScrollViewController.h"
+#import "SVProgressHUD.h"
 
 @interface InfiniteScrollViewController ()<UIScrollViewDelegate>
 @end
@@ -18,6 +19,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.whiteColor;
     [self testRunMode];
+    [SVProgressHUD showInfoWithStatus:@"两秒内拖住视图"];
 }
 
 -(void)testRunMode{

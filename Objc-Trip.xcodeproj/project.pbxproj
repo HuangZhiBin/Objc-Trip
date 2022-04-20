@@ -25,8 +25,6 @@
 		852B830D28032638005479E0 /* GCDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82FC28032638005479E0 /* GCDViewController.m */; };
 		852B830E28032638005479E0 /* BatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82FD28032638005479E0 /* BatchViewController.m */; };
 		852B830F28032638005479E0 /* LockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82FE28032638005479E0 /* LockViewController.m */; };
-		8531A1022806FCAB006E1AF3 /* WeakStrTestViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8531A1002806FCAB006E1AF3 /* WeakStrTestViewController.h */; };
-		8531A1032806FCAB006E1AF3 /* WeakStrTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8531A1012806FCAB006E1AF3 /* WeakStrTestViewController.m */; };
 		8553B2912803E49700A692C2 /* NSArray+GCD.h in Headers */ = {isa = PBXBuildFile; fileRef = 8553B28F2803E49600A692C2 /* NSArray+GCD.h */; };
 		8553B2922803E49700A692C2 /* NSArray+GCD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8553B2902803E49600A692C2 /* NSArray+GCD.m */; };
 		8553B2A328044C4100A692C2 /* codes.zip in Resources */ = {isa = PBXBuildFile; fileRef = 8553B2A228044C4100A692C2 /* codes.zip */; };
@@ -139,8 +137,6 @@
 		852B82FE28032638005479E0 /* LockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockViewController.m; sourceTree = "<group>"; };
 		852B82FF28032638005479E0 /* GCDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDViewController.h; sourceTree = "<group>"; };
 		852B830028032638005479E0 /* BatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BatchViewController.h; sourceTree = "<group>"; };
-		8531A1002806FCAB006E1AF3 /* WeakStrTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeakStrTestViewController.h; sourceTree = "<group>"; };
-		8531A1012806FCAB006E1AF3 /* WeakStrTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeakStrTestViewController.m; sourceTree = "<group>"; };
 		8553B28F2803E49600A692C2 /* NSArray+GCD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+GCD.h"; sourceTree = "<group>"; };
 		8553B2902803E49600A692C2 /* NSArray+GCD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GCD.m"; sourceTree = "<group>"; };
 		8553B2A228044C4100A692C2 /* codes.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = codes.zip; sourceTree = SOURCE_ROOT; };
@@ -310,8 +306,6 @@
 		852B82F028032638005479E0 /* Sub */ = {
 			isa = PBXGroup;
 			children = (
-				8531A1002806FCAB006E1AF3 /* WeakStrTestViewController.h */,
-				8531A1012806FCAB006E1AF3 /* WeakStrTestViewController.m */,
 				852B82F228032638005479E0 /* BridgeLeakViewController.h */,
 				852B82F428032638005479E0 /* BridgeLeakViewController.m */,
 				852B82F328032638005479E0 /* WeakTestViewController.h */,
@@ -498,7 +492,6 @@
 				855696BE28097311008A1947 /* Father.h in Headers */,
 				855696CF28099ED3008A1947 /* TimerViewController.h in Headers */,
 				851D0D9D280D553C00F14056 /* NSTimerViewController.h in Headers */,
-				8531A1022806FCAB006E1AF3 /* WeakStrTestViewController.h in Headers */,
 				85FE0C40280AFF61001E76F0 /* GCDAfterViewController.h in Headers */,
 				85FE0C3C280AF17F001E76F0 /* GCDLogger.h in Headers */,
 				857DA01D280E69FC0068EA88 /* NSTimer+Block.h in Headers */,
@@ -745,7 +738,6 @@
 				8553B2922803E49700A692C2 /* NSArray+GCD.m in Sources */,
 				852B830B28032638005479E0 /* AutoreleaseViewController.m in Sources */,
 				85646D20280C215200A4F484 /* GCDSourceViewController.m in Sources */,
-				8531A1032806FCAB006E1AF3 /* WeakStrTestViewController.m in Sources */,
 				855696AD28096F97008A1947 /* OthersViewController.m in Sources */,
 				85FE0C41280AFF61001E76F0 /* GCDAfterViewController.m in Sources */,
 				856AAADA280FA7A20011B297 /* InfiniteScrollViewController.m in Sources */,

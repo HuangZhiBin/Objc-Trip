@@ -178,7 +178,7 @@
     _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     //背景颜色
     _tableView.backgroundColor = [UIColor whiteColor];
-    
+    _tableView.tableFooterView = [UIView new];
 }
 
 //section数目
@@ -216,6 +216,7 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    
     else if([item hasSuffix:@"_"]){
         cell.textLabel.text = [item substringToIndex:[item length]-1];
         cell.textLabel.font = [UIFont systemFontOfSize:16];
@@ -230,6 +231,11 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     }
+    
+    if([item containsString:@"_0"]){
+        cell.textLabel.text = [NSString stringWithFormat:@"%@🔥",[item substringToIndex:[item rangeOfString:@"_0"].location]];
+    }
+    
     //    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }

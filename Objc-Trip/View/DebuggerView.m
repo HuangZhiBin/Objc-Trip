@@ -26,7 +26,9 @@
 @property (nonatomic, strong) UILabel *stateLabel;
 @end
 
-@implementation DebuggerView
+@implementation DebuggerView{
+    NSInteger _count,_index;
+}
 
 /*
  // Only override drawRect: if you perform custom drawing.
@@ -49,7 +51,11 @@
     _codes = codes;
     _method = method;
     
+    _count = count;
+    _index = index;
+    
     _label.text = [NSString stringWithFormat:@"(%ld/%ld) %@", index + 1, count, method];
+    [_tableView setContentOffset:CGPointMake(0,0) animated:NO];
     [_tableView reloadData];
     [_tableView layoutIfNeeded];
     [_tableView setContentOffset:CGPointMake(0,0) animated:NO];
@@ -101,6 +107,16 @@
         [_closeBtn setAlpha:0.6];
         [_nextBtn setAlpha:0.6];
     }
+    
+    if(_count == _index + 1){
+        [_nextBtn setEnabled:NO];
+        [_nextBtn setAlpha:0.6];
+    }
+    
+    if(_index == 0){
+        [_prevBtn setEnabled:NO];
+        [_prevBtn setAlpha:0.6];
+    }
 }
 
 -(instancetype)initWithPrev:(DebuggerViewBlock)prevBlock next:(DebuggerViewBlock)nextBlock{
@@ -118,7 +134,7 @@
         CGFloat navHeight = [[UINavigationController alloc] init].navigationBar.frame.size.height;
         NSLog(@"导航栏高度：%f",navHeight);
         
-        UITabBarController *tabBarVC = [[UITabBarController alloc] init];//(这儿取你当前tabBarVC的实例)
+        UITabBarController *tabBarVC = [[UITabBarController alloc] init];
         CGFloat tabBarHeight = tabBarVC.tabBar.frame.size.height;
         
         CGFloat viewY = statusHeight + navHeight;
@@ -145,7 +161,9 @@
         //分割线(无分割线）
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         //背景颜色
-        _tableView.backgroundColor = [UIColor blackColor];
+        _tableView.backgroundColor = [UIColor colorWithRed:32/255.0 green:33/255.0 blue:36/255.0 alpha:1];
+//        _tableView.backgroundColor = [UIColor colorWithRed:41/255.0 green:42/255.0 blue:49/255.0 alpha:1];
+//        _tableView.backgroundColor = [UIColor colorWithRed:37/255.0 green:32/255.0 blue:35/255.0 alpha:1];
         
         _stateLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, viewY + 40, _tableView.frame.size.width, 24)];
         _stateLabel.backgroundColor = UIColor.grayColor;
@@ -243,13 +261,16 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     NSString *line = _codes[indexPath.row];
-    cell.backgroundColor = UIColor.blackColor;
+    cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.font = [UIFont systemFontOfSize:12];
     
     NSString *realCode = [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if([realCode hasPrefix:@"// INFO:"]){
         cell.textLabel.textColor = UIColor.greenColor;
+    }
+    else if([realCode hasPrefix:@"// QUIZ:"]){
+        cell.textLabel.textColor = [UIColor colorWithRed:255/255.0f green:73/255.0f blue:41/255.0f alpha:1];;
     }
     else if([realCode hasPrefix:@"//"] || [realCode hasPrefix:@"/*"]){
         cell.textLabel.textColor = [UIColor.whiteColor colorWithAlphaComponent:0.5];
@@ -266,9 +287,10 @@
     else{
         cell.textLabel.textColor = UIColor.whiteColor;
     }
-    if([line containsString:@"SafeExit();"]){
-        line = [line stringByReplacingOccurrencesOfString:@"SafeExit();" withString:@"// Crash: 执行下面的代码将会闪退"];
-        cell.textLabel.textColor = UIColor.redColor;
+    if([line containsString:@"SafeExit("]){
+        line = [line stringByReplacingOccurrencesOfString:@"SafeExit(" withString:@"// Crash: 执行下面的代码将会闪退##"];
+        line = [line substringToIndex:[line rangeOfString:@"##"].location];
+        cell.textLabel.textColor = UIColor.systemPinkColor;
     }
     [self setLabelSpace:cell.textLabel withValue:line withFont:cell.textLabel.font];
     CGFloat height = [self getSpaceLabelHeight:line withFont:[UIFont systemFontOfSize:12] withWidth:LINE_WIDTH];

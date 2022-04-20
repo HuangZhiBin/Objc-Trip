@@ -341,7 +341,7 @@
     NSAssert(array.count != 1000, @"顺利执行");
 }
 
--(void)testSynchronizedArray3{
+-(void)testSynchronizedArray3_0{
     __block NSMutableArray *array = [NSMutableArray array];
     for (NSInteger i = 0; i < 1000; i ++) {
         dispatch_async(dispatch_get_global_queue(0, 0), ^{

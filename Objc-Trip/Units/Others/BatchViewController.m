@@ -39,7 +39,7 @@
     }];
 }
 
--(void)testAddItemManyTimes🔥{
+-(void)testAddItemManyTimes_0{
     self.nums = [@[] mutableCopy];
     
     for(NSInteger idx = 1; idx <= 10000; idx++){
@@ -64,7 +64,7 @@
     NSAssert(a > 5, @"和大于5");
 }
 
--(void)testString🔥{
+-(void)testString_0{
     for(NSInteger idx = 1; idx <= 10000; idx++){
       dispatch_async(dispatch_get_global_queue(0, 0), ^{
         self.str = [NSString stringWithFormat:@"Hello_%ld", idx];
@@ -82,7 +82,7 @@
     NSAssert(true, @"可以成功执行");
 }
 
--(void)testString3🔥{
+-(void)testString3_0{
     for(NSInteger idx = 1; idx <= 10000; idx++){
       dispatch_async(dispatch_get_global_queue(0, 0), ^{
         _str = [NSString stringWithFormat:@"Hello_%ld", idx];

@@ -18,7 +18,7 @@
 }
 
 -(void)testNonAutorelease{
-    // INFO: alloc/new/copy/mutableCopy之外的方法，对象注册到autoreleasepool
+    // INFO: alloc/new/copy/mutableCopy的对象不注册到autoreleasepool
     
     id allocObj = [NSString alloc];
     [BaseUtil checkAutoRelease:getAddr(allocObj) result:^(BOOL isAuto) {
@@ -116,36 +116,42 @@
 
 -(void)groupMassive{}
 
--(void)testMassive1{
+-(waiter)testMassive1{
     for(int i = 0; i < 1000000; i++){
         // INFO: autorelease对象急剧增多，内存暴涨
 //        NSString *str = @"Hello";
         NSNumber *num = [NSNumber numberWithInt:i];
-        NSString *str = [NSString stringWithFormat:@"%d ", i];
-        [NSString stringWithFormat:@"%@%@", num, str];
+        NSString *str = [NSString stringWithFormat:@"item_%d ", [num intValue]];
     }
+    
+    waitSuccess;
+    returnWait;
 }
 
--(void)testMassive2{
+-(waiter)testMassive2{
     for(int i = 0; i < 1000000; i++){
         // INFO: @autoreleasepool即时释放，内存不暴涨
         @autoreleasepool {
 //            NSString *str = @"Hello";
             NSNumber *num = [NSNumber numberWithInt:i];
-            NSString *str = [NSString stringWithFormat:@"%d ", i];
-            [NSString stringWithFormat:@"%@%@", num, str];
+            NSString *str = [NSString stringWithFormat:@"item_%d ", [num intValue]];
         }
     }
+    
+    waitSuccess;
+    returnWait;
 }
 
--(void)testMassive3{
+-(waiter)testMassive3{
     // INFO: UsingBlock包含@autoreleasepool，内存不暴涨
     [numArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger i, BOOL * _Nonnull stop) {
 //        NSString *str = @"Hello";
-        NSNumber *num = [NSNumber numberWithUnsignedLong:i];
-        NSString *str = [NSString stringWithFormat:@"%ld", i];
-        [NSString stringWithFormat:@"%@%@", num, str];
+        NSNumber *num = [NSNumber numberWithInt:i];
+        NSString *str = [NSString stringWithFormat:@"item_%d ", [num intValue]];
     }];
+    
+    waitSuccess;
+    returnWait;
 }
 
 @end

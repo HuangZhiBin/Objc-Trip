@@ -11,32 +11,78 @@
 static NSString * const TAG = @"abc";
 
 @interface WeakTestViewController ()
+@property (nonatomic, weak) NSString *weakStr;
 @property (nonatomic, weak) NSArray *weakArr;
 @end
 
 //__weak NSArray *self.weakArr;
 
 @implementation WeakTestViewController{
-    BOOL expectWillAppearNil;
-    BOOL expectDidAppearNil;
+    BOOL expectStringWillAppearNil;
+    BOOL expectStringDidAppearNil;
+    BOOL expectArrWillAppearNil;
+    BOOL expectArrDidAppearNil;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    expectStringWillAppearNil = YES;
+    expectStringDidAppearNil = YES;
+    expectArrWillAppearNil = YES;
+    expectArrDidAppearNil = YES;
     
-    if(self.testcase == 1){
-        [self testArray1];
-    }
-    
-    if(self.testcase == 2){
-        [self testArray2];
-    }
-    
-    if(self.testcase == 3){
-        [self testArray3];
-    }
+    [self performSelector:NSSelectorFromString(self.testcase)];
     
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)testString1{
+    // 场景 1
+    NSString *string = [NSString stringWithFormat:@"%@",@"++test123"];
+    
+    self.weakStr = string;
+    [BaseUtil checkAutoRelease:getAddr(self.weakStr) result:^(BOOL isAuto) {
+        NSAssert(isAuto, @"String为autorelease");
+    }];
+    
+    NSAssert(self.weakStr, @"self.weakStr不为nil");
+    expectStringWillAppearNil = NO;
+    // QUIZ: viewDidAppear时weak对象已销毁?
+    expectStringDidAppearNil = YES;
+}
+
+-(void)testString2{
+    // 场景 2
+    @autoreleasepool {
+        NSString *string = [NSString stringWithFormat:@"%@",@"++test123"];
+        self.weakStr = string;
+    }
+    
+    NSAssert(!self.weakStr, @"self.weakStr为nil");
+    expectStringWillAppearNil = YES;
+    expectStringDidAppearNil = YES;
+}
+
+-(void)testString3{
+    // 场景 3
+    NSString *string;
+    @autoreleasepool {
+        string = [NSString stringWithFormat:@"%@",@"++test123"];
+        [BaseUtil checkAutoRelease:getAddr(string) result:^(BOOL isAuto) {
+            NSAssert(isAuto, @"String为autorelease");
+        }];
+        
+        self.weakStr = string;
+    }
+    
+    // INFO: String又变回非autorelease?
+    [BaseUtil checkAutoRelease:getAddr(string) result:^(BOOL isAuto) {
+        NSAssert(!isAuto, @"String不为autorelease");
+    }];
+    
+    NSAssert(self.weakStr, @"self.weakStr不为nil");
+    expectStringWillAppearNil = YES;
+    expectStringDidAppearNil = YES;
 }
 
 -(void)testArray1{
@@ -49,9 +95,8 @@ static NSString * const TAG = @"abc";
     self.weakArr = array;
     
     NSAssert(self.weakArr, @"self.weakArr不为nil");
-    expectWillAppearNil = NO;
-    // INFO: viewDidAppear时weak对象已销毁?
-    expectDidAppearNil = YES;
+    expectArrWillAppearNil = NO;
+    expectArrDidAppearNil = YES;
 }
 
 -(void)testArray2{
@@ -62,8 +107,8 @@ static NSString * const TAG = @"abc";
     }
     
     NSAssert(!self.weakArr, @"self.weakArr为nil");
-    expectWillAppearNil = YES;
-    expectDidAppearNil = YES;
+    expectArrWillAppearNil = YES;
+    expectArrDidAppearNil = YES;
 }
 
 -(void)testArray3{
@@ -74,20 +119,27 @@ static NSString * const TAG = @"abc";
         self.weakArr = array;
     }
     
-    // INFO: array又变回非autorelease?
+    // QUIZ: array又变回非autorelease?
     [BaseUtil checkAutoRelease:getAddr(array) result:^(BOOL isAuto) {
         NSAssert(!isAuto, @"array不为autorelease");
     }];
     
     NSAssert(self.weakArr, @"self.weakArr不为nil");
-    expectWillAppearNil = YES;
-    expectDidAppearNil = YES;
+    expectArrWillAppearNil = YES;
+    expectArrDidAppearNil = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if(expectWillAppearNil){
+    if(expectStringWillAppearNil){
+        NSAssert(!self.weakStr, @"self.weakStr为nil");
+    }
+    else{
+        NSAssert(self.weakStr, @"self.weakStr不为nil");
+    }
+    
+    if(expectArrWillAppearNil){
         NSAssert(!self.weakArr, @"self.weakArr为nil");
     }
     else{
@@ -98,7 +150,14 @@ static NSString * const TAG = @"abc";
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    if(expectDidAppearNil){
+    if(expectStringDidAppearNil){
+        NSAssert(!self.weakStr, @"self.weakStr为nil");
+    }
+    else{
+        NSAssert(self.weakStr, @"self.weakStr不为nil");
+    }
+    
+    if(expectArrDidAppearNil){
         NSAssert(!self.weakArr, @"self.weakArr为nil");
     }
     else{

@@ -79,7 +79,7 @@
     NSAssert(CFGetRetainCount(cfArr) == 1, @"cfArr持有对象，引用计数==1");
 }
 
--(void)testBridgeLoop2{
+-(void)testBridgeLoop2_0{
     CFMutableArrayRef cfArr = NULL;
     {
         id obj = [NSMutableArray array];
@@ -89,8 +89,9 @@
         NSAssert(RetainCount(obj) == 1, @"obj引用计数==1");
     }
     
-    BOOL isReleased = YES;
-    NSAssert(isReleased, @"cfArr不持有对象，cfArr已释放");
+    SafeExit();
+    // INFO: cfArr不持有对象，cfArr已释放
+    CFShow(cfArr);
 }
 
 -(void)groupLeak{}

@@ -10,7 +10,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WeakTestViewController : UIViewController
 
-@property (nonatomic,assign) NSInteger testcase;
+@property (nonatomic,copy) NSString* testcase;
 
 @end
 
