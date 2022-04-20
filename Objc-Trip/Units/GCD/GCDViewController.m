@@ -88,10 +88,14 @@
         NSAssert(![[NSThread currentThread] isMainThread], @"不在主线程");
         [self->logger addStep:2];
     });
-    [logger addStep:3];
+    dispatch_async(serialQueue, ^{
+        // INFO: serial队列只能多开一条线程，追加任务只能顺序执行
+        [self->logger addStep:3];
+    });
+    [logger addStep:4];
     
     [logger check:^(NSArray *steps){
-        NSAssert([steps isOrderedBySteps:@"1=3=2"], @"按照顺序执行");
+        NSAssert([steps isOrderedBySteps:@"1=4=2=3"], @"按照顺序执行");
         waitSuccess;
     } delay:1];
     
@@ -179,7 +183,6 @@
     [logger addStep:11];
     
     [logger check:^(NSArray *steps){
-        NSAssert(steps.count == 12, @"所有步骤都执行了");
         NSAssert([steps[0] isEqual:@0], @"第0步先执行，第11步顺序随机，可能在第1-10步之间或者前后");
         NSAssert([steps isOrderedBySteps:@"1=2=3=4=5=6=7=8=9=10"], @"第1-10步是按照顺序执行的");
         waitSuccess;
@@ -202,10 +205,9 @@
     [logger addStep:11];
     
     [logger check:^(NSArray *steps){
-        NSAssert([steps isOrderedBySteps:@"1=2=3=4=5=6=7=8=9=10"], @"第1-10步是按照顺序执行的");
-        NSAssert([steps.lastObject isEqual:@11], @"第11步最后执行");
+        NSAssert([steps isOrderedBySteps:@"1=2=3=4=5=6=7=8=9=10=11"], @"第1-11步是按照顺序执行的");
         waitSuccess;
-    } delay:1];
+    } delay:0];
     
     returnWait;
 }
@@ -334,6 +336,7 @@
 -(waiter)testPerformSelector_after{
     [logger reset];
     
+    // QUIZ: 没搞懂这个执行顺序
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self->logger addStep:1];
     });

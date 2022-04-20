@@ -39,12 +39,14 @@
  */
 
 +(void)sendExecResult:(BOOL)isSuccess{
-    if(isSuccess){
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"DebuggerViewNotificationSuccess" object:nil];
-    }
-    else{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"DebuggerViewNotificationFail" object:nil];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if(isSuccess){
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"DebuggerViewNotificationSuccess" object:nil];
+        }
+        else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"DebuggerViewNotificationFail" object:nil];
+        }
+    });
 }
 
 -(void)updateWithCodes:(NSArray<NSString *> *)codes method:(NSString*)method index:(NSInteger)index count:(NSInteger)count isWait:(BOOL)isWait{

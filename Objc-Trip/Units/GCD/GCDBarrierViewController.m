@@ -27,15 +27,14 @@
     dispatch_queue_t concurrentQueue = dispatch_queue_create("xkQueue", DISPATCH_QUEUE_CONCURRENT);
     
     dispatch_async(concurrentQueue, ^{
-        sleep(2);
         [self->logger addStep:1];
     });
     
     dispatch_async(concurrentQueue, ^{
-        sleep(1);
         [self->logger addStep:2];
     });
     
+    // INFO: dispatch_barrier只能作用于同一个队列
     dispatch_barrier_async(concurrentQueue, ^{
         [self->logger addStep:3];
     });
@@ -44,13 +43,11 @@
         [self->logger addStep:4];
     });
     
-    [logger addStep:5];
-    
     [self->logger check:^(NSArray * _Nonnull steps) {
-        NSAssert([steps isOrderedBySteps:@"2=1=3=4"], @"步骤3在步骤1、2完成后执行，步骤4最后执行");
-        NSAssert([steps isRandomBySteps:@"3=5"], @"步骤3、5随机执行");
+        NSAssert([steps isOrderedBySteps:@"1=2=3"] || [steps isOrderedBySteps:@"2=1=3"], @"步骤3在步骤1、2完成后执行");
+        NSAssert([steps isOrderedBySteps:@"3=4"], @"步骤4最后执行");
         waitSuccess;
-    } delay:3];
+    } delay:1];
     
     returnWait;
 }
@@ -61,12 +58,10 @@
     dispatch_queue_t concurrentQueue = dispatch_queue_create("xkQueue", DISPATCH_QUEUE_CONCURRENT);
     
     dispatch_async(concurrentQueue, ^{
-        sleep(2);
         [self->logger addStep:1];
     });
     
     dispatch_async(concurrentQueue, ^{
-        sleep(1);
         [self->logger addStep:2];
     });
     
@@ -78,13 +73,10 @@
         [self->logger addStep:4];
     });
     
-    [logger addStep:5];
-    
     [self->logger check:^(NSArray * _Nonnull steps) {
-        NSAssert([steps isOrderedBySteps:@"2=1=3=4"], @"步骤3在步骤1、2完成后执行，步骤4最后执行");
-        NSAssert([steps isOrderedBySteps:@"3=5"], @"步骤3、5顺序执行");
+        NSAssert([steps isOrderedBySteps:@"1=2=3=4"] || [steps isOrderedBySteps:@"2=1=3=4"], @"步骤3在步骤1、2完成后执行，步骤4最后执行");
         waitSuccess;
-    } delay:3];
+    } delay:1];
     
     returnWait;
 }
@@ -96,16 +88,14 @@
     dispatch_queue_t concurrentQueue = dispatch_get_global_queue(0, 0);
     
     dispatch_async(concurrentQueue, ^{
-        sleep(2);
         [self->logger addStep:1];
     });
     
     dispatch_async(concurrentQueue, ^{
-        sleep(1);
         [self->logger addStep:2];
     });
     
-    dispatch_barrier_sync(concurrentQueue, ^{
+    dispatch_barrier_async(concurrentQueue, ^{
         [self->logger addStep:3];
     });
     
@@ -114,9 +104,9 @@
     });
     
     [self->logger check:^(NSArray * _Nonnull steps) {
-        NSAssert([steps isOrderedBySteps:@"3=4=2=1"], @"顺序执行");
+        NSAssert([steps isRandomBySteps:@"1=2=3=4"], @"随机执行");
         waitSuccess;
-    } delay:3];
+    } delay:1];
     
     returnWait;
 }

@@ -28,28 +28,24 @@
     dispatch_queue_t queue = dispatch_queue_create("com.test.gcd", DISPATCH_QUEUE_SERIAL);
     
     dispatch_async(queue, ^{
-        [NSThread sleepForTimeInterval:3];
+        sleep(3);
         [self->logger addStep:1];
     });
     
     dispatch_async(queue, ^{
-        [NSThread sleepForTimeInterval:3];
         [self->logger addStep:2];
     });
     
     [logger addStep:3];
-    [NSThread sleepForTimeInterval:1];
     
-    [logger addStep:4];
     dispatch_suspend(queue);
     
-    [NSThread sleepForTimeInterval:3];
-    [logger addStep:5];
+    [logger addStep:4];
     
     dispatch_resume(queue);
     
     [self->logger check:^(NSArray * _Nonnull steps) {
-        NSAssert([steps isOrderedBySteps:@"3=4=1=5=2"], @"顺序执行");
+        NSAssert([steps isOrderedBySteps:@"3=4=1=2"], @"顺序执行");
         waitSuccess;
     } delay:4];
     
@@ -133,17 +129,7 @@
         }
     });
     
-    dispatch_block_t block2 = dispatch_block_create(0, ^{
-        [self->logger addStep:4];
-    });
-    
-    dispatch_block_t block3 = dispatch_block_create(0, ^{
-        [self->logger addStep:5];
-    });
-    
     dispatch_async(queue, block1);
-    dispatch_async(queue, block2);
-    dispatch_async(queue, block3);
     
     // INFO: 已经执行的任务无法停止
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -151,7 +137,7 @@
     });
     
     [self->logger check:^(NSArray * _Nonnull steps) {
-        NSAssert([steps isRandomBySteps:@"1=2=3=4=5"], @"随机执行");
+        NSAssert([steps isOrderedBySteps:@"1=2=3"], @"顺序执行");
         waitSuccess;
     } delay:5];
     

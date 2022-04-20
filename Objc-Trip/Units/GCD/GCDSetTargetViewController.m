@@ -83,6 +83,7 @@
     dispatch_queue_t q2 = dispatch_queue_create("q2", DISPATCH_QUEUE_SERIAL);
     dispatch_queue_t q3 = dispatch_queue_create("q3", DISPATCH_QUEUE_SERIAL);
 
+    // INFO: 多线程下 PRIORITY_BACKGROUND 优先级较低
     dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     dispatch_set_target_queue(q1, globalQueue);
 

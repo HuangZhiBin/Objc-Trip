@@ -153,8 +153,8 @@
             }
             
             NSString *lineCtn = line;
-            if([line containsString:@"(wait)"]){
-                lineCtn = [line stringByReplacingOccurrencesOfString:@"(wait)" withString:@"(void)"];
+            if([line containsString:@"(waiter)"]){
+                lineCtn = [line stringByReplacingOccurrencesOfString:@"(waiter)" withString:@"(void)"];
             }
             [validLines addObject:lineCtn];
         }
@@ -216,7 +216,6 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    
     else if([item hasSuffix:@"_"]){
         cell.textLabel.text = [item substringToIndex:[item length]-1];
         cell.textLabel.font = [UIFont systemFontOfSize:16];
@@ -272,11 +271,11 @@
     [debuggerView updateWithCodes:codeLines method:method index:[[self validMenus] indexOfObject:method] count:[self validMenus].count isWait:[self.waitMethods containsObject:method]];
     
     __weak BaseViewController *weakSelf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        #pragma clang diagnostic push
-        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(500 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [weakSelf performSelector:NSSelectorFromString(method)];
-        #pragma clang diagnostic pop
+#pragma clang diagnostic pop
     });
 }
 
@@ -292,7 +291,7 @@
         Method temp = methodList[i];
         const char* name_s = sel_getName(method_getName(temp));
         //        int arguments = method_getNumberOfArguments(temp);
-//                const char* encoding =method_getTypeEncoding(temp);
+        //                const char* encoding =method_getTypeEncoding(temp);
         const char* name_d = method_copyReturnType(temp);
         NSString *returnType = [NSString stringWithUTF8String:name_d];
         NSString *methodName = [NSString stringWithUTF8String:name_s];

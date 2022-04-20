@@ -111,7 +111,7 @@
     NSAssert([[NSThread currentThread] isMainThread], @"在主线程执行");
     for (int i = 0; i < 3; i++) {
         [logger addStep:i+1];
-        [NSThread sleepForTimeInterval:1];
+        sleep(1);
     }
 }
 
@@ -128,14 +128,12 @@
     }];
     
     NSBlockOperation *operation2 = [NSBlockOperation blockOperationWithBlock:^{
-        NSAssert([[NSThread currentThread] isMainThread], @"在主线程执行");
         [self->logger addStep:2];
     }];
     
     [queue addOperation:operation1];
     [queue addOperation:operation2];
     [queue addOperationWithBlock:^{
-        NSAssert([[NSThread currentThread] isMainThread], @"在主线程执行");
         [self->logger addStep:3];
     }];
     
@@ -158,14 +156,12 @@
     }];
     
     NSBlockOperation *operation2 = [NSBlockOperation blockOperationWithBlock:^{
-        NSAssert(![[NSThread currentThread] isMainThread], @"不在主线程执行");
         [self->logger addStep:2];
     }];
     
     [queue addOperation:operation1];
     [queue addOperation:operation2];
     [queue addOperationWithBlock:^{
-        NSAssert(![[NSThread currentThread] isMainThread], @"不在主线程执行");
         [self->logger addStep:3];
     }];
     
@@ -186,15 +182,12 @@
     // INFO: 即使指定setMaxConcurrentOperationCount==1，仍然是异步执行
     [queue setMaxConcurrentOperationCount:1];
     [queue addOperationWithBlock:^{
-        NSAssert(![[NSThread currentThread] isMainThread], @"不在主线程执行");
         [self->logger addStep:1];
     }];
     [queue addOperationWithBlock:^{
-        NSAssert(![[NSThread currentThread] isMainThread], @"不在主线程执行");
         [self->logger addStep:2];
     }];
     [queue addOperationWithBlock:^{
-        NSAssert(![[NSThread currentThread] isMainThread], @"不在主线程执行");
         [self->logger addStep:3];
     }];
     
@@ -213,15 +206,12 @@
     // INFO: 一个队列中能够同时执行的任务的数量
     [queue setMaxConcurrentOperationCount:3];
     [queue addOperationWithBlock:^{
-        NSAssert(![[NSThread currentThread] isMainThread], @"不在主线程执行");
         [self->logger addStep:1];
     }];
     [queue addOperationWithBlock:^{
-        NSAssert(![[NSThread currentThread] isMainThread], @"不在主线程执行");
         [self->logger addStep:2];
     }];
     [queue addOperationWithBlock:^{
-        NSAssert(![[NSThread currentThread] isMainThread], @"不在主线程执行");
         [self->logger addStep:3];
     }];
     
@@ -240,20 +230,16 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [queue addOperationWithBlock:^{
-        NSAssert(![[NSThread currentThread] isMainThread], @"不在主线程执行");
         [self->logger addStep:1];
     }];
     [queue addOperationWithBlock:^{
-        NSAssert(![[NSThread currentThread] isMainThread], @"不在主线程执行");
         [self->logger addStep:2];
         
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            NSAssert([[NSThread currentThread] isMainThread], @"在主线程执行");
             [self->logger addStep:0];
         }];
     }];
     [queue addOperationWithBlock:^{
-        NSAssert(![[NSThread currentThread] isMainThread], @"不在主线程执行");
         [self->logger addStep:3];
     }];
     

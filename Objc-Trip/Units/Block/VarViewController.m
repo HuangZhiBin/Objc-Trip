@@ -101,6 +101,7 @@
 -(void)groupStrongWeak{}
 
 -(void)test__strong{
+    // QUIZ: 没搞懂
     typedef int (^blk_t)(id);
     
     blk_t blk;
@@ -119,6 +120,7 @@
 }
 
 -(void)test__weak{
+    // QUIZ: 没搞懂
     typedef int (^blk_t)(id);
     
     blk_t blk;

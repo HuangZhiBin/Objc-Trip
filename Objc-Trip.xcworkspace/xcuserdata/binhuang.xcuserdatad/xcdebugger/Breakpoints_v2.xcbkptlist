@@ -46,8 +46,8 @@
             filePath = "Objc-Trip/Basic/BaseViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
+            startingLineNumber = "301"
+            endingLineNumber = "301"
             landmarkName = "-getAllMethods"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,8 +62,8 @@
             filePath = "Objc-Trip/Units/GCD/OperationViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "415"
-            endingLineNumber = "415"
+            startingLineNumber = "401"
+            endingLineNumber = "401"
             landmarkName = "-testCancel2"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,9 +78,9 @@
             filePath = "Objc-Trip/Units/GCD/GCDSemaphoreViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "-test_semaphore_waittime"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "-test_semaphore_wait_exact_time"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

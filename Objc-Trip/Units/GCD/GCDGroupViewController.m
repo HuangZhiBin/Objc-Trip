@@ -34,7 +34,6 @@
         [self->logger addStep:1];
     });
     
-    
     dispatch_group_async(group, globalQueue, ^{
         [self->logger addStep:2];
     });
@@ -45,7 +44,38 @@
     
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         [self->logger check:^(NSArray * _Nonnull steps) {
-            NSAssert([steps isRandomBySteps:@"1=2=3"], @"步骤123随机顺序完成");
+            NSAssert(steps.count == 3, @"步骤执行完成");
+            waitSuccess;
+        } delay:0];
+    });
+    
+    returnWait;
+}
+
+-(waiter)testGroupNotify2{
+    [logger reset];
+    
+    dispatch_queue_t globalQueue = dispatch_queue_create("test1", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_queue_t globalQueue2 = dispatch_queue_create("test2", DISPATCH_QUEUE_CONCURRENT);
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    dispatch_group_async(group, globalQueue, ^{
+        [self->logger addStep:1];
+    });
+    
+    dispatch_group_async(group, globalQueue2, ^{
+        [self->logger addStep:2];
+    });
+    
+    dispatch_group_async(group, globalQueue2, ^{
+        [self->logger addStep:3];
+    });
+    
+    // INFO: dispatch_group可以作用于多个队列
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        [self->logger check:^(NSArray * _Nonnull steps) {
+            NSAssert(steps.count == 3, @"步骤执行完成");
             waitSuccess;
         } delay:0];
     });
