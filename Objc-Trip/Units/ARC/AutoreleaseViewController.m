@@ -42,57 +42,36 @@
 }
 
 -(void)testString{
-    id str = @"Hello";
-    [BaseUtil checkAutoRelease:getAddr(str) result:^(BOOL isAuto) {
-        NSAssert(!isAuto, @"str1不为autorelease");
+    id str6 = [NSString stringWithString:[NSString stringWithFormat:@"%@", @"1234567890"]];
+    [BaseUtil checkAutoRelease:getAddr(str6) result:^(BOOL isAuto) {
+        NSAssert(isAuto, @"为autorelease");
     }];
     
-    id str1 = [NSString string];
-    [BaseUtil checkAutoRelease:getAddr(str1) result:^(BOOL isAuto) {
-        NSAssert(!isAuto, @"str1不为autorelease");
+    id str8 = [NSString stringWithFormat:@"%@", @"1234567890"];
+    [BaseUtil checkAutoRelease:getAddr(str8) result:^(BOOL isAuto) {
+        NSAssert(isAuto, @"为autorelease");
     }];
     
-    id str2 = [NSString stringWithFormat:@"%@", @"123"];
-    [BaseUtil checkAutoRelease:getAddr(str2) result:^(BOOL isAuto) {
-        NSAssert(!isAuto, @"str2不为autorelease");
+    id m_str5 = [NSMutableString stringWithFormat:@"%@", @"12345"];
+    [BaseUtil checkAutoRelease:getAddr(m_str5) result:^(BOOL isAuto) {
+        NSAssert(isAuto, @"为autorelease");
     }];
     
-    id str3 = [NSString stringWithFormat:@"%@", @"1234567890"];
-    [BaseUtil checkAutoRelease:getAddr(str3) result:^(BOOL isAuto) {
-        NSAssert(isAuto, @"str3为autorelease");
+    id m_str6 = [NSMutableString stringWithFormat:@"%@", @"1234567890"];
+    [BaseUtil checkAutoRelease:getAddr(m_str6) result:^(BOOL isAuto) {
+        NSAssert(isAuto, @"为autorelease");
     }];
-    
 }
 
 -(void)testArray{
-    id arr = @[ @1, @0 ];
-    [BaseUtil checkAutoRelease:getAddr(arr) result:^(BOOL isAuto) {
-        NSAssert(!isAuto, @"str1不为autorelease");
+    id arr5 = [NSArray arrayWithObjects:@1, nil];
+    [BaseUtil checkAutoRelease:getAddr(arr5) result:^(BOOL isAuto) {
+        NSAssert(isAuto, @"为autorelease");
     }];
     
-    // INFO: objc_autoreleasedReturnValue -> objc_retainAutoreleasedReturnValue 对象不再注册到autoreleasepool，而是传递给调用方
-    id arr1 = [NSArray array];
-    [BaseUtil checkAutoRelease:getAddr(arr1) result:^(BOOL isAuto) {
-        NSAssert(!isAuto, @"m_arr1不为autorelease");
-    }];
-    
-    // INFO: [NSArray arrayWithObjects:xxx]生成的对象注册到autoreleasepool
-    id arr2 = [NSArray arrayWithObjects:@0, @1, nil];
-    [BaseUtil checkAutoRelease:getAddr(arr2) result:^(BOOL isAuto) {
-        NSAssert(isAuto, @"arr2为autorelease");
-    }];
-}
-
--(void)testMutableArray{
-    id m_arr1 = [NSMutableArray array];
-    [BaseUtil checkAutoRelease:getAddr(m_arr1) result:^(BOOL isAuto) {
-        NSAssert(!isAuto, @"m_arr1不为autorelease");
-    }];
-    
-    // INFO: [NSMutableArray arrayWithObjects:xxx]生成的对象注册到autoreleasepool
-    id m_arr2 = [NSMutableArray arrayWithObjects:@0, @1, nil];
-    [BaseUtil checkAutoRelease:getAddr(m_arr2) result:^(BOOL isAuto) {
-        NSAssert(isAuto, @"m_arr2为autorelease");
+    id arr7 = [NSMutableArray arrayWithObjects:@1, nil];
+    [BaseUtil checkAutoRelease:getAddr(arr7) result:^(BOOL isAuto) {
+        NSAssert(isAuto, @"为autorelease");
     }];
 }
 

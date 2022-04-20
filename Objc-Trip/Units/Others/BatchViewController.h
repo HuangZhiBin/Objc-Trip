@@ -1,5 +1,5 @@
 //
-//  DeallocViewController.h
+//  AtomicViewController.h
 //  Objc-Journey
 //
 //  Created by binhuang on 2022/4/8.
@@ -9,7 +9,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DeallocViewController : BaseViewController
+@interface BatchViewController : BaseViewController
+
 
 @end
 

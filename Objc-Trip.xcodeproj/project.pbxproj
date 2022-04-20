@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		851D0D9D280D553C00F14056 /* NSTimerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 851D0D9B280D553C00F14056 /* NSTimerViewController.h */; };
 		851D0D9E280D553C00F14056 /* NSTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 851D0D9C280D553C00F14056 /* NSTimerViewController.m */; };
+		851D0DA1280D999400F14056 /* TypeUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 851D0D9F280D999400F14056 /* TypeUtil.h */; };
+		851D0DA2280D999400F14056 /* TypeUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 851D0DA0280D999400F14056 /* TypeUtil.m */; };
 		852B830128032638005479E0 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82E028032638005479E0 /* BaseViewController.m */; };
 		852B830228032638005479E0 /* MenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82E128032638005479E0 /* MenuItem.m */; };
 		852B830328032638005479E0 /* MenuSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82E328032638005479E0 /* MenuSection.m */; };
@@ -18,11 +20,10 @@
 		852B830728032638005479E0 /* WeakTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82F128032638005479E0 /* WeakTestViewController.m */; };
 		852B830828032638005479E0 /* BridgeLeakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82F428032638005479E0 /* BridgeLeakViewController.m */; };
 		852B830928032638005479E0 /* CopyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82F528032638005479E0 /* CopyViewController.m */; };
-		852B830A28032638005479E0 /* DeallocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82F628032638005479E0 /* DeallocViewController.m */; };
 		852B830B28032638005479E0 /* AutoreleaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82F728032638005479E0 /* AutoreleaseViewController.m */; };
 		852B830C28032638005479E0 /* RetainCountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82F828032638005479E0 /* RetainCountViewController.m */; };
 		852B830D28032638005479E0 /* GCDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82FC28032638005479E0 /* GCDViewController.m */; };
-		852B830E28032638005479E0 /* AtomicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82FD28032638005479E0 /* AtomicViewController.m */; };
+		852B830E28032638005479E0 /* BatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82FD28032638005479E0 /* BatchViewController.m */; };
 		852B830F28032638005479E0 /* LockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82FE28032638005479E0 /* LockViewController.m */; };
 		8531A1022806FCAB006E1AF3 /* WeakStrTestViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8531A1002806FCAB006E1AF3 /* WeakStrTestViewController.h */; };
 		8531A1032806FCAB006E1AF3 /* WeakStrTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8531A1012806FCAB006E1AF3 /* WeakStrTestViewController.m */; };
@@ -68,6 +69,10 @@
 		85646D24280C3D3C00A4F484 /* OperationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85646D22280C3D3C00A4F484 /* OperationViewController.m */; };
 		85646D28280C4B2100A4F484 /* MyOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 85646D26280C4B2100A4F484 /* MyOperation.h */; };
 		85646D29280C4B2100A4F484 /* MyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85646D27280C4B2100A4F484 /* MyOperation.m */; };
+		856AAAD9280FA7A20011B297 /* InfiniteScrollViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 856AAAD7280FA7A20011B297 /* InfiniteScrollViewController.h */; };
+		856AAADA280FA7A20011B297 /* InfiniteScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 856AAAD8280FA7A20011B297 /* InfiniteScrollViewController.m */; };
+		857DA01D280E69FC0068EA88 /* NSTimer+Block.h in Headers */ = {isa = PBXBuildFile; fileRef = 857DA01B280E69FC0068EA88 /* NSTimer+Block.h */; };
+		857DA01E280E69FC0068EA88 /* NSTimer+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 857DA01C280E69FC0068EA88 /* NSTimer+Block.m */; };
 		85A52B1128081D8400FA3170 /* VarViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85A52B0F28081D8400FA3170 /* VarViewController.h */; };
 		85A52B1228081D8400FA3170 /* VarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A52B1028081D8400FA3170 /* VarViewController.m */; };
 		85A52B1528084B9100FA3170 /* BlockViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85A52B1328084B9100FA3170 /* BlockViewController.h */; };
@@ -104,6 +109,8 @@
 		4DEDA284F69CF732C11A7F09 /* Pods-Objc-Trip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Objc-Trip.release.xcconfig"; path = "Target Support Files/Pods-Objc-Trip/Pods-Objc-Trip.release.xcconfig"; sourceTree = "<group>"; };
 		851D0D9B280D553C00F14056 /* NSTimerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSTimerViewController.h; sourceTree = "<group>"; };
 		851D0D9C280D553C00F14056 /* NSTimerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSTimerViewController.m; sourceTree = "<group>"; };
+		851D0D9F280D999400F14056 /* TypeUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeUtil.h; sourceTree = "<group>"; };
+		851D0DA0280D999400F14056 /* TypeUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypeUtil.m; sourceTree = "<group>"; };
 		852B82DF28032638005479E0 /* MenuSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuSection.h; sourceTree = "<group>"; };
 		852B82E028032638005479E0 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		852B82E128032638005479E0 /* MenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItem.m; sourceTree = "<group>"; };
@@ -114,7 +121,6 @@
 		852B82E628032638005479E0 /* MenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItem.h; sourceTree = "<group>"; };
 		852B82E928032638005479E0 /* CopyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyViewController.h; sourceTree = "<group>"; };
 		852B82EA28032638005479E0 /* CFBridgeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFBridgeViewController.h; sourceTree = "<group>"; };
-		852B82EB28032638005479E0 /* DeallocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeallocViewController.h; sourceTree = "<group>"; };
 		852B82EC28032638005479E0 /* RetainCountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetainCountViewController.h; sourceTree = "<group>"; };
 		852B82ED28032638005479E0 /* AutoreleaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoreleaseViewController.h; sourceTree = "<group>"; };
 		852B82EE28032638005479E0 /* WeakViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeakViewController.m; sourceTree = "<group>"; };
@@ -124,16 +130,15 @@
 		852B82F328032638005479E0 /* WeakTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeakTestViewController.h; sourceTree = "<group>"; };
 		852B82F428032638005479E0 /* BridgeLeakViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BridgeLeakViewController.m; sourceTree = "<group>"; };
 		852B82F528032638005479E0 /* CopyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyViewController.m; sourceTree = "<group>"; };
-		852B82F628032638005479E0 /* DeallocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeallocViewController.m; sourceTree = "<group>"; };
 		852B82F728032638005479E0 /* AutoreleaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoreleaseViewController.m; sourceTree = "<group>"; };
 		852B82F828032638005479E0 /* RetainCountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RetainCountViewController.m; sourceTree = "<group>"; };
 		852B82F928032638005479E0 /* WeakViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeakViewController.h; sourceTree = "<group>"; };
 		852B82FB28032638005479E0 /* LockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockViewController.h; sourceTree = "<group>"; };
 		852B82FC28032638005479E0 /* GCDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDViewController.m; sourceTree = "<group>"; };
-		852B82FD28032638005479E0 /* AtomicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtomicViewController.m; sourceTree = "<group>"; };
+		852B82FD28032638005479E0 /* BatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BatchViewController.m; sourceTree = "<group>"; };
 		852B82FE28032638005479E0 /* LockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockViewController.m; sourceTree = "<group>"; };
 		852B82FF28032638005479E0 /* GCDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDViewController.h; sourceTree = "<group>"; };
-		852B830028032638005479E0 /* AtomicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomicViewController.h; sourceTree = "<group>"; };
+		852B830028032638005479E0 /* BatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BatchViewController.h; sourceTree = "<group>"; };
 		8531A1002806FCAB006E1AF3 /* WeakStrTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeakStrTestViewController.h; sourceTree = "<group>"; };
 		8531A1012806FCAB006E1AF3 /* WeakStrTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeakStrTestViewController.m; sourceTree = "<group>"; };
 		8553B28F2803E49600A692C2 /* NSArray+GCD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+GCD.h"; sourceTree = "<group>"; };
@@ -188,6 +193,10 @@
 		85646D26280C4B2100A4F484 /* MyOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyOperation.h; sourceTree = "<group>"; };
 		85646D27280C4B2100A4F484 /* MyOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyOperation.m; sourceTree = "<group>"; };
 		85679405D78596B843519FD8 /* Pods-Objc-Trip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Objc-Trip.debug.xcconfig"; path = "Target Support Files/Pods-Objc-Trip/Pods-Objc-Trip.debug.xcconfig"; sourceTree = "<group>"; };
+		856AAAD7280FA7A20011B297 /* InfiniteScrollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollViewController.h; sourceTree = "<group>"; };
+		856AAAD8280FA7A20011B297 /* InfiniteScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollViewController.m; sourceTree = "<group>"; };
+		857DA01B280E69FC0068EA88 /* NSTimer+Block.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Block.h"; sourceTree = "<group>"; };
+		857DA01C280E69FC0068EA88 /* NSTimer+Block.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Block.m"; sourceTree = "<group>"; };
 		85A52B0F28081D8400FA3170 /* VarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VarViewController.h; sourceTree = "<group>"; };
 		85A52B1028081D8400FA3170 /* VarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VarViewController.m; sourceTree = "<group>"; };
 		85A52B1328084B9100FA3170 /* BlockViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockViewController.h; sourceTree = "<group>"; };
@@ -263,6 +272,8 @@
 				855696C12809927E008A1947 /* DeallocController.m */,
 				85FE0C3A280AF17F001E76F0 /* GCDLogger.h */,
 				85FE0C3B280AF17F001E76F0 /* GCDLogger.m */,
+				851D0D9F280D999400F14056 /* TypeUtil.h */,
+				851D0DA0280D999400F14056 /* TypeUtil.m */,
 			);
 			path = Basic;
 			sourceTree = "<group>";
@@ -288,8 +299,6 @@
 				852B82EF28032638005479E0 /* CFBridgeViewController.m */,
 				852B82E928032638005479E0 /* CopyViewController.h */,
 				852B82F528032638005479E0 /* CopyViewController.m */,
-				852B82EB28032638005479E0 /* DeallocViewController.h */,
-				852B82F628032638005479E0 /* DeallocViewController.m */,
 				852B82EC28032638005479E0 /* RetainCountViewController.h */,
 				852B82F828032638005479E0 /* RetainCountViewController.m */,
 				852B82F928032638005479E0 /* WeakViewController.h */,
@@ -307,8 +316,6 @@
 				852B82F428032638005479E0 /* BridgeLeakViewController.m */,
 				852B82F328032638005479E0 /* WeakTestViewController.h */,
 				852B82F128032638005479E0 /* WeakTestViewController.m */,
-				855696CD28099ED3008A1947 /* TimerViewController.h */,
-				855696CE28099ED3008A1947 /* TimerViewController.m */,
 			);
 			path = Sub;
 			sourceTree = "<group>";
@@ -356,8 +363,8 @@
 				855696B7280972E8008A1947 /* Sub */,
 				855696AA28096F97008A1947 /* OthersViewController.h */,
 				855696AB28096F97008A1947 /* OthersViewController.m */,
-				852B830028032638005479E0 /* AtomicViewController.h */,
-				852B82FD28032638005479E0 /* AtomicViewController.m */,
+				852B830028032638005479E0 /* BatchViewController.h */,
+				852B82FD28032638005479E0 /* BatchViewController.m */,
 				852B82FB28032638005479E0 /* LockViewController.h */,
 				852B82FE28032638005479E0 /* LockViewController.m */,
 				851D0D9B280D553C00F14056 /* NSTimerViewController.h */,
@@ -369,10 +376,16 @@
 		855696B7280972E8008A1947 /* Sub */ = {
 			isa = PBXGroup;
 			children = (
+				855696CD28099ED3008A1947 /* TimerViewController.h */,
+				855696CE28099ED3008A1947 /* TimerViewController.m */,
 				855696B828097306008A1947 /* Son.h */,
 				855696B928097306008A1947 /* Son.m */,
 				855696BC28097311008A1947 /* Father.h */,
 				855696BD28097311008A1947 /* Father.m */,
+				857DA01B280E69FC0068EA88 /* NSTimer+Block.h */,
+				857DA01C280E69FC0068EA88 /* NSTimer+Block.m */,
+				856AAAD7280FA7A20011B297 /* InfiniteScrollViewController.h */,
+				856AAAD8280FA7A20011B297 /* InfiniteScrollViewController.m */,
 			);
 			path = Sub;
 			sourceTree = "<group>";
@@ -488,16 +501,19 @@
 				8531A1022806FCAB006E1AF3 /* WeakStrTestViewController.h in Headers */,
 				85FE0C40280AFF61001E76F0 /* GCDAfterViewController.h in Headers */,
 				85FE0C3C280AF17F001E76F0 /* GCDLogger.h in Headers */,
+				857DA01D280E69FC0068EA88 /* NSTimer+Block.h in Headers */,
 				85646D1B280BF69300A4F484 /* GCDSemaphoreViewController.h in Headers */,
 				85A52B1128081D8400FA3170 /* VarViewController.h in Headers */,
 				85646D17280BE73F00A4F484 /* GCDSuspendViewController.h in Headers */,
 				85FE0C44280B071D001E76F0 /* GCDGroupViewController.h in Headers */,
 				85646D28280C4B2100A4F484 /* MyOperation.h in Headers */,
+				851D0DA1280D999400F14056 /* TypeUtil.h in Headers */,
 				855696C22809927E008A1947 /* DeallocController.h in Headers */,
 				855696AC28096F97008A1947 /* OthersViewController.h in Headers */,
 				85646D13280BD2BA00A4F484 /* GCDApplyViewController.h in Headers */,
 				855696BA28097306008A1947 /* Son.h in Headers */,
 				8553B2B728045BF500A692C2 /* DebuggerView.h in Headers */,
+				856AAAD9280FA7A20011B297 /* InfiniteScrollViewController.h in Headers */,
 				85FE0C38280AEAB5001E76F0 /* GCDSetTargetViewController.h in Headers */,
 				85A52B1528084B9100FA3170 /* BlockViewController.h in Headers */,
 				85646D0F280BB49D00A4F484 /* GCDBarrierViewController.h in Headers */,
@@ -652,7 +668,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nKEYWORDS=\"INFO:\"\nfind \"${SRCROOT}\" -name \"*.[hm]\" -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($KEYWORDS).*\\$\" | perl -p -e \"s/($KEYWORDS)/ warning: \\$1/\"\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nKEYWORDS=\"INFO:\"\nfind \"${SRCROOT}\" -name \"*.[hm]\" -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($KEYWORDS).*\\$\" | perl -p -e \"s/($KEYWORDS)/ warning: \\$1/\"\nKEYWORDS=\"QUIZ:\"\nfind \"${SRCROOT}\" -name \"*.[hm]\" -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($KEYWORDS).*\\$\" | perl -p -e \"s/($KEYWORDS)/ warning: \\$1/\"\n";
 		};
 		8553B29E28044B9300A692C2 /* Run Script For Zip Code Files */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -732,13 +748,16 @@
 				8531A1032806FCAB006E1AF3 /* WeakStrTestViewController.m in Sources */,
 				855696AD28096F97008A1947 /* OthersViewController.m in Sources */,
 				85FE0C41280AFF61001E76F0 /* GCDAfterViewController.m in Sources */,
+				856AAADA280FA7A20011B297 /* InfiniteScrollViewController.m in Sources */,
 				852B830328032638005479E0 /* MenuSection.m in Sources */,
 				852B830928032638005479E0 /* CopyViewController.m in Sources */,
 				852B830128032638005479E0 /* BaseViewController.m in Sources */,
 				855696C32809927E008A1947 /* DeallocController.m in Sources */,
 				852B830528032638005479E0 /* WeakViewController.m in Sources */,
+				857DA01E280E69FC0068EA88 /* NSTimer+Block.m in Sources */,
 				852B830D28032638005479E0 /* GCDViewController.m in Sources */,
 				851D0D9E280D553C00F14056 /* NSTimerViewController.m in Sources */,
+				851D0DA2280D999400F14056 /* TypeUtil.m in Sources */,
 				855DEAF02803205B005D2874 /* AppDelegate.m in Sources */,
 				855696CC28099665008A1947 /* BlockLeakTestViewController.m in Sources */,
 				85646D18280BE73F00A4F484 /* GCDSuspendViewController.m in Sources */,
@@ -759,8 +778,7 @@
 				855DEAF32803205B005D2874 /* SceneDelegate.m in Sources */,
 				85646D10280BB49D00A4F484 /* GCDBarrierViewController.m in Sources */,
 				85646D29280C4B2100A4F484 /* MyOperation.m in Sources */,
-				852B830A28032638005479E0 /* DeallocViewController.m in Sources */,
-				852B830E28032638005479E0 /* AtomicViewController.m in Sources */,
+				852B830E28032638005479E0 /* BatchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

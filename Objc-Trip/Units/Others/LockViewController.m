@@ -314,9 +314,36 @@
     } delay:0];
 }
 
--(waiter)testSynchronizedArray1{
+
+-(void)testSynchronizedArray1{
+    static NSString *token = @"synchronized-token";
     __block NSMutableArray *array = [NSMutableArray array];
-    for (NSInteger i = 0; i < 20000; i ++) {
+    for (NSInteger i = 0; i < 1000; i ++) {
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            @synchronized (token) {
+                [array addObject:@(i)];
+            }
+        });
+    }
+    NSAssert(array.count != 1000, @"顺利执行");
+}
+
+-(void)testSynchronizedArray2{
+    __block NSMutableArray *array = [NSMutableArray array];
+    for (NSInteger i = 0; i < 1000; i ++) {
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            @synchronized (array) {
+                [array addObject:@(i)];
+            }
+        });
+    }
+    // QUIZ: 为什么呀
+    NSAssert(array.count != 1000, @"顺利执行");
+}
+
+-(void)testSynchronizedArray3{
+    __block NSMutableArray *array = [NSMutableArray array];
+    for (NSInteger i = 0; i < 1000; i ++) {
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             // INFO: 多线程对array的操作却是频繁的创建和release，当某个瞬间arry执行了release的时候就 @synchronized(nil) ，上文已经分析了这个时候do nothing，所以不能起到同步锁的作用
             @synchronized (array) {
@@ -326,37 +353,6 @@
             }
         });
     }
-    
-    returnWait;
-}
-
--(waiter)testSynchronizedArray2{
-    static NSString *token = @"synchronized-token";
-    __block NSMutableArray *array = [NSMutableArray array];
-    for (NSInteger i = 0; i < 20000; i ++) {
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            @synchronized (token) {
-                array = [NSMutableArray array];
-            }
-        });
-    }
-    
-    waitSuccess;
-    returnWait;
-}
-
--(waiter)testSynchronizedArray3{
-    __block NSMutableArray *array = [NSMutableArray array];
-    for (NSInteger i = 0; i < 20000; i ++) {
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            @synchronized (array) {
-                [array addObject:@(i)];
-            }
-        });
-    }
-    
-    waitSuccess;
-    returnWait;
 }
 
 @end

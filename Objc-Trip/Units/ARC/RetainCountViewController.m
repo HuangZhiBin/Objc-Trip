@@ -6,6 +6,7 @@
 //
 
 #import "RetainCountViewController.h"
+#import "TypeUtil.h"
 
 @interface RetainCountViewController ()
 
@@ -20,101 +21,82 @@
 
 -(void)groupString{}
 
--(void)testString{
+-(void)testConstantString{
+    // INFO:Constant无引用计数
+    void (^checkConstantString)(id) = ^(id obj){
+        NSAssert([TypeUtil string_type_is_constant:obj], @"类型为Constant");
+        NSAssert(RetainCount(obj) != 1 && RetainCount(obj) != 2, @"无引用计数");
+    };
+    
     id str0 = @"123";
-    NSAssert([NSStringFromClass([str0 class]) isEqualToString:@"__NSCFConstantString"], @"类型为Constant");
+    checkConstantString(str0);
     
     id str1 = @"1234567890";
-    NSAssert([NSStringFromClass([str1 class]) isEqualToString:@"__NSCFConstantString"], @"类型为Constant");
+    checkConstantString(str1);
     
     id str2 = [NSString string];
-    NSAssert([NSStringFromClass([str2 class]) isEqualToString:@"__NSCFConstantString"], @"类型为Constant");
+    checkConstantString(str2);
     
     id str3 = [[NSString alloc] init];
-    NSAssert([NSStringFromClass([str3 class]) isEqualToString:@"__NSCFConstantString"], @"类型为Constant");
+    checkConstantString(str3);
     
-    // INFO:stringWithString的类型取决于它后面跟的string对象
     id str4 = [NSString stringWithString:@"1234567890"];
-    NSAssert([NSStringFromClass([str4 class]) isEqualToString:@"__NSCFConstantString"], @"类型为Constant");
+    checkConstantString(str4);
+}
+
+-(void)testTaggedPointerString{
+    // INFO:TaggedPointer无引用计数
+    void (^checkTaggedPointerString)(id) = ^(id obj){
+        NSAssert([TypeUtil string_type_is_tagged_pointer:obj], @"类型为TaggedPointer");
+        NSAssert(RetainCount(obj) != 1 && RetainCount(obj) != 2, @"无引用计数");
+    };
     
     // INFO:stringWithFormat决定类型为NSTaggedPointerString还是__NSCFString
     id str5 = [NSString stringWithString:[NSString stringWithFormat:@"%@", @"123456789"]];
-    NSAssert([NSStringFromClass([str5 class]) isEqualToString:@"NSTaggedPointerString"], @"类型为TaggedPointer");
-    
-    id str6 = [NSString stringWithString:[NSString stringWithFormat:@"%@", @"1234567890"]];
-    NSAssert([NSStringFromClass([str6 class]) isEqualToString:@"__NSCFString"], @"类型为NSCFString");
+    checkTaggedPointerString(str5);
     
     id str7 = [NSString stringWithFormat:@"%@", @"123456789"];
-    NSAssert([NSStringFromClass([str7 class]) isEqualToString:@"NSTaggedPointerString"], @"类型为TaggedPointer");
+    checkTaggedPointerString(str7);
+}
+
+-(void)testCFString{
+    // INFO:CFString有引用计数
+    void (^checkCFString)(id) = ^(__unsafe_unretained id obj){
+        NSAssert([TypeUtil string_type_is_cfstring:obj], @"类型为CFString");
+        NSAssert(RetainCount(obj) == 1 || RetainCount(obj) == 2, @"有引用计数");
+    };
     
-    // INFO:stringWithFormat生成的NSCFString类型引用计数为2
+    id str6 = [NSString stringWithString:[NSString stringWithFormat:@"%@", @"1234567890"]];
+    checkCFString(str6);
+    
     id str8 = [NSString stringWithFormat:@"%@", @"1234567890"];
-    NSAssert([NSStringFromClass([str8 class]) isEqualToString:@"__NSCFString"], @"类型为NSCFString");
-    
-    // INFO:Constant和TaggedPointer无引用计数
-    NSAssert(
-             RetainCount(str0) == 1152921504606846975 &&
-             RetainCount(str1) == 1152921504606846975 &&
-             RetainCount(str2) == 1152921504606846975 &&
-             RetainCount(str3) == 1152921504606846975 &&
-             RetainCount(str4) == 1152921504606846975 &&
-             RetainCount(str5) == 9223372036854775807 &&
-             RetainCount(str7) == 9223372036854775807,
-             @"Constant和TaggedPointer引用计数!=1"
-    );
-    
-    // INFO:NSCFString有引用计数
-    NSAssert(
-             RetainCount(str6) == 2 &&
-             RetainCount(str8) == 2,
-             @"NSCFString引用计数==2"
-    );
-    
-    id str9 = str8;
-    NSAssert(
-             RetainCount(str9) == 3,
-             @"str9引用计数==3"
-    );
+    checkCFString(str8);
 }
 
 -(void)testMutableString{
-    // INFO:可变类型的都是__NSCFString
+    // INFO:CFString有引用计数
+    void (^checkCFString)(id) = ^(__unsafe_unretained id obj){
+        NSAssert([TypeUtil string_type_is_cfstring:obj], @"类型为CFString");
+        NSAssert(RetainCount(obj) == 1 || RetainCount(obj) == 2, @"有引用计数");
+    };
+    
     id m_str = [@"123" mutableCopy];
-    NSAssert(RetainCount(m_str) == 1, @"m_str引用计数==1");
-    
+    checkCFString(m_str);
+
     id m_str2 = [NSMutableString string];
-    NSAssert(RetainCount(m_str2) == 1, @"m_str2引用计数==1");
-    
+    checkCFString(m_str2);
+
     id m_str3 = [[NSMutableString alloc] init];
-    NSAssert(RetainCount(m_str3) == 1, @"m_str3引用计数==1");
-    
+    checkCFString(m_str3);
+
     id m_str4 = [NSMutableString stringWithString: @"12345"];
-    NSAssert(RetainCount(m_str4) == 1, @"m_str4引用计数==1");
+    checkCFString(m_str4);
     
     id m_str5 = [NSMutableString stringWithFormat:@"%@", @"12345"];
-    NSAssert(RetainCount(m_str5) == 2, @"m_str5引用计数==2");
+    checkCFString(m_str5);
     
     id m_str6 = [NSMutableString stringWithFormat:@"%@", @"1234567890"];
-    NSAssert(RetainCount(m_str6) == 2, @"m_str6引用计数==2");
-    
-    NSAssert(
-             [NSStringFromClass([m_str class]) isEqualToString:@"__NSCFString"] &&
-             [NSStringFromClass([m_str2 class]) isEqualToString:@"__NSCFString"] &&
-             [NSStringFromClass([m_str3 class]) isEqualToString:@"__NSCFString"] &&
-             [NSStringFromClass([m_str4 class]) isEqualToString:@"__NSCFString"] &&
-             [NSStringFromClass([m_str5 class]) isEqualToString:@"__NSCFString"],
-             @"类型为NSCFString"
-    );
-}
-
--(void)groupArray{}
-
--(void)testNSArray{
-    
-}
-
--(void)testMutableArray{
-    
+    checkCFString(m_str6);
 }
 
 -(void)groupDifferentType{}

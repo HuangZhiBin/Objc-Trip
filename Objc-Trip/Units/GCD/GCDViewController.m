@@ -237,6 +237,7 @@
     [logger reset];
     
     dispatch_sync(dispatch_get_global_queue(0, 0), ^{
+        NSAssert([[NSThread currentThread] isMainThread], @"在主线程");
         [self->logger addStep:1];
         dispatch_sync(dispatch_get_global_queue(0, 0),^{
             [self->logger addStep:2];

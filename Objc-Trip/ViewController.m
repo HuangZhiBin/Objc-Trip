@@ -26,18 +26,17 @@
     [super viewDidLoad];
 //    [BaseUtil startListeningAutoRelease];
     
-    self.title = @"Objc Journey";
+    self.title = @"Objc Trip";
     // Do any additional setup after loading the view.
     
     menus =
     @[
         [[MenuSection alloc] initWithSectionName:@"ARC" items:@[
             [[MenuItem alloc] initWithTitle:@"RetainCount" vcName:@"RetainCountViewController"],
-            [[MenuItem alloc] initWithTitle:@"CFBridge" vcName:@"CFBridgeViewController"],
             [[MenuItem alloc] initWithTitle:@"Autorelease" vcName:@"AutoreleaseViewController"],
             [[MenuItem alloc] initWithTitle:@"Weak" vcName:@"WeakViewController"],
-            [[MenuItem alloc] initWithTitle:@"Dealloc" vcName:@"DeallocViewController"],
             [[MenuItem alloc] initWithTitle:@"Copy" vcName:@"CopyViewController"],
+            [[MenuItem alloc] initWithTitle:@"CFBridge" vcName:@"CFBridgeViewController"],
         ]],
         [[MenuSection alloc] initWithSectionName:@"多线程" items:@[
             [[MenuItem alloc] initWithTitle:@"dispatch_sync_async" vcName:@"GCDViewController"],
@@ -60,7 +59,7 @@
         ]],
         [[MenuSection alloc] initWithSectionName:@"Others" items:@[
             [[MenuItem alloc] initWithTitle:@"Others" vcName:@"OthersViewController"],
-            [[MenuItem alloc] initWithTitle:@"Atomic" vcName:@"AtomicViewController"],
+            [[MenuItem alloc] initWithTitle:@"Batch" vcName:@"BatchViewController"],
             [[MenuItem alloc] initWithTitle:@"Lock" vcName:@"LockViewController"],
             [[MenuItem alloc] initWithTitle:@"NSTimer" vcName:@"NSTimerViewController"],
         ]],
@@ -86,6 +85,20 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return menus.count;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    // Background color
+    view.tintColor = [UIColor whiteColor];
+
+    // Text Color
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    [header.textLabel setTextColor:[UIColor colorWithRed:32/255.0f green:146/255.0f blue:234/255.0f alpha:1]];
+
+    // Another way to set the background color
+    // Note: does not preserve gradient effect of original header
+    // header.contentView.backgroundColor = [UIColor blackColor];
 }
 
 //每个section有几个单元格
