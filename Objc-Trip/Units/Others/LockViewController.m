@@ -69,7 +69,7 @@
             sleep(2);
             [self->logger addStep:(idx + 1) * 100 + 3];
             pthread_mutex_unlock(&pLock);
-            [self->logger addStep:(idx + 1) * 100 + 4];
+            [self->logger addStep:(idx + 1) * 100 + 4]; 
         });
     }
     
