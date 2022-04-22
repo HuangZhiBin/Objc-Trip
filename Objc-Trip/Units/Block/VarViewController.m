@@ -6,6 +6,7 @@
 //
 
 #import "VarViewController.h"
+#import "BlockArrayViewController.h"
 
 @interface VarViewController ()
 
@@ -16,6 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+-(NSDictionary *)redirect{
+    return @{
+        @"testMutableArray2": @[ @"BlockArrayViewController", @"test" ],
+    };
 }
 
 -(void)testCaptureInt{
@@ -74,19 +81,6 @@
     NSAssert(val == 2, @"捕获的值为最新值");
 }
 
-
-
--(void)testMutableArray{
-    NSMutableArray *arr = [NSMutableArray array];
-    void (^blk)(void) = ^{
-        NSAssert(arr.count == 1, @"数组长度为1");
-        [arr addObject:[NSObject new]];
-    };
-    [arr addObject:[NSObject new]];
-    blk();
-    NSAssert(arr.count == 2, @"数组长度为2");
-}
-
 -(void)testStaticVar{
     static int val = 1;
     void (^blk)(void) = ^{
@@ -137,6 +131,26 @@
     NSAssert(blk([NSObject new]) == 0, @"array为空数组");
     NSAssert(blk([NSObject new]) == 0, @"array为空数组");
     NSAssert(blk([NSObject new]) == 0, @"array为空数组");
+}
+
+-(void)groupArray{}
+
+-(void)testMutableArray{
+    NSMutableArray *arr = [NSMutableArray array];
+    void (^blk)(void) = ^{
+        NSAssert(arr.count == 1, @"数组长度为1");
+        [arr addObject:[NSObject new]];
+    };
+    [arr addObject:[NSObject new]];
+    blk();
+    NSAssert(arr.count == 2, @"数组长度为2");
+}
+
+-(void)testMutableArray2{
+    BlockArrayViewController *vc = [[BlockArrayViewController alloc] init];
+    vc.testcase = @"test";
+    vc.autoPop = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*

@@ -15,13 +15,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    if(self.testcase == 1){
-        [self testLeak];
-    }
-    else if(self.testcase == 2){
-        [self testNonLeak];
-    }
 }
 
 -(void)testLeak{

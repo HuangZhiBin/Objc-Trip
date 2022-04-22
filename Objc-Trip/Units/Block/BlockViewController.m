@@ -47,7 +47,6 @@
     int num = 10;
     int num2 = blk(num);
     NSAssert([NSStringFromClass([blk class]) isEqual:@"__NSGlobalBlock__"], @"类型为全局block");
-    NSAssert(num2 == 11, @"值加1");
 }
 
 -(void)groupStack{}
@@ -55,6 +54,7 @@
 -(void)testStack{
     int num = 123;
     NSString *className = NSStringFromClass([^(){printf("%d", num);} class]);
+    // INFO: 使用自动变量但block不赋值给变量
     NSAssert([className isEqual:@"__NSStackBlock__"], @"类型为栈block");
 }
 
@@ -85,13 +85,13 @@
         printf("global %d", num);
     };
     id blk2 = [blk copy];
-    NSAssert([NSStringFromClass([blk2 class]) isEqual:@"__NSGlobalBlock__"], @"copy global为block");
+    NSAssert([NSStringFromClass([blk2 class]) isEqual:@"__NSGlobalBlock__"], @"copy global为global");
 }
 
 -(void)testCopyStack{
     int num = 123;
     NSString *className = NSStringFromClass([[^(){printf("%d", num);} copy] class]);
-    NSAssert([className isEqual:@"__NSMallocBlock__"], @"copy block为malloc");
+    NSAssert([className isEqual:@"__NSMallocBlock__"], @"copy stack为malloc");
 }
 
 -(void)testCopyMalloc{
@@ -102,7 +102,33 @@
     id blk2 = [blk copy];
     NSAssert([NSStringFromClass([blk2 class]) isEqual:@"__NSMallocBlock__"], @"copy malloc为malloc");
     NSAssert([getAddr(blk) isEqual:getAddr(blk2)], @"浅拷贝");
+    // INFO: 虽然 retainCount 始终是 1，但内存管理器中仍然会增加、减少计数，当引用计数为零的时候释放
     NSAssert(RetainCount(blk2) == 1, @"引用计数=1");
+}
+
+-(void)groupRetainCount{}
+
+-(void)testRetainCount{
+    NSObject *objc = [NSObject new];
+
+    long(^block1)(void) = ^{
+        return CFGetRetainCount((__bridge CFTypeRef)(objc));
+    };
+    NSAssert(block1() == 3, @"");
+
+    long(^__weak block2)(void) = ^{
+        return CFGetRetainCount((__bridge CFTypeRef)(objc));
+    };
+    NSAssert(block2() == 4, @"");
+
+    long(^block3)(void) = [block2 copy];
+    NSAssert(block3() == 5, @"");
+
+    __block NSObject *obj = [NSObject new];
+    long(^block4)(void) = ^{
+        return CFGetRetainCount((__bridge CFTypeRef)(obj));
+    };
+    NSAssert(block4() == 1, @"");
 }
 
 /*

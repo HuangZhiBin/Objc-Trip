@@ -49,13 +49,11 @@
             [[MenuItem alloc] initWithTitle:@"dispatch_semaphore" vcName:@"GCDSemaphoreViewController"],
             [[MenuItem alloc] initWithTitle:@"dispatch_source" vcName:@"GCDSourceViewController"],
             [[MenuItem alloc] initWithTitle:@"NSOperation" vcName:@"OperationViewController"],
-            
         ]],
         [[MenuSection alloc] initWithSectionName:@"Block" items:@[
             [[MenuItem alloc] initWithTitle:@"ValueCapture" vcName:@"VarViewController"],
             [[MenuItem alloc] initWithTitle:@"BlockType" vcName:@"BlockViewController"],
             [[MenuItem alloc] initWithTitle:@"Leak" vcName:@"BlockLeakViewController"],
-            
         ]],
         [[MenuSection alloc] initWithSectionName:@"Others" items:@[
             [[MenuItem alloc] initWithTitle:@"Others" vcName:@"OthersViewController"],

@@ -106,13 +106,13 @@
 
 -(void)testLeak_{
     BridgeLeakViewController *vc = [[BridgeLeakViewController alloc] init];
-    vc.testcase = 1;
+    vc.testcase = @"testLeak";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)testNonLeak_{
     BridgeLeakViewController *vc = [[BridgeLeakViewController alloc] init];
-    vc.testcase = 2;
+    vc.testcase = @"testNonLeak";
     [self.navigationController pushViewController:vc animated:YES];
 }
 

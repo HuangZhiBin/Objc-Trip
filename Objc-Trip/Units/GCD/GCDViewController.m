@@ -63,7 +63,9 @@
 -(waiter)test_serial_sync{
     [logger reset];
     
-    dispatch_queue_t serialQueue = dispatch_queue_create("test", DISPATCH_QUEUE_SERIAL);
+    
+    // INFO: dispatch_queue_create第二个参数NULL为SERIAL
+    dispatch_queue_t serialQueue = dispatch_queue_create("test", NULL);
     [logger addStep:1];
     dispatch_sync(serialQueue, ^{
         NSAssert([[NSThread currentThread] isMainThread], @"在主线程");

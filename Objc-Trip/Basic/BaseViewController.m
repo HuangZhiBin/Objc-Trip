@@ -28,7 +28,7 @@
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    [BaseUtil startListeningAutoRelease];
+//    [BaseUtil startListeningAutoRelease];
     
     // Do any additional setup after loading the view.
     menus = [self getAllMethods];
@@ -48,7 +48,7 @@
 
 -(void)dealloc{
     [debuggerView removeFromSuperview];
-    [BaseUtil stopListeningAutoRelease];
+//    [BaseUtil stopListeningAutoRelease];
 }
 
 -(NSDictionary*)redirect{

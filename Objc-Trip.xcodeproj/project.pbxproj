@@ -69,6 +69,12 @@
 		85646D29280C4B2100A4F484 /* MyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85646D27280C4B2100A4F484 /* MyOperation.m */; };
 		856AAAD9280FA7A20011B297 /* InfiniteScrollViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 856AAAD7280FA7A20011B297 /* InfiniteScrollViewController.h */; };
 		856AAADA280FA7A20011B297 /* InfiniteScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 856AAAD8280FA7A20011B297 /* InfiniteScrollViewController.m */; };
+		856AAADD2811349F0011B297 /* ClassViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 856AAADB2811349F0011B297 /* ClassViewController.h */; };
+		856AAADE2811349F0011B297 /* ClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 856AAADC2811349F0011B297 /* ClassViewController.m */; };
+		856AAAE1281135A40011B297 /* SubViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 856AAADF281135A40011B297 /* SubViewController.h */; };
+		856AAAE2281135A40011B297 /* SubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 856AAAE0281135A40011B297 /* SubViewController.m */; };
+		856AAAE92811460B0011B297 /* BlockArrayViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 856AAAE72811460B0011B297 /* BlockArrayViewController.h */; };
+		856AAAEA2811460B0011B297 /* BlockArrayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 856AAAE82811460B0011B297 /* BlockArrayViewController.m */; };
 		857DA01D280E69FC0068EA88 /* NSTimer+Block.h in Headers */ = {isa = PBXBuildFile; fileRef = 857DA01B280E69FC0068EA88 /* NSTimer+Block.h */; };
 		857DA01E280E69FC0068EA88 /* NSTimer+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 857DA01C280E69FC0068EA88 /* NSTimer+Block.m */; };
 		85A52B1128081D8400FA3170 /* VarViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85A52B0F28081D8400FA3170 /* VarViewController.h */; };
@@ -191,6 +197,12 @@
 		85679405D78596B843519FD8 /* Pods-Objc-Trip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Objc-Trip.debug.xcconfig"; path = "Target Support Files/Pods-Objc-Trip/Pods-Objc-Trip.debug.xcconfig"; sourceTree = "<group>"; };
 		856AAAD7280FA7A20011B297 /* InfiniteScrollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollViewController.h; sourceTree = "<group>"; };
 		856AAAD8280FA7A20011B297 /* InfiniteScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollViewController.m; sourceTree = "<group>"; };
+		856AAADB2811349F0011B297 /* ClassViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassViewController.h; sourceTree = "<group>"; };
+		856AAADC2811349F0011B297 /* ClassViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassViewController.m; sourceTree = "<group>"; };
+		856AAADF281135A40011B297 /* SubViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubViewController.h; sourceTree = "<group>"; };
+		856AAAE0281135A40011B297 /* SubViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubViewController.m; sourceTree = "<group>"; };
+		856AAAE72811460B0011B297 /* BlockArrayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockArrayViewController.h; sourceTree = "<group>"; };
+		856AAAE82811460B0011B297 /* BlockArrayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockArrayViewController.m; sourceTree = "<group>"; };
 		857DA01B280E69FC0068EA88 /* NSTimer+Block.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Block.h"; sourceTree = "<group>"; };
 		857DA01C280E69FC0068EA88 /* NSTimer+Block.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Block.m"; sourceTree = "<group>"; };
 		85A52B0F28081D8400FA3170 /* VarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VarViewController.h; sourceTree = "<group>"; };
@@ -270,6 +282,8 @@
 				85FE0C3B280AF17F001E76F0 /* GCDLogger.m */,
 				851D0D9F280D999400F14056 /* TypeUtil.h */,
 				851D0DA0280D999400F14056 /* TypeUtil.m */,
+				856AAADF281135A40011B297 /* SubViewController.h */,
+				856AAAE0281135A40011B297 /* SubViewController.m */,
 			);
 			path = Basic;
 			sourceTree = "<group>";
@@ -380,6 +394,8 @@
 				857DA01C280E69FC0068EA88 /* NSTimer+Block.m */,
 				856AAAD7280FA7A20011B297 /* InfiniteScrollViewController.h */,
 				856AAAD8280FA7A20011B297 /* InfiniteScrollViewController.m */,
+				856AAADB2811349F0011B297 /* ClassViewController.h */,
+				856AAADC2811349F0011B297 /* ClassViewController.m */,
 			);
 			path = Sub;
 			sourceTree = "<group>";
@@ -389,6 +405,8 @@
 			children = (
 				855696C928099665008A1947 /* BlockLeakTestViewController.h */,
 				855696CA28099665008A1947 /* BlockLeakTestViewController.m */,
+				856AAAE72811460B0011B297 /* BlockArrayViewController.h */,
+				856AAAE82811460B0011B297 /* BlockArrayViewController.m */,
 			);
 			path = Sub;
 			sourceTree = "<group>";
@@ -495,8 +513,10 @@
 				85FE0C40280AFF61001E76F0 /* GCDAfterViewController.h in Headers */,
 				85FE0C3C280AF17F001E76F0 /* GCDLogger.h in Headers */,
 				857DA01D280E69FC0068EA88 /* NSTimer+Block.h in Headers */,
+				856AAAE1281135A40011B297 /* SubViewController.h in Headers */,
 				85646D1B280BF69300A4F484 /* GCDSemaphoreViewController.h in Headers */,
 				85A52B1128081D8400FA3170 /* VarViewController.h in Headers */,
+				856AAAE92811460B0011B297 /* BlockArrayViewController.h in Headers */,
 				85646D17280BE73F00A4F484 /* GCDSuspendViewController.h in Headers */,
 				85FE0C44280B071D001E76F0 /* GCDGroupViewController.h in Headers */,
 				85646D28280C4B2100A4F484 /* MyOperation.h in Headers */,
@@ -505,6 +525,7 @@
 				855696AC28096F97008A1947 /* OthersViewController.h in Headers */,
 				85646D13280BD2BA00A4F484 /* GCDApplyViewController.h in Headers */,
 				855696BA28097306008A1947 /* Son.h in Headers */,
+				856AAADD2811349F0011B297 /* ClassViewController.h in Headers */,
 				8553B2B728045BF500A692C2 /* DebuggerView.h in Headers */,
 				856AAAD9280FA7A20011B297 /* InfiniteScrollViewController.h in Headers */,
 				85FE0C38280AEAB5001E76F0 /* GCDSetTargetViewController.h in Headers */,
@@ -738,13 +759,16 @@
 				8553B2922803E49700A692C2 /* NSArray+GCD.m in Sources */,
 				852B830B28032638005479E0 /* AutoreleaseViewController.m in Sources */,
 				85646D20280C215200A4F484 /* GCDSourceViewController.m in Sources */,
+				856AAADE2811349F0011B297 /* ClassViewController.m in Sources */,
 				855696AD28096F97008A1947 /* OthersViewController.m in Sources */,
 				85FE0C41280AFF61001E76F0 /* GCDAfterViewController.m in Sources */,
+				856AAAEA2811460B0011B297 /* BlockArrayViewController.m in Sources */,
 				856AAADA280FA7A20011B297 /* InfiniteScrollViewController.m in Sources */,
 				852B830328032638005479E0 /* MenuSection.m in Sources */,
 				852B830928032638005479E0 /* CopyViewController.m in Sources */,
 				852B830128032638005479E0 /* BaseViewController.m in Sources */,
 				855696C32809927E008A1947 /* DeallocController.m in Sources */,
+				856AAAE2281135A40011B297 /* SubViewController.m in Sources */,
 				852B830528032638005479E0 /* WeakViewController.m in Sources */,
 				857DA01E280E69FC0068EA88 /* NSTimer+Block.m in Sources */,
 				852B830D28032638005479E0 /* GCDViewController.m in Sources */,
