@@ -25,6 +25,8 @@
 		852B830D28032638005479E0 /* GCDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82FC28032638005479E0 /* GCDViewController.m */; };
 		852B830E28032638005479E0 /* BatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82FD28032638005479E0 /* BatchViewController.m */; };
 		852B830F28032638005479E0 /* LockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 852B82FE28032638005479E0 /* LockViewController.m */; };
+		85360F7A28164FA700158BCF /* LoadViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85360F7828164FA700158BCF /* LoadViewController.h */; };
+		85360F7B28164FA700158BCF /* LoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85360F7928164FA700158BCF /* LoadViewController.m */; };
 		8553B2912803E49700A692C2 /* NSArray+GCD.h in Headers */ = {isa = PBXBuildFile; fileRef = 8553B28F2803E49600A692C2 /* NSArray+GCD.h */; };
 		8553B2922803E49700A692C2 /* NSArray+GCD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8553B2902803E49600A692C2 /* NSArray+GCD.m */; };
 		8553B2A328044C4100A692C2 /* codes.zip in Resources */ = {isa = PBXBuildFile; fileRef = 8553B2A228044C4100A692C2 /* codes.zip */; };
@@ -69,18 +71,38 @@
 		85646D29280C4B2100A4F484 /* MyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85646D27280C4B2100A4F484 /* MyOperation.m */; };
 		856AAAD9280FA7A20011B297 /* InfiniteScrollViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 856AAAD7280FA7A20011B297 /* InfiniteScrollViewController.h */; };
 		856AAADA280FA7A20011B297 /* InfiniteScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 856AAAD8280FA7A20011B297 /* InfiniteScrollViewController.m */; };
-		856AAADD2811349F0011B297 /* ClassViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 856AAADB2811349F0011B297 /* ClassViewController.h */; };
-		856AAADE2811349F0011B297 /* ClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 856AAADC2811349F0011B297 /* ClassViewController.m */; };
 		856AAAE1281135A40011B297 /* SubViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 856AAADF281135A40011B297 /* SubViewController.h */; };
 		856AAAE2281135A40011B297 /* SubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 856AAAE0281135A40011B297 /* SubViewController.m */; };
 		856AAAE92811460B0011B297 /* BlockArrayViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 856AAAE72811460B0011B297 /* BlockArrayViewController.h */; };
 		856AAAEA2811460B0011B297 /* BlockArrayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 856AAAE82811460B0011B297 /* BlockArrayViewController.m */; };
 		857DA01D280E69FC0068EA88 /* NSTimer+Block.h in Headers */ = {isa = PBXBuildFile; fileRef = 857DA01B280E69FC0068EA88 /* NSTimer+Block.h */; };
 		857DA01E280E69FC0068EA88 /* NSTimer+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 857DA01C280E69FC0068EA88 /* NSTimer+Block.m */; };
+		85A1E8F72816781400FF2D85 /* InitializeViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85A1E8F52816781400FF2D85 /* InitializeViewController.h */; };
+		85A1E8F82816781400FF2D85 /* InitializeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A1E8F62816781400FF2D85 /* InitializeViewController.m */; };
+		85A1E8FB28168FBB00FF2D85 /* IvarViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85A1E8F928168FBB00FF2D85 /* IvarViewController.h */; };
+		85A1E8FC28168FBB00FF2D85 /* IvarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A1E8FA28168FBB00FF2D85 /* IvarViewController.m */; };
+		85A1E8FF28169CB500FF2D85 /* ClassViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85A1E8FD28169CB500FF2D85 /* ClassViewController.h */; };
+		85A1E90028169CB500FF2D85 /* ClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A1E8FE28169CB500FF2D85 /* ClassViewController.m */; };
+		85A1E9032816CB0C00FF2D85 /* NSNotificationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85A1E9012816CB0C00FF2D85 /* NSNotificationViewController.h */; };
+		85A1E9042816CB0C00FF2D85 /* NSNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A1E9022816CB0C00FF2D85 /* NSNotificationViewController.m */; };
 		85A52B1128081D8400FA3170 /* VarViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85A52B0F28081D8400FA3170 /* VarViewController.h */; };
 		85A52B1228081D8400FA3170 /* VarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A52B1028081D8400FA3170 /* VarViewController.m */; };
 		85A52B1528084B9100FA3170 /* BlockViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85A52B1328084B9100FA3170 /* BlockViewController.h */; };
 		85A52B1628084B9100FA3170 /* BlockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A52B1428084B9100FA3170 /* BlockViewController.m */; };
+		85B37C9228129F5E0041311E /* StaticViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85B37C9028129F5E0041311E /* StaticViewController.h */; };
+		85B37C9328129F5E0041311E /* StaticViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B37C9128129F5E0041311E /* StaticViewController.m */; };
+		85B37C972812A1EE0041311E /* TestModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 85B37C952812A1EE0041311E /* TestModel.h */; };
+		85B37C982812A1EE0041311E /* TestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B37C962812A1EE0041311E /* TestModel.m */; };
+		85B37C9C28152F140041311E /* MsgSendViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85B37C9A28152F140041311E /* MsgSendViewController.h */; };
+		85B37C9D28152F140041311E /* MsgSendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B37C9B28152F140041311E /* MsgSendViewController.m */; };
+		85B37CA128152FE90041311E /* ResolveInstanceMethodViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85B37C9F28152FE90041311E /* ResolveInstanceMethodViewController.h */; };
+		85B37CA228152FE90041311E /* ResolveInstanceMethodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B37CA028152FE90041311E /* ResolveInstanceMethodViewController.m */; };
+		85B37CA5281533790041311E /* ForwardTargetViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85B37CA3281533790041311E /* ForwardTargetViewController.h */; };
+		85B37CA6281533790041311E /* ForwardTargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B37CA4281533790041311E /* ForwardTargetViewController.m */; };
+		85B37CA92815376C0041311E /* ForwardInvocationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85B37CA72815376C0041311E /* ForwardInvocationViewController.h */; };
+		85B37CAA2815376C0041311E /* ForwardInvocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B37CA82815376C0041311E /* ForwardInvocationViewController.m */; };
+		85B37CAD281540EE0041311E /* IsaViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85B37CAB281540EE0041311E /* IsaViewController.h */; };
+		85B37CAE281540EE0041311E /* IsaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B37CAC281540EE0041311E /* IsaViewController.m */; };
 		85FE0C38280AEAB5001E76F0 /* GCDSetTargetViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 85FE0C36280AEAB5001E76F0 /* GCDSetTargetViewController.h */; };
 		85FE0C39280AEAB5001E76F0 /* GCDSetTargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FE0C37280AEAB5001E76F0 /* GCDSetTargetViewController.m */; };
 		85FE0C3C280AF17F001E76F0 /* GCDLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 85FE0C3A280AF17F001E76F0 /* GCDLogger.h */; };
@@ -143,6 +165,8 @@
 		852B82FE28032638005479E0 /* LockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockViewController.m; sourceTree = "<group>"; };
 		852B82FF28032638005479E0 /* GCDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDViewController.h; sourceTree = "<group>"; };
 		852B830028032638005479E0 /* BatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BatchViewController.h; sourceTree = "<group>"; };
+		85360F7828164FA700158BCF /* LoadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadViewController.h; sourceTree = "<group>"; };
+		85360F7928164FA700158BCF /* LoadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadViewController.m; sourceTree = "<group>"; };
 		8553B28F2803E49600A692C2 /* NSArray+GCD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+GCD.h"; sourceTree = "<group>"; };
 		8553B2902803E49600A692C2 /* NSArray+GCD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GCD.m"; sourceTree = "<group>"; };
 		8553B2A228044C4100A692C2 /* codes.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = codes.zip; sourceTree = SOURCE_ROOT; };
@@ -197,18 +221,38 @@
 		85679405D78596B843519FD8 /* Pods-Objc-Trip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Objc-Trip.debug.xcconfig"; path = "Target Support Files/Pods-Objc-Trip/Pods-Objc-Trip.debug.xcconfig"; sourceTree = "<group>"; };
 		856AAAD7280FA7A20011B297 /* InfiniteScrollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollViewController.h; sourceTree = "<group>"; };
 		856AAAD8280FA7A20011B297 /* InfiniteScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollViewController.m; sourceTree = "<group>"; };
-		856AAADB2811349F0011B297 /* ClassViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassViewController.h; sourceTree = "<group>"; };
-		856AAADC2811349F0011B297 /* ClassViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassViewController.m; sourceTree = "<group>"; };
 		856AAADF281135A40011B297 /* SubViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubViewController.h; sourceTree = "<group>"; };
 		856AAAE0281135A40011B297 /* SubViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubViewController.m; sourceTree = "<group>"; };
 		856AAAE72811460B0011B297 /* BlockArrayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockArrayViewController.h; sourceTree = "<group>"; };
 		856AAAE82811460B0011B297 /* BlockArrayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockArrayViewController.m; sourceTree = "<group>"; };
 		857DA01B280E69FC0068EA88 /* NSTimer+Block.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Block.h"; sourceTree = "<group>"; };
 		857DA01C280E69FC0068EA88 /* NSTimer+Block.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Block.m"; sourceTree = "<group>"; };
+		85A1E8F52816781400FF2D85 /* InitializeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InitializeViewController.h; sourceTree = "<group>"; };
+		85A1E8F62816781400FF2D85 /* InitializeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InitializeViewController.m; sourceTree = "<group>"; };
+		85A1E8F928168FBB00FF2D85 /* IvarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IvarViewController.h; sourceTree = "<group>"; };
+		85A1E8FA28168FBB00FF2D85 /* IvarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IvarViewController.m; sourceTree = "<group>"; };
+		85A1E8FD28169CB500FF2D85 /* ClassViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassViewController.h; sourceTree = "<group>"; };
+		85A1E8FE28169CB500FF2D85 /* ClassViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassViewController.m; sourceTree = "<group>"; };
+		85A1E9012816CB0C00FF2D85 /* NSNotificationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSNotificationViewController.h; sourceTree = "<group>"; };
+		85A1E9022816CB0C00FF2D85 /* NSNotificationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSNotificationViewController.m; sourceTree = "<group>"; };
 		85A52B0F28081D8400FA3170 /* VarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VarViewController.h; sourceTree = "<group>"; };
 		85A52B1028081D8400FA3170 /* VarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VarViewController.m; sourceTree = "<group>"; };
 		85A52B1328084B9100FA3170 /* BlockViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockViewController.h; sourceTree = "<group>"; };
 		85A52B1428084B9100FA3170 /* BlockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockViewController.m; sourceTree = "<group>"; };
+		85B37C9028129F5E0041311E /* StaticViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaticViewController.h; sourceTree = "<group>"; };
+		85B37C9128129F5E0041311E /* StaticViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaticViewController.m; sourceTree = "<group>"; };
+		85B37C952812A1EE0041311E /* TestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestModel.h; sourceTree = "<group>"; };
+		85B37C962812A1EE0041311E /* TestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestModel.m; sourceTree = "<group>"; };
+		85B37C9A28152F140041311E /* MsgSendViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MsgSendViewController.h; sourceTree = "<group>"; };
+		85B37C9B28152F140041311E /* MsgSendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MsgSendViewController.m; sourceTree = "<group>"; };
+		85B37C9F28152FE90041311E /* ResolveInstanceMethodViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResolveInstanceMethodViewController.h; sourceTree = "<group>"; };
+		85B37CA028152FE90041311E /* ResolveInstanceMethodViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResolveInstanceMethodViewController.m; sourceTree = "<group>"; };
+		85B37CA3281533790041311E /* ForwardTargetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForwardTargetViewController.h; sourceTree = "<group>"; };
+		85B37CA4281533790041311E /* ForwardTargetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForwardTargetViewController.m; sourceTree = "<group>"; };
+		85B37CA72815376C0041311E /* ForwardInvocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForwardInvocationViewController.h; sourceTree = "<group>"; };
+		85B37CA82815376C0041311E /* ForwardInvocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForwardInvocationViewController.m; sourceTree = "<group>"; };
+		85B37CAB281540EE0041311E /* IsaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IsaViewController.h; sourceTree = "<group>"; };
+		85B37CAC281540EE0041311E /* IsaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IsaViewController.m; sourceTree = "<group>"; };
 		85FE0C36280AEAB5001E76F0 /* GCDSetTargetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDSetTargetViewController.h; sourceTree = "<group>"; };
 		85FE0C37280AEAB5001E76F0 /* GCDSetTargetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDSetTargetViewController.m; sourceTree = "<group>"; };
 		85FE0C3A280AF17F001E76F0 /* GCDLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDLogger.h; sourceTree = "<group>"; };
@@ -291,6 +335,8 @@
 		852B82E728032638005479E0 /* Units */ = {
 			isa = PBXGroup;
 			children = (
+				85B37C9928152EF40041311E /* Runtime */,
+				85B37C8F28129F490041311E /* OC */,
 				852B82E828032638005479E0 /* ARC */,
 				85A52B0E28081D6D00FA3170 /* Block */,
 				852B82FA28032638005479E0 /* GCD */,
@@ -377,6 +423,8 @@
 				852B82FE28032638005479E0 /* LockViewController.m */,
 				851D0D9B280D553C00F14056 /* NSTimerViewController.h */,
 				851D0D9C280D553C00F14056 /* NSTimerViewController.m */,
+				85A1E9012816CB0C00FF2D85 /* NSNotificationViewController.h */,
+				85A1E9022816CB0C00FF2D85 /* NSNotificationViewController.m */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -394,8 +442,6 @@
 				857DA01C280E69FC0068EA88 /* NSTimer+Block.m */,
 				856AAAD7280FA7A20011B297 /* InfiniteScrollViewController.h */,
 				856AAAD8280FA7A20011B297 /* InfiniteScrollViewController.m */,
-				856AAADB2811349F0011B297 /* ClassViewController.h */,
-				856AAADC2811349F0011B297 /* ClassViewController.m */,
 			);
 			path = Sub;
 			sourceTree = "<group>";
@@ -496,6 +542,58 @@
 			path = Block;
 			sourceTree = "<group>";
 		};
+		85B37C8F28129F490041311E /* OC */ = {
+			isa = PBXGroup;
+			children = (
+				85B37C942812A1CE0041311E /* Sub */,
+				85B37C9028129F5E0041311E /* StaticViewController.h */,
+				85B37C9128129F5E0041311E /* StaticViewController.m */,
+				85360F7828164FA700158BCF /* LoadViewController.h */,
+				85360F7928164FA700158BCF /* LoadViewController.m */,
+				85A1E8F52816781400FF2D85 /* InitializeViewController.h */,
+				85A1E8F62816781400FF2D85 /* InitializeViewController.m */,
+				85A1E8F928168FBB00FF2D85 /* IvarViewController.h */,
+				85A1E8FA28168FBB00FF2D85 /* IvarViewController.m */,
+				85A1E8FD28169CB500FF2D85 /* ClassViewController.h */,
+				85A1E8FE28169CB500FF2D85 /* ClassViewController.m */,
+			);
+			path = OC;
+			sourceTree = "<group>";
+		};
+		85B37C942812A1CE0041311E /* Sub */ = {
+			isa = PBXGroup;
+			children = (
+				85B37C952812A1EE0041311E /* TestModel.h */,
+				85B37C962812A1EE0041311E /* TestModel.m */,
+			);
+			path = Sub;
+			sourceTree = "<group>";
+		};
+		85B37C9928152EF40041311E /* Runtime */ = {
+			isa = PBXGroup;
+			children = (
+				85B37C9E28152FCC0041311E /* Sub */,
+				85B37C9A28152F140041311E /* MsgSendViewController.h */,
+				85B37C9B28152F140041311E /* MsgSendViewController.m */,
+				85B37CAB281540EE0041311E /* IsaViewController.h */,
+				85B37CAC281540EE0041311E /* IsaViewController.m */,
+			);
+			path = Runtime;
+			sourceTree = "<group>";
+		};
+		85B37C9E28152FCC0041311E /* Sub */ = {
+			isa = PBXGroup;
+			children = (
+				85B37C9F28152FE90041311E /* ResolveInstanceMethodViewController.h */,
+				85B37CA028152FE90041311E /* ResolveInstanceMethodViewController.m */,
+				85B37CA3281533790041311E /* ForwardTargetViewController.h */,
+				85B37CA4281533790041311E /* ForwardTargetViewController.m */,
+				85B37CA72815376C0041311E /* ForwardInvocationViewController.h */,
+				85B37CA82815376C0041311E /* ForwardInvocationViewController.m */,
+			);
+			path = Sub;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -506,30 +604,41 @@
 				855696C628099643008A1947 /* BlockLeakViewController.h in Headers */,
 				855696CB28099665008A1947 /* BlockLeakTestViewController.h in Headers */,
 				85646D1F280C215200A4F484 /* GCDSourceViewController.h in Headers */,
+				85B37C972812A1EE0041311E /* TestModel.h in Headers */,
+				85B37CA5281533790041311E /* ForwardTargetViewController.h in Headers */,
 				85646D23280C3D3C00A4F484 /* OperationViewController.h in Headers */,
 				855696BE28097311008A1947 /* Father.h in Headers */,
 				855696CF28099ED3008A1947 /* TimerViewController.h in Headers */,
 				851D0D9D280D553C00F14056 /* NSTimerViewController.h in Headers */,
 				85FE0C40280AFF61001E76F0 /* GCDAfterViewController.h in Headers */,
+				85360F7A28164FA700158BCF /* LoadViewController.h in Headers */,
 				85FE0C3C280AF17F001E76F0 /* GCDLogger.h in Headers */,
 				857DA01D280E69FC0068EA88 /* NSTimer+Block.h in Headers */,
 				856AAAE1281135A40011B297 /* SubViewController.h in Headers */,
+				85B37C9228129F5E0041311E /* StaticViewController.h in Headers */,
+				85B37CA128152FE90041311E /* ResolveInstanceMethodViewController.h in Headers */,
+				85A1E8FF28169CB500FF2D85 /* ClassViewController.h in Headers */,
 				85646D1B280BF69300A4F484 /* GCDSemaphoreViewController.h in Headers */,
 				85A52B1128081D8400FA3170 /* VarViewController.h in Headers */,
 				856AAAE92811460B0011B297 /* BlockArrayViewController.h in Headers */,
 				85646D17280BE73F00A4F484 /* GCDSuspendViewController.h in Headers */,
 				85FE0C44280B071D001E76F0 /* GCDGroupViewController.h in Headers */,
+				85B37CA92815376C0041311E /* ForwardInvocationViewController.h in Headers */,
 				85646D28280C4B2100A4F484 /* MyOperation.h in Headers */,
 				851D0DA1280D999400F14056 /* TypeUtil.h in Headers */,
 				855696C22809927E008A1947 /* DeallocController.h in Headers */,
 				855696AC28096F97008A1947 /* OthersViewController.h in Headers */,
 				85646D13280BD2BA00A4F484 /* GCDApplyViewController.h in Headers */,
 				855696BA28097306008A1947 /* Son.h in Headers */,
-				856AAADD2811349F0011B297 /* ClassViewController.h in Headers */,
 				8553B2B728045BF500A692C2 /* DebuggerView.h in Headers */,
+				85B37CAD281540EE0041311E /* IsaViewController.h in Headers */,
+				85A1E8F72816781400FF2D85 /* InitializeViewController.h in Headers */,
+				85A1E8FB28168FBB00FF2D85 /* IvarViewController.h in Headers */,
 				856AAAD9280FA7A20011B297 /* InfiniteScrollViewController.h in Headers */,
 				85FE0C38280AEAB5001E76F0 /* GCDSetTargetViewController.h in Headers */,
+				85A1E9032816CB0C00FF2D85 /* NSNotificationViewController.h in Headers */,
 				85A52B1528084B9100FA3170 /* BlockViewController.h in Headers */,
+				85B37C9C28152F140041311E /* MsgSendViewController.h in Headers */,
 				85646D0F280BB49D00A4F484 /* GCDBarrierViewController.h in Headers */,
 				8553B2912803E49700A692C2 /* NSArray+GCD.h in Headers */,
 			);
@@ -748,32 +857,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85A1E8FC28168FBB00FF2D85 /* IvarViewController.m in Sources */,
 				852B830728032638005479E0 /* WeakTestViewController.m in Sources */,
 				85646D1C280BF69300A4F484 /* GCDSemaphoreViewController.m in Sources */,
 				852B830C28032638005479E0 /* RetainCountViewController.m in Sources */,
 				852B830628032638005479E0 /* CFBridgeViewController.m in Sources */,
 				852B830828032638005479E0 /* BridgeLeakViewController.m in Sources */,
+				85A1E9042816CB0C00FF2D85 /* NSNotificationViewController.m in Sources */,
 				85646D14280BD2BA00A4F484 /* GCDApplyViewController.m in Sources */,
 				852B830F28032638005479E0 /* LockViewController.m in Sources */,
 				855DEAF62803205B005D2874 /* ViewController.m in Sources */,
+				85B37CAE281540EE0041311E /* IsaViewController.m in Sources */,
 				8553B2922803E49700A692C2 /* NSArray+GCD.m in Sources */,
 				852B830B28032638005479E0 /* AutoreleaseViewController.m in Sources */,
 				85646D20280C215200A4F484 /* GCDSourceViewController.m in Sources */,
-				856AAADE2811349F0011B297 /* ClassViewController.m in Sources */,
+				85B37C982812A1EE0041311E /* TestModel.m in Sources */,
 				855696AD28096F97008A1947 /* OthersViewController.m in Sources */,
+				85B37C9D28152F140041311E /* MsgSendViewController.m in Sources */,
 				85FE0C41280AFF61001E76F0 /* GCDAfterViewController.m in Sources */,
 				856AAAEA2811460B0011B297 /* BlockArrayViewController.m in Sources */,
 				856AAADA280FA7A20011B297 /* InfiniteScrollViewController.m in Sources */,
 				852B830328032638005479E0 /* MenuSection.m in Sources */,
+				85B37CA6281533790041311E /* ForwardTargetViewController.m in Sources */,
 				852B830928032638005479E0 /* CopyViewController.m in Sources */,
 				852B830128032638005479E0 /* BaseViewController.m in Sources */,
 				855696C32809927E008A1947 /* DeallocController.m in Sources */,
 				856AAAE2281135A40011B297 /* SubViewController.m in Sources */,
+				85360F7B28164FA700158BCF /* LoadViewController.m in Sources */,
+				85A1E8F82816781400FF2D85 /* InitializeViewController.m in Sources */,
 				852B830528032638005479E0 /* WeakViewController.m in Sources */,
 				857DA01E280E69FC0068EA88 /* NSTimer+Block.m in Sources */,
 				852B830D28032638005479E0 /* GCDViewController.m in Sources */,
+				85B37C9328129F5E0041311E /* StaticViewController.m in Sources */,
 				851D0D9E280D553C00F14056 /* NSTimerViewController.m in Sources */,
 				851D0DA2280D999400F14056 /* TypeUtil.m in Sources */,
+				85B37CAA2815376C0041311E /* ForwardInvocationViewController.m in Sources */,
 				855DEAF02803205B005D2874 /* AppDelegate.m in Sources */,
 				855696CC28099665008A1947 /* BlockLeakTestViewController.m in Sources */,
 				85646D18280BE73F00A4F484 /* GCDSuspendViewController.m in Sources */,
@@ -784,7 +902,9 @@
 				852B830228032638005479E0 /* MenuItem.m in Sources */,
 				85FE0C3D280AF17F001E76F0 /* GCDLogger.m in Sources */,
 				855DEB012803205C005D2874 /* main.m in Sources */,
+				85A1E90028169CB500FF2D85 /* ClassViewController.m in Sources */,
 				85FE0C39280AEAB5001E76F0 /* GCDSetTargetViewController.m in Sources */,
+				85B37CA228152FE90041311E /* ResolveInstanceMethodViewController.m in Sources */,
 				855696C728099643008A1947 /* BlockLeakViewController.m in Sources */,
 				85A52B1628084B9100FA3170 /* BlockViewController.m in Sources */,
 				85FE0C45280B071D001E76F0 /* GCDGroupViewController.m in Sources */,

@@ -23,7 +23,6 @@
 -(NSDictionary*)redirect{
     return @{
         @"testSon": @[ @"Son", @"testSon" ],
-        @"testClassMethod": @[ @"ClassViewController", @"test" ],
     };
 }
 
@@ -35,13 +34,6 @@
     NSString *obj = [[NSData alloc] init];
     // INFO: 编译时类型为NSString
     NSAssert([obj isKindOfClass:[NSData class]], @"obj运行时的类型为NSData");
-}
-
--(void)testClassMethod{
-    ClassViewController *vc = [[ClassViewController alloc] init];
-    vc.testcase = @"test";
-    vc.autoPop = YES;
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*

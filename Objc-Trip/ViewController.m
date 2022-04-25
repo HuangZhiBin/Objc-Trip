@@ -31,6 +31,17 @@
     
     menus =
     @[
+        [[MenuSection alloc] initWithSectionName:@"OC基础" items:@[
+            [[MenuItem alloc] initWithTitle:@"static" vcName:@"StaticViewController"],
+            [[MenuItem alloc] initWithTitle:@"+load" vcName:@"LoadViewController"],
+            [[MenuItem alloc] initWithTitle:@"+initialize" vcName:@"InitializeViewController"],
+            [[MenuItem alloc] initWithTitle:@"object_getClass" vcName:@"ClassViewController"],
+        ]],
+        [[MenuSection alloc] initWithSectionName:@"Runtime" items:@[
+            [[MenuItem alloc] initWithTitle:@"MsgSend" vcName:@"MsgSendViewController"],
+            [[MenuItem alloc] initWithTitle:@"isa" vcName:@"IsaViewController"],
+            [[MenuItem alloc] initWithTitle:@"ivar/propertyList" vcName:@"IvarViewController"],
+        ]],
         [[MenuSection alloc] initWithSectionName:@"ARC" items:@[
             [[MenuItem alloc] initWithTitle:@"RetainCount" vcName:@"RetainCountViewController"],
             [[MenuItem alloc] initWithTitle:@"Autorelease" vcName:@"AutoreleaseViewController"],
@@ -60,6 +71,7 @@
             [[MenuItem alloc] initWithTitle:@"Batch" vcName:@"BatchViewController"],
             [[MenuItem alloc] initWithTitle:@"Lock" vcName:@"LockViewController"],
             [[MenuItem alloc] initWithTitle:@"NSTimer" vcName:@"NSTimerViewController"],
+            [[MenuItem alloc] initWithTitle:@"NSNotification" vcName:@"NSNotificationViewController"],
         ]],
     ];
     

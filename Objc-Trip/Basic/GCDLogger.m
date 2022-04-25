@@ -30,10 +30,11 @@ void stepLog(NSMutableArray *arr, NSInteger val) {
 
 -(void)check:(GCDCallback)callback delay:(NSTimeInterval)interval{
     __weak NSArray *weakArr = steps;
-    [NSTimer scheduledTimerWithTimeInterval:interval repeats:NO block:^(NSTimer * _Nonnull timer) {
+    NSTimer *timer = [NSTimer timerWithTimeInterval:interval repeats:NO block:^(NSTimer * _Nonnull timer) {
         callback(weakArr);
         [timer invalidate];
     }];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }
 
 @end

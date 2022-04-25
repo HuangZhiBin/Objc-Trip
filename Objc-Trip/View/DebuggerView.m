@@ -39,14 +39,13 @@
  */
 
 +(void)sendExecResult:(BOOL)isSuccess{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if(isSuccess){
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"DebuggerViewNotificationSuccess" object:nil];
-        }
-        else{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"DebuggerViewNotificationFail" object:nil];
-        }
-    });
+    if(isSuccess){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"DebuggerViewNotificationSuccess" object:nil];
+        NSLog(@"sdfsdfsf");
+    }
+    else{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"DebuggerViewNotificationFail" object:nil];
+    }
 }
 
 -(void)updateWithCodes:(NSArray<NSString *> *)codes method:(NSString*)method index:(NSInteger)index count:(NSInteger)count isWait:(BOOL)isWait{
@@ -268,7 +267,13 @@
     cell.textLabel.font = [UIFont systemFontOfSize:12];
     
     NSString *realCode = [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    if([realCode hasPrefix:@"// INFO:"]){
+    
+    if([realCode hasPrefix:@"// DIVIDE"]){
+        cell.backgroundColor = [UIColor colorWithRed:21/255.0 green:23/255.0 blue:26/255.0 alpha:1];
+        line = @"";
+    }
+    
+    else if([realCode hasPrefix:@"// INFO:"]){
         cell.textLabel.textColor = UIColor.greenColor;
     }
     else if([realCode hasPrefix:@"// QUIZ:"]){
@@ -283,8 +288,17 @@
     else if([line containsString:@"#import"]){
         cell.textLabel.textColor = [UIColor.whiteColor colorWithAlphaComponent:0.5];
     }
-    else if([line containsString:@"@property"]){
+    else if([line containsString:@"@interface"]){
         cell.textLabel.textColor = UIColor.cyanColor;
+    }
+    else if([line containsString:@"@implementation"]){
+        cell.textLabel.textColor = UIColor.cyanColor;
+    }
+    else if([line containsString:@"@end"]){
+        cell.textLabel.textColor = UIColor.cyanColor;
+    }
+    else if([line containsString:@"@property"]){
+        cell.textLabel.textColor = [UIColor colorWithRed:143/255.0f green:107/255.0f blue:188/255.0f alpha:1];
     }
     else{
         cell.textLabel.textColor = UIColor.whiteColor;

@@ -43,6 +43,7 @@
     self.nums = [@[] mutableCopy];
     
     for(NSInteger idx = 1; idx <= 10000; idx++){
+        SafeExit();
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             [self.nums addObject:@(idx)];
         });
@@ -61,32 +62,28 @@
             a++;
         });
     }
-    NSAssert(a > 5, @"和大于5");
+    [NSTimer scheduledTimerWithTimeInterval:1 repeats:NO block:^(NSTimer * _Nonnull timer) {
+        NSAssert(a > 5, @"和大于5");
+        [timer invalidate];
+    }];
+    
 }
 
 -(void)testString_0{
     for(NSInteger idx = 1; idx <= 10000; idx++){
-      dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        self.str = [NSString stringWithFormat:@"Hello_%ld", idx];
-      });
+        SafeExit();
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            self.str = [NSString stringWithFormat:@"Hello_%ld", idx];
+        });
     }
-    NSAssert(true, @"可以成功执行");
+    NSAssert(true, @"不可以成功执行");
 }
 
 -(void)testString2{
     for(NSInteger idx = 1; idx <= 10000; idx++){
-      dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        self.str = @"sdfsdfsdf";
-      });
-    }
-    NSAssert(true, @"可以成功执行");
-}
-
--(void)testString3_0{
-    for(NSInteger idx = 1; idx <= 10000; idx++){
-      dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        _str = [NSString stringWithFormat:@"Hello_%ld", idx];
-      });
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            self.str = @"sdfsdfsdf";
+        });
     }
     NSAssert(true, @"可以成功执行");
 }
