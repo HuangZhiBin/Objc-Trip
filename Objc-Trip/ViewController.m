@@ -35,12 +35,11 @@
             [[MenuItem alloc] initWithTitle:@"static" vcName:@"StaticViewController"],
             [[MenuItem alloc] initWithTitle:@"+load" vcName:@"LoadViewController"],
             [[MenuItem alloc] initWithTitle:@"+initialize" vcName:@"InitializeViewController"],
-            [[MenuItem alloc] initWithTitle:@"object_getClass" vcName:@"ClassViewController"],
         ]],
         [[MenuSection alloc] initWithSectionName:@"Runtime" items:@[
             [[MenuItem alloc] initWithTitle:@"MsgSend" vcName:@"MsgSendViewController"],
-            [[MenuItem alloc] initWithTitle:@"isa" vcName:@"IsaViewController"],
             [[MenuItem alloc] initWithTitle:@"ivar/propertyList" vcName:@"IvarViewController"],
+            [[MenuItem alloc] initWithTitle:@"KVO" vcName:@"KVOViewController"],
         ]],
         [[MenuSection alloc] initWithSectionName:@"ARC" items:@[
             [[MenuItem alloc] initWithTitle:@"RetainCount" vcName:@"RetainCountViewController"],
@@ -62,6 +61,7 @@
             [[MenuItem alloc] initWithTitle:@"NSOperation" vcName:@"OperationViewController"],
         ]],
         [[MenuSection alloc] initWithSectionName:@"Block" items:@[
+            [[MenuItem alloc] initWithTitle:@"Struct" vcName:@"BlockStructViewController"],
             [[MenuItem alloc] initWithTitle:@"ValueCapture" vcName:@"VarViewController"],
             [[MenuItem alloc] initWithTitle:@"BlockType" vcName:@"BlockViewController"],
             [[MenuItem alloc] initWithTitle:@"Leak" vcName:@"BlockLeakViewController"],

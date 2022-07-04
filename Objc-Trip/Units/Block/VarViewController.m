@@ -25,30 +25,26 @@
     };
 }
 
--(void)testCaptureInt{
-    int val = 1;
+-(void)testStaticVar{
+    static int val = 1;
     void (^blk)(void) = ^{
-        NSAssert(val == 1, @"捕获的值为瞬间值");
+        NSAssert(val == 2, @"val的值为2");
+        val = 3;
     };
     val = 2;
     blk();
+    NSAssert(val == 3, @"val的值为3");
 }
 
--(void)testCaptureString{
-    NSString *str = @"hello";
-    void (^blk)(void) = ^{
-        NSAssert([str isEqualToString:@"hello"], @"捕获的值为瞬间值");
-    };
-    str = @"it's me";
-    blk();
-}
+-(void)groupInt{}
 
--(void)testCaptureString2{
-    NSString *str = [NSString stringWithFormat:@"%@", @"hello"];
+-(void)testCaptureInt{
+    int val = 1;
     void (^blk)(void) = ^{
-        NSAssert([str isEqualToString:@"hello"], @"捕获的值为瞬间值");
+        // INFO: block对于自动变量是值拷贝
+        NSAssert(val == 1, @"捕获的值为瞬间值");
     };
-    str = @"it's me";
+    val = 2;
     blk();
 }
 
@@ -81,59 +77,28 @@
     NSAssert(val == 2, @"捕获的值为最新值");
 }
 
--(void)testStaticVar{
-    static int val = 1;
+-(void)groupNSString{}
+
+-(void)testCaptureString{
+    NSString *str = @"hello";
     void (^blk)(void) = ^{
-        NSAssert(val == 2, @"val的值为2");
-        val = 3;
+        // INFO: block对于OC类型的自动变量是指针拷贝
+        NSAssert([str isEqualToString:@"hello"], @"捕获的值为瞬间值");
     };
-    val = 2;
+    str = @"it's me";
     blk();
-    NSAssert(val == 3, @"val的值为3");
 }
 
--(void)groupStrongWeak{}
-
--(void)test__strong{
-    // QUIZ: 没搞懂
-    typedef int (^blk_t)(id);
-    
-    blk_t blk;
-    
-    {
-        id array = [[NSMutableArray alloc] init];
-        blk = ^(id obj){
-            [array addObject:obj];
-            return (int)[array count];
-        };
-    }
-    
-    NSAssert(blk([NSObject new]) == 1, @"array元素加1");
-    NSAssert(blk([NSObject new]) == 2, @"array元素加1");
-    NSAssert(blk([NSObject new]) == 3, @"array元素加1");
+-(void)testCaptureString2{
+    NSString *str = [NSString stringWithFormat:@"%@", @"hello_hello"];
+    void (^blk)(void) = ^{
+        NSAssert([str isEqualToString:@"hello_hello"], @"捕获的值为瞬间值");
+    };
+    str = [NSString stringWithFormat:@"%@", @"hello_hello_2"];
+    blk();
 }
 
--(void)test__weak{
-    // QUIZ: 没搞懂
-    typedef int (^blk_t)(id);
-    
-    blk_t blk;
-    
-    {
-        id array = [[NSMutableArray alloc] init];
-        __weak id array2 = array;
-        blk = ^(id obj){
-            [array2 addObject:obj];
-            return (int)[array2 count];
-        };
-    }
-    
-    NSAssert(blk([NSObject new]) == 0, @"array为空数组");
-    NSAssert(blk([NSObject new]) == 0, @"array为空数组");
-    NSAssert(blk([NSObject new]) == 0, @"array为空数组");
-}
-
--(void)groupArray{}
+-(void)groupNSArray{}
 
 -(void)testMutableArray{
     NSMutableArray *arr = [NSMutableArray array];
@@ -152,6 +117,47 @@
     vc.autoPop = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+-(void)groupStrongWeak{}
+
+-(void)test__strong{
+    typedef int (^blk_t)(id);
+    
+    blk_t blk;
+    
+    {
+        id array = [[NSMutableArray alloc] init];
+        blk = ^(id obj){
+            [array addObject:obj];
+            return (int)[array count];
+        };
+    }
+    
+    NSAssert(blk([NSObject new]) == 1, @"array元素加1");
+    NSAssert(blk([NSObject new]) == 2, @"array元素加1");
+    NSAssert(blk([NSObject new]) == 3, @"array元素加1");
+}
+
+-(void)test__weak{
+    typedef int (^blk_t)(id);
+    
+    blk_t blk;
+    
+    {
+        id array = [[NSMutableArray alloc] init];
+        __weak id array2 = array;
+        blk = ^(id obj){
+            [array2 addObject:obj];
+            return (int)[array2 count];
+        };
+    }
+    
+    NSAssert(blk([NSObject new]) == 0, @"array为空数组");
+    NSAssert(blk([NSObject new]) == 0, @"array为空数组");
+    NSAssert(blk([NSObject new]) == 0, @"array为空数组");
+}
+
+
 
 /*
 #pragma mark - Navigation

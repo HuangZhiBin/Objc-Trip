@@ -20,6 +20,12 @@ static NSString * const TAG = @"abc";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [BaseUtil startListeningAutoRelease];
+}
+
+- (void)dealloc{
+    [BaseUtil stopListeningAutoRelease];
 }
 
 -(NSDictionary*)redirect{

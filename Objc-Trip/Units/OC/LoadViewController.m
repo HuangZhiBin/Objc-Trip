@@ -62,6 +62,23 @@ static NSMutableArray *steps;
 
 // DIVIDE
 
+@interface Child (Ext2)
+
+@end
+
+@implementation Child (Ext2)
+
++ (void)load{
+    if(!steps){
+        steps = [NSMutableArray array];
+    }
+    [steps addObject:@"ChildExt2"];
+}
+
+@end
+
+// DIVIDE
+
 @interface LoadViewController ()
 
 @end
@@ -75,7 +92,7 @@ static NSMutableArray *steps;
 
 -(void)testLoadOrder{
     // +load执行顺序: 父类->子类->分类
-    BOOL ordered = [steps isEqualToArray:@[ @"People", @"Child", @"ChildExt" ]];
+    BOOL ordered = [steps isEqualToArray:@[ @"People", @"Child", @"ChildExt", @"ChildExt2" ]];
     NSAssert(ordered, @"+load执行顺序");
 }
 

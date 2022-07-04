@@ -34,6 +34,7 @@
 }
 
 -(void)test_mutablecopy_string{
+    int a[10];
     NSString *str = [NSString string];
     // INFO: mutableCopy生成的对象都是可变的
     id obj = [str mutableCopy];

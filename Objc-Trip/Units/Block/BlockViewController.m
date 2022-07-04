@@ -62,7 +62,7 @@
 
 -(void)testMalloc1{
     int num = 123;
-    // INFO: block赋值给strong修饰符的id，编译器自动复制block到堆上
+    // INFO: ARC在 block(1)函数返回值时;(2)block赋值给strong修饰符的id;(3)block作为函数参数，编译器自动复制block到堆上，以保存block
     void (^blk)(void) = ^(){
         printf("%d", num);
     };
@@ -111,25 +111,38 @@
 -(void)testRetainCount{
     NSObject *objc = [NSObject new];
 
-    long(^block1)(void) = ^{
-        return CFGetRetainCount((__bridge CFTypeRef)(objc));
+    void(^block1)(void) = ^{
+        // INFO: Block访问对象类型的auto变量时，由于block被自动copy到了堆区，从而对外部的对象进行强引用，如果这个对象同样强引用这个block，就会形成循环引用。
+        long count = RetainCount(objc);
+        NSAssert(count == 3, @"");
     };
-    NSAssert(block1() == 3, @"");
-
-    long(^__weak block2)(void) = ^{
-        return CFGetRetainCount((__bridge CFTypeRef)(objc));
-    };
-    NSAssert(block2() == 4, @"");
-
-    long(^block3)(void) = [block2 copy];
-    NSAssert(block3() == 5, @"");
-
-    __block NSObject *obj = [NSObject new];
-    long(^block4)(void) = ^{
-        return CFGetRetainCount((__bridge CFTypeRef)(obj));
-    };
-    NSAssert(block4() == 1, @"");
+    
+    block1();
+    
 }
+
+//-(void)testRetainCount{
+//    NSObject *objc = [NSObject new];
+//
+//    long(^block1)(void) = ^{
+//        return CFGetRetainCount((__bridge CFTypeRef)(objc));
+//    };
+//    NSAssert(block1() == 3, @"");
+//
+//    long(^__weak block2)(void) = ^{
+//        return CFGetRetainCount((__bridge CFTypeRef)(objc));
+//    };
+//    NSAssert(block2() == 4, @"");
+//
+//    long(^block3)(void) = [block2 copy];
+//    NSAssert(block3() == 5, @"");
+//
+//    __block NSObject *obj = [NSObject new];
+//    long(^block4)(void) = ^{
+//        return CFGetRetainCount((__bridge CFTypeRef)(obj));
+//    };
+//    NSAssert(block4() == 1, @"");
+//}
 
 /*
 #pragma mark - Navigation

@@ -130,10 +130,10 @@
         
         //获取状态栏的高度
         CGFloat statusHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
-        NSLog(@"状态栏高度：%f",statusHeight);
+        
         //获取导航栏的高度
         CGFloat navHeight = [[UINavigationController alloc] init].navigationBar.frame.size.height;
-        NSLog(@"导航栏高度：%f",navHeight);
+        
         
         UITabBarController *tabBarVC = [[UITabBarController alloc] init];
         CGFloat tabBarHeight = tabBarVC.tabBar.frame.size.height;
@@ -289,16 +289,22 @@
         cell.textLabel.textColor = [UIColor.whiteColor colorWithAlphaComponent:0.5];
     }
     else if([line containsString:@"@interface"]){
-        cell.textLabel.textColor = UIColor.cyanColor;
+        cell.textLabel.textColor = [UIColor colorWithRed:219/255.0f green:187/255.0f blue:255/255.0f alpha:1];
     }
     else if([line containsString:@"@implementation"]){
-        cell.textLabel.textColor = UIColor.cyanColor;
+        cell.textLabel.textColor = [UIColor colorWithRed:219/255.0f green:187/255.0f blue:255/255.0f alpha:1];
     }
     else if([line containsString:@"@end"]){
-        cell.textLabel.textColor = UIColor.cyanColor;
+        cell.textLabel.textColor = [UIColor colorWithRed:219/255.0f green:187/255.0f blue:255/255.0f alpha:1];
     }
     else if([line containsString:@"@property"]){
-        cell.textLabel.textColor = [UIColor colorWithRed:143/255.0f green:107/255.0f blue:188/255.0f alpha:1];
+        cell.textLabel.textColor = UIColor.cyanColor;
+    }
+    else if([line containsString:@"#define"]){
+        cell.textLabel.textColor = UIColor.cyanColor;
+    }
+    else if([line containsString:[NSString stringWithFormat:@"(void)%@", _method]]){
+        cell.textLabel.textColor = [UIColor colorWithRed:31/255.0f green:205/255.0f blue:151/255.0f alpha:1];
     }
     else{
         cell.textLabel.textColor = UIColor.whiteColor;

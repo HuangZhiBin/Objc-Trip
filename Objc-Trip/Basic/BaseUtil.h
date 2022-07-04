@@ -16,6 +16,7 @@ typedef void(^CheckAutoReleaseCallback) (BOOL);
 // 引入打印函数
 extern void _objc_autoreleasePoolPrint(void);
 extern NSString* getAddr(id obj);
+extern BOOL isMainThread(NSString* threadName);
 
 #define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
 #define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
@@ -30,6 +31,8 @@ extern NSString* getAddr(id obj);
 #define returnWait return 0;
 #define waitSuccess [DebuggerView sendExecResult:YES];
 #define waitFail [DebuggerView sendExecResult:NO];
+
+extern NSString* getThreadName(NSThread *thread);
 
 @interface BaseUtil : NSObject
 

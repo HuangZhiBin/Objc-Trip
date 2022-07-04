@@ -13,8 +13,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [BaseUtil startListeningAutoRelease];
     
     numArray = [BaseUtil arrayWithLength:1000000];
+}
+
+-(void)dealloc{
+    [BaseUtil stopListeningAutoRelease];
 }
 
 -(void)testNonAutorelease{

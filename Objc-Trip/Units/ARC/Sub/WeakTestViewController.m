@@ -26,6 +26,7 @@ static NSString * const TAG = @"abc";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     expectStringWillAppearNil = YES;
     expectStringDidAppearNil = YES;
     expectArrWillAppearNil = YES;

@@ -6,7 +6,6 @@
 //
 
 #import "OthersViewController.h"
-#import "ClassViewController.h"
 #import "Son.h"
 
 @interface OthersViewController ()

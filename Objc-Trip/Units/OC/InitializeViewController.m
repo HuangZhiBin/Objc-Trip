@@ -62,6 +62,23 @@ static NSMutableArray *steps;
 
 // DIVIDE
 
+@interface Spanish (Ext2)
+
+@end
+
+@implementation Spanish (Ext2)
+
++ (void)initialize{
+    if(!steps){
+        steps = [NSMutableArray array];
+    }
+    [steps addObject:@"SpanishExt2"];
+}
+
+@end
+
+// DIVIDE
+
 @interface InitializeViewController ()
 
 @end
@@ -76,7 +93,7 @@ static NSMutableArray *steps;
 -(void)testInitializeOrder{
     // +initialize执行顺序: 父类->子类，分类覆盖了子类方法，只执行分类方法
     [Spanish new];
-    BOOL ordered = [steps isEqualToArray:@[ @"Language", @"SpanishExt" ]];
+    BOOL ordered = [steps isEqualToArray:@[ @"Language", @"SpanishExt2" ]];
     NSAssert(ordered, @"+initialize执行顺序");
 }
 

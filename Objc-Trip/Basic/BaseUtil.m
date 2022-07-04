@@ -10,15 +10,30 @@
 
 static NSMutableString *lastLog;
 static NSMutableDictionary *vcDealloc;
+static int dupValue;
 
 NSString* getAddr(id obj) {
     return [NSString stringWithFormat:@"%p", obj];
 }
 
-@implementation BaseUtil
+NSString* getThreadName(NSThread *thread){
+    return [NSString stringWithFormat:@"%@", thread];
+}
+
+BOOL isMainThread(NSString* threadName){
+    return [threadName containsString:@"name = main"];
+}
+
+@implementation BaseUtil{
+    
+}
+
++(void)load{
+    dupValue = dup(STDERR_FILENO);
+}
 
 +(void)startListeningAutoRelease{
-    NSPipe * pipe = [NSPipe pipe];
+    NSPipe *pipe = [NSPipe pipe];
     NSFileHandle *pipeReadHandle = [pipe fileHandleForReading];
     dup2([[pipe fileHandleForWriting] fileDescriptor], STDERR_FILENO);
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(redirectNotificationHandle:) name:NSFileHandleReadCompletionNotification object:pipeReadHandle];
@@ -28,6 +43,7 @@ NSString* getAddr(id obj) {
 +(void)stopListeningAutoRelease{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     lastLog = nil;
+    dup2(dupValue, STDERR_FILENO);
 }
 
 +(void)checkAutoRelease:(NSString *)objAdrr result:(CheckAutoReleaseCallback)callback{

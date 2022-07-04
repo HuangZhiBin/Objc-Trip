@@ -26,9 +26,10 @@
 @synthesize menus;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    [BaseUtil startListeningAutoRelease];
+    NSLog(@"Enter >> %@", [self class]);
+    
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     
     // Do any additional setup after loading the view.
     menus = [self getAllMethods];
@@ -48,7 +49,6 @@
 
 -(void)dealloc{
     [debuggerView removeFromSuperview];
-    [BaseUtil stopListeningAutoRelease];
 }
 
 -(NSDictionary*)redirect{
